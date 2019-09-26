@@ -1,0 +1,105 @@
+.topnav {
+    margin-left: 100px;
+    font-family: arial, sans-serif;
+
+}
+
+.icon-bar {
+    width: 90px;
+    height: 100%;
+    background-color: #333;
+    margin-top: 0px;
+    margin-right: 0px;
+    top: 0;
+    left: 0;
+    float: left;
+    position: fixed;
+}
+
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px; /
+}
+
+.icon-bar a:hover {
+    background-color: #ddd;
+}
+
+.icon-bar .active {
+    background-color: #FF5733;
+}
+
+.edit-user-form {
+    margin-left: 100px;
+    width: 25%;
+}
+
+.info {
+    text-align: center;
+}
+
+.text-input input[type="text"] {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.text-input input[type="password"] {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.text-input input[type="date"] {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+.button input[type="submit"] {
+    margin-top: 20px;
+    width: 94%;
+    margin: 2em 3% 0;
+    border: none;
+    background: #FF5733;
+    padding: 1em 0;
+    font-size: 1.25em;
+    clear: both;
+    color: #FFFFFF;
+    border: #FF5733 1px solid;
+@include border-radius(5px);
+    outline: none;
+@include trans(all, .25s);
+    cursor: pointer;
+}
+
+.button input[type="submit"]:hover {
+    background: #FFFFFF;
+    color: #FF5733;
+}
+
+p {
+    font-family: arial, sans-serif;
+}
