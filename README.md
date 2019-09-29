@@ -8,15 +8,16 @@ Server:
 
 DB: 
 - Currently (09/26/2019) set to run on local MYSQL Server w/ MYSQL Workbench
-- If using Local MYSQL you must download https://dev.mysql.com/downloads/connector/j/5.1.html and add the .jar to the lib file in your 
-- Need to connect to Azure 
+- If using Local MYSQL you must download https://dev.mysql.com/downloads/connector/j/5.1.html and add the .jar to the lib file in your Tomcat Server. Just copy and paste
+
+- NEED TODO: Add connection to Azure (The db that Ben is building for us). I have not used Azure before but it should be possible. We just need to figure out how.  
 
 Tomcat Server 
 - Configure Tomcat in IntelliJ in the top right corner by the "play" button. add this as the url http://localhost:8080/login.jsp
 
 
 JDK
-- Anything above 8 should work...
+- Anything 8 or above should work...
 
 Notes on Project Structure
 Inside the src folder you'll find;
