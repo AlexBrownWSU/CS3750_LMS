@@ -28,4 +28,19 @@ webApp - These are the servlets they bridge the UI with the app and database. *T
 *Servlets must be mapped to do so go to the web folder and then to the WEB-INF and then to the web.xml. THen follow pattern for mappin servlets
 Web Foler - Add JSPs and style sheets (.css) to this folder. You can add HTML, JavaScript and JQuery to .jsp, as well as, java 
 
+Local MYSQL DB Schema
+
+Table user
+id (pk, ai)
+user_name (varchat(45), uq)
+password (varchar(45))
+fname (varchat(45))
+lName (varchat(45))
+type (int )
+
+Table class
+id (int, pk, ai)
+instructorId (int, fk, int, uq)
+class_name (varchar(45))
+meeting_time (varchar(45))
 
