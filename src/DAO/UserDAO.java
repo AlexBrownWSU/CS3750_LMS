@@ -9,6 +9,7 @@ public class UserDAO {
     String password;
     String bDate;
     String type;
+    String phoneNumber;
 
     public String getfName() {
         return fName;
@@ -64,6 +65,14 @@ public class UserDAO {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
 

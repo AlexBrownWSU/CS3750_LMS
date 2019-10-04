@@ -6,6 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <html>
 <head>
     <title>Instructor</title>
@@ -22,10 +25,9 @@
 
 <div class="icon-bar">
     <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <!--<a href="/editUser.jsp "><i class="fa fa-user"></i></a>-->
     <a href="/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
     <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="#"><i class="fa fa-globe"></i></a>
+    <a href="/viewClass?id=1"><i class="fa fa-globe"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
 
@@ -34,32 +36,20 @@
     <br>
     <p class="heading">MY CLASSES</p>
 
-    <table class="classTable">
+    <table class="classTable" id="classTable">
         <tr class="clickable-row">
             <th>CRN</th>
             <th>Name</th>
             <th>Date & Time</th>
         </tr>
-        <tr>
-            <td>12345</td>
-            <td>CS3750</td>
-            <td>TR 9:30 - 11:20</td>
-        </tr>
-        <tr>
-            <td>12346</td>
-            <td>CS3100</td>
-            <td>MW 5:30 - 7:20</td>
-        </tr>
-        <tr>
-            <td>12346</td>
-            <td>CS3100</td>
-            <td>MW 5:30 - 7:20</td>
-        </tr>
-        <tr>
-            <td>12346</td>
-            <td>CS3100</td>
-            <td>MW 5:30 - 7:20</td>
-        </tr>
+
+        <c:forEach items="${classes}" var="classes">
+            <tr class="clickable-row" data-href="/viewClass?id=${classes.id}">
+                <td>${classes.id}</td>
+                <td>${classes.cName}</td>
+                <td>${classes.meetingTime}</td>
+            </tr>
+        </c:forEach>
 
     </table>
 
@@ -101,7 +91,10 @@
 
 </div>
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script>
+
+    //Show / hide add class div
     function showHide() {
         var x = document.getElementById("newClass");
         var y = document.getElementById("collapseBtn")
@@ -115,6 +108,50 @@
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
             window.location = $(this).data("href");
+            /*alert('You clicked row ' + ($(this).index()) + ' ' + $(this).attr('data-href'));
+            thisData = $(this).attr('data-href');
+            console.log(thisdata);
+
+            window.location = thisData;*/
+        });
+    });
+
+
+    /*
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.location = $(this).data("href");
+        });
+    });*/
+
+    //Make table row clickable
+    /*$("#classTable tr:not(:first)").click(function() {
+    //$('#classTable').delegate('tr', 'click' , function(){
+            alert('You clicked row ' + ($(this).index()));
+    });*/
+
+//AJAX call for table reload
+    (function () {
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            $.ajax({
+                url: "/userLandingPage.jsp", // use original page here
+                type: 'POST',
+                data: { lName:${lName}, fName:${fName}, instructorId:${instructorId}, classes:${classes} },
+                dataType: 'html', //look into this
+                success: function (html) {
+
+                    // get the content of #myTable from the AJAX result
+                    var tableContent = $("#classTable", html).html();
+
+                    // set the content of #myTable to the result of the AJAX call
+                    $('#classTable').html(tableContent);
+
+                },
+                error: function(xhr, ajaxOptions, thrownError){
+                    alert('An error occurred! ' + thrownError);
+                }
+            });
         });
     });
 

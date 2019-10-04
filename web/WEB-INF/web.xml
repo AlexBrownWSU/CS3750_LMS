@@ -44,4 +44,24 @@
         <url-pattern>/editUserInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>viewClass</servlet-name>
+        <servlet-class>webapp.viewClass</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewClass</servlet-name>
+        <url-pattern>/viewClass</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>editUserPostInfo</servlet-name>
+        <servlet-class>webapp.editUserPostInfo</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>editUserPostInfo</servlet-name>
+        <url-pattern>/editUserPostInfo</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -1,10 +1,13 @@
 package dataLayer;
 
+import DAO.ClassDAO;
 import DAO.UserDAO;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DB_Get_User {
+public class DB_Get_Class_By_Instructor {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -14,9 +17,9 @@ public class DB_Get_User {
     static final String USER = "root";
     static final String PASS = "Ryu12ryu!";
 
-    public UserDAO getUser(String username, String password) {
+    public List<ClassDAO> getClasses(String instructorId) {
 
-        UserDAO userDAO = new UserDAO();
+        List<ClassDAO> classes = new ArrayList<>();
 
         Connection conn = null;
         Statement stmt = null;
@@ -31,24 +34,23 @@ public class DB_Get_User {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE user_name = \"" + username + "\" AND password = \"" + password + "\"";
+            sql = "SELECT * FROM class WHERE instructorId = " + Integer.parseInt(instructorId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
 
-            if (rs.next()) {
-                userDAO.setId(rs.getInt("id"));
-                userDAO.setlName(rs.getString("lName"));
-                userDAO.setfName(rs.getString("fName"));
-                userDAO.setPassword(rs.getString("password"));
-                userDAO.setType(rs.getString("type"));
-                userDAO.setEmail(rs.getString("user_name"));
-                userDAO.setbDate(rs.getString("bDate"));
+            while (rs.next()) {
 
-                if (rs.getString("phoneNumber") != null) {
-                    userDAO.setPhoneNumber(rs.getString("phoneNumber"));
-                }
+                ClassDAO classDAO = new ClassDAO();
+
+                classDAO.setId(rs.getInt("id"));
+                classDAO.setcName(rs.getString("class_name"));
+                classDAO.setInstructorId(rs.getInt("instructorId"));
+                classDAO.setMeetingTime(rs.getString("meeting_time"));
+
+                classes.add(classDAO);
+
             }
 
             rs.close();
@@ -69,8 +71,8 @@ public class DB_Get_User {
             }
         }
 
-        System.out.println("Closing DB COnnection");
+        System.out.println("Closing DB Connection");
 
-        return userDAO;
+        return classes;
     }
 }

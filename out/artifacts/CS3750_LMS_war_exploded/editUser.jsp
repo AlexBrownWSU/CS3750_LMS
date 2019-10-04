@@ -15,7 +15,7 @@
 <body>
 
 <div class="topnav">
-    <p style="color:red">Edit User Profile: ${lName}, ${fName}</p>
+    <p style="color:red">Edit User Profile: ${lName}, ${fName}, User ID: ${id} Address ID: ${addressId}</p>
     <hr>
 </div>
 
@@ -28,8 +28,7 @@
 </div>
 
 <div class="edit-user-form">
-    <form action="/editUser" method="post">
-
+    <form action="/editUserPostInfo" method="post">
         <p class="heading">User Information</p>
         <hr>
         <div class="info">
@@ -37,12 +36,13 @@
                 <tr>
             <td>
                 <div class="text-input">
-                <input type="text" name="username" width="30" placeholder="Email" value="${email}" readonly/>
-            </div>
+                    <input type="hidden" id="userId" name="userId" value="${id}">
+                    <input type="text" name="username" width="30" placeholder="Email" value="${email}" />
+                </div>
             </td>
                     <td>
             <div class="text-input">
-                <input type="password" name="password" width="30" placeholder="Password" value="${password}"/>
+                <input type="password" name="password" width="30" placeholder="Password" value="${password}" readonly/>
             </div>
                     </td>
                 </tr>
@@ -96,100 +96,49 @@
             <tr>
                 <td>
                     <div class="text-input">
-                        <input type="text" name="address1" width="30" placeholder="Line 1"/>
+                        <input type="hidden" id="addressId" name="addressId" value="${addressId}">
+                        <input type="text" name="address1" width="30" placeholder="Line 1" value="${lineOne}"/>
                     </div>
                 </td>
                 <td>
                     <div class="text-input">
-                        <input type="text" name="address2" width="30" placeholder="Line 2"/>
+                        <input type="text" name="address2" width="30" placeholder="Line 2" value="${lineTwo}"/>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="text-input">
-                        <input type="text" name="address3" width="30" placeholder="Line 3"/>
+                        <input type="text" name="address3" width="30" placeholder="Line 3" value="${lineThree}"/>
                     </div>
                 </td>
                 <td>
                     <div class="text-input">
-                        <input type="text" name="zip" width="30" placeholder="Zip"/>
+                        <input type="number" name="zip" width="30" placeholder="Zip" value="${zip}"/>
                     </div>
                 </td>
             </tr>
                 <tr>
                     <td>
                         <div class="text-input">
-                            <input type="text" name="City" width="30" placeholder="City"/>
+                            <input type="text" name="city" width="30" placeholder="City" value="${city}"/>
                         </div>
                     </td>
                     <td>
             <div class="text-input">
-                <input type="text" name="phone" width="30" placeholder="Phone Number"/>
+                <input type="text" name="phone" width="30" placeholder="Phone Number" value="${phoneNumber}"/>
             </div>
                     </td>
                 </tr>
             <tr>
                 <td>
             <div class="text-input">
-                <input type="text" name="City" width="30" placeholder="City"/>
+                <input type="text" name="country" width="30" placeholder="County" value="${country}"/>
             </div>
                 </td>
                 <td>
-            <div class="select">
-                <select>
-                <option value="AL">Alabama</option>
-                <option value="AK">Alaska</option>
-                <option value="AZ">Arizona</option>
-                <option value="AR">Arkansas</option>
-                <option value="CA">California</option>
-                <option value="CO">Colorado</option>
-                <option value="CT">Connecticut</option>
-                <option value="DE">Delaware</option>
-                <option value="DC">District Of Columbia</option>
-                <option value="FL">Florida</option>
-                <option value="GA">Georgia</option>
-                <option value="HI">Hawaii</option>
-                <option value="ID">Idaho</option>
-                <option value="IL">Illinois</option>
-                <option value="IN">Indiana</option>
-                <option value="IA">Iowa</option>
-                <option value="KS">Kansas</option>
-                <option value="KY">Kentucky</option>
-                <option value="LA">Louisiana</option>
-                <option value="ME">Maine</option>
-                <option value="MD">Maryland</option>
-                <option value="MA">Massachusetts</option>
-                <option value="MI">Michigan</option>
-                <option value="MN">Minnesota</option>
-                <option value="MS">Mississippi</option>
-                <option value="MO">Missouri</option>
-                <option value="MT">Montana</option>
-                <option value="NE">Nebraska</option>
-                <option value="NV">Nevada</option>
-                <option value="NH">New Hampshire</option>
-                <option value="NJ">New Jersey</option>
-                <option value="NM">New Mexico</option>
-                <option value="NY">New York</option>
-                <option value="NC">North Carolina</option>
-                <option value="ND">North Dakota</option>
-                <option value="OH">Ohio</option>
-                <option value="OK">Oklahoma</option>
-                <option value="OR">Oregon</option>
-                <option value="PA">Pennsylvania</option>
-                <option value="RI">Rhode Island</option>
-                <option value="SC">South Carolina</option>
-                <option value="SD">South Dakota</option>
-                <option value="TN">Tennessee</option>
-                <option value="TX">Texas</option>
-                <option value="UT">Utah</option>
-                <option value="VT">Vermont</option>
-                <option value="VA">Virginia</option>
-                <option value="WA">Washington</option>
-                <option value="WV">West Virginia</option>
-                <option value="WI">Wisconsin</option>
-                <option value="WY">Wyoming</option>
-                </select>
+            <div class="text-input">
+               <input type="text" name="state" width="30" placeholder="State" value="${state}"/>
             </div>
                 </td>
             </tr>

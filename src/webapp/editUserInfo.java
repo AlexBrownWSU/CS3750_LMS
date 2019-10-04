@@ -1,7 +1,9 @@
 package webapp;
 
+import DAO.Entity.Address;
 import DAO.UserDAO;
 import appLayer.EditUser;
+import appLayer.GetAddress;
 import appLayer.User;
 import org.w3c.dom.UserDataHandler;
 
@@ -20,7 +22,8 @@ public class editUserInfo extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        UserDAO userDAO = new UserDAO();
+        //Get user personal data
+        UserDAO userDAO;
         EditUser editUser = new EditUser();
 
         userDAO = editUser.getUserById(request.getParameter("userId"));
@@ -28,10 +31,33 @@ public class editUserInfo extends HttpServlet {
         request.setAttribute("lName", userDAO.getlName().toUpperCase());
         request.setAttribute("fName", userDAO.getfName().toUpperCase());
         request.setAttribute("instructorId", String.valueOf(userDAO.getId()));
-        request.setAttribute("bDade", userDAO.getbDate());
+        request.setAttribute("bDate", userDAO.getbDate());
         request.setAttribute("email", userDAO.getEmail());
         request.setAttribute("password", userDAO.getPassword());
+        request.setAttribute("id", userDAO.getId());
 
+        if (userDAO.getPhoneNumber() != null) {
+            request.setAttribute("phoneNumber", userDAO.getPhoneNumber());
+        } else {
+            request.setAttribute("phoneNumber", "");
+        }
+
+        //Get user address info
+        Address address;
+        GetAddress getAddress = new GetAddress();
+
+        address = getAddress.getAddressByUserId(request.getParameter("userId"));
+
+        request.setAttribute("addressId", address.getAddressId());
+        request.setAttribute("lineOne", address.getLineOne());
+        request.setAttribute("lineTwo", address.getLineTwo());
+        request.setAttribute("lineThree", address.getLineThree());
+        request.setAttribute("zip", address.getZip());
+        request.setAttribute("city", address.getCity());
+        request.setAttribute("state", address.getState());
+        request.setAttribute("country", address.getCountry());
+
+        //Send request and response
         request.getRequestDispatcher("/editUser.jsp").forward(request, response);
 
     }

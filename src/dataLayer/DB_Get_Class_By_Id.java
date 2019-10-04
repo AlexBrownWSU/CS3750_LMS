@@ -1,10 +1,10 @@
 package dataLayer;
 
-import DAO.UserDAO;
+import DAO.ClassDAO;
 
 import java.sql.*;
 
-public class DB_Get_User {
+public class DB_Get_Class_By_Id {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -14,9 +14,9 @@ public class DB_Get_User {
     static final String USER = "root";
     static final String PASS = "Ryu12ryu!";
 
-    public UserDAO getUser(String username, String password) {
+    public ClassDAO getClassById(String instructorId) {
 
-        UserDAO userDAO = new UserDAO();
+        ClassDAO classDAO = new ClassDAO();
 
         Connection conn = null;
         Statement stmt = null;
@@ -31,24 +31,19 @@ public class DB_Get_User {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE user_name = \"" + username + "\" AND password = \"" + password + "\"";
+            sql = "SELECT * FROM class WHERE id = " + Integer.parseInt(instructorId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
 
             if (rs.next()) {
-                userDAO.setId(rs.getInt("id"));
-                userDAO.setlName(rs.getString("lName"));
-                userDAO.setfName(rs.getString("fName"));
-                userDAO.setPassword(rs.getString("password"));
-                userDAO.setType(rs.getString("type"));
-                userDAO.setEmail(rs.getString("user_name"));
-                userDAO.setbDate(rs.getString("bDate"));
 
-                if (rs.getString("phoneNumber") != null) {
-                    userDAO.setPhoneNumber(rs.getString("phoneNumber"));
-                }
+                classDAO.setId(rs.getInt("id"));
+                classDAO.setcName(rs.getString("class_name"));
+                classDAO.setInstructorId(rs.getInt("instructorId"));
+                classDAO.setMeetingTime(rs.getString("meeting_time"));
+
             }
 
             rs.close();
@@ -69,8 +64,8 @@ public class DB_Get_User {
             }
         }
 
-        System.out.println("Closing DB COnnection");
+        System.out.println("Closing DB Connection");
 
-        return userDAO;
+        return classDAO;
     }
 }

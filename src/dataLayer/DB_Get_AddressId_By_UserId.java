@@ -1,10 +1,10 @@
 package dataLayer;
 
-import DAO.UserDAO;
+import DAO.Entity.Address;
 
 import java.sql.*;
 
-public class DB_Get_User {
+public class DB_Get_AddressId_By_UserId {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -14,9 +14,9 @@ public class DB_Get_User {
     static final String USER = "root";
     static final String PASS = "Ryu12ryu!";
 
-    public UserDAO getUser(String username, String password) {
+    public Address getAddressByUserId(String userId) {
 
-        UserDAO userDAO = new UserDAO();
+        Address address = new Address();
 
         Connection conn = null;
         Statement stmt = null;
@@ -31,24 +31,30 @@ public class DB_Get_User {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE user_name = \"" + username + "\" AND password = \"" + password + "\"";
+            sql = "SELECT * FROM address WHERE userId = " + Integer.parseInt(userId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
 
             if (rs.next()) {
-                userDAO.setId(rs.getInt("id"));
-                userDAO.setlName(rs.getString("lName"));
-                userDAO.setfName(rs.getString("fName"));
-                userDAO.setPassword(rs.getString("password"));
-                userDAO.setType(rs.getString("type"));
-                userDAO.setEmail(rs.getString("user_name"));
-                userDAO.setbDate(rs.getString("bDate"));
 
-                if (rs.getString("phoneNumber") != null) {
-                    userDAO.setPhoneNumber(rs.getString("phoneNumber"));
+                address.setAddressId(rs.getInt("id"));
+                address.setUserId(rs.getInt("userId"));
+                address.setLineOne(rs.getString("line_one"));
+                address.setCity(rs.getString("city"));
+                address.setZip(rs.getInt("zip"));
+                address.setState(rs.getString("state"));
+                address.setCountry(rs.getString("country"));
+
+                if (rs.getString("line_two") != null) {
+                    address.setLineTwo(rs.getString("line_two"));
                 }
+
+                if (rs.getString("line_three") != null) {
+                    address.setLineThree(rs.getString("line_three"));
+                }
+
             }
 
             rs.close();
@@ -69,8 +75,9 @@ public class DB_Get_User {
             }
         }
 
-        System.out.println("Closing DB COnnection");
+        System.out.println("Closing DB Connection");
 
-        return userDAO;
+        return address;
     }
+
 }

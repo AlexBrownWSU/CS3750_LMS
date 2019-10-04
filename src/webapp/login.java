@@ -1,6 +1,8 @@
 package webapp;
 
+import DAO.ClassDAO;
 import DAO.UserDAO;
+import appLayer.GetClass;
 import appLayer.User;
 
 import javax.servlet.ServletException;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "login")
 public class login extends HttpServlet {
@@ -18,6 +22,7 @@ public class login extends HttpServlet {
    out.print("userName: " + request.getParameter("username") + "Password: " + request.getParameter("password"));*/
 
         User user = new User();
+        GetClass getClass = new GetClass();
 
         //Set Parameters
         request.setAttribute("username", request.getParameter("username"));
@@ -27,9 +32,17 @@ public class login extends HttpServlet {
 
             if (user.isInstructor(request.getParameter("username"))){ //Go to instructor page
 
+                //UserDAO
                 UserDAO userDAO = new UserDAO();
                 userDAO = user.getUser(request.getParameter("username"), request.getParameter("password"));
 
+                //ClassDAO
+                List<ClassDAO> classes = new ArrayList<ClassDAO>();
+                classes = getClass.getClasses(String.valueOf(userDAO.getId()));
+
+
+                //Set attributes
+                request.setAttribute("classes", classes);
                 request.setAttribute("lName", userDAO.getlName().toUpperCase());
                 request.setAttribute("fName", userDAO.getfName().toUpperCase());
                 request.setAttribute("instructorId", String.valueOf(userDAO.getId()));
