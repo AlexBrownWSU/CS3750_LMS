@@ -18,7 +18,7 @@
     <h3>LOGIN TO YOUR ACCOUNT</h3>
     <hr>
 
-    <form action="/login" method="post">
+    <form action="${pageContext.request.contextPath}/login" method="post">
         <div class="text-input">
             <input type="text" name="username" width="30" placeholder="Email"/>
         </div>

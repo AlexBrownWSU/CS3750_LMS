@@ -9,11 +9,11 @@ public class DB_New_User {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/lms";
+    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "Ryu12ryu!";
+    static final String PASS = "FastStaff2020";
 
     public void writeNewUser(String fName, String lName, String bDate, String email, String password, int type) {
 
@@ -54,7 +54,7 @@ public class DB_New_User {
             }
         }
 
-        System.out.println("Closing DB COnnection");
+        System.out.println("Closing DB Connection");
 
     }
 

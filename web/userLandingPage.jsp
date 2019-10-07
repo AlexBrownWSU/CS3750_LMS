@@ -25,8 +25,8 @@
 
 <div class="icon-bar">
     <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <a href="/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
-    <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
+    <a href="${pageContext.request.contextPath}/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
+    <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
     <a href="/viewClass?id=1"><i class="fa fa-globe"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
@@ -60,7 +60,7 @@
     <div class="newClass" id="newClass" style="display:none">
         <p>CREATE NEW CLASS</p>
         <hr>
-        <form action="/addClass" method="post">
+        <form action="${pageContext.request.contextPath}/addClass" method="post">
             <table class="newClassTable" style="width:100%">
                 <tr>
                     <td>

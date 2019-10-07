@@ -18,7 +18,7 @@
     <h3>CREATE NEW USER</h3>
     <hr>
 
-    <form action="/signUp" method="post">
+    <form action="${pageContext.request.contextPath}/signUp" method="post">
 
         <div class="text-input">
             <input type="text" required autocomplete="off" name="fName" placeholder="First Name"/>
@@ -33,7 +33,7 @@
         </div>
 
         <div class="text-input">
-            <input type="email" required autocomplete="off" name="email" placeholder="Email"/>
+            <input type="text" required autocomplete="off" name="email" placeholder="Email"/>
         </div>
 
         <div class="text-input">
