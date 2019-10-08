@@ -1,4 +1,4 @@
-package DAO;
+package dataLayer;
 
 import java.sql.Connection;
 import java.sql.Statement;
