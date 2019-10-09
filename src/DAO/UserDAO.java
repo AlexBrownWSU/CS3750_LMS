@@ -10,6 +10,7 @@ public class UserDAO {
     String bDate;
     String type;
     String phoneNumber;
+    String bio;
 
     public String getfName() {
         return fName;
@@ -73,6 +74,14 @@ public class UserDAO {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
     }
 }
 
