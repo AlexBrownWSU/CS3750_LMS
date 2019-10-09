@@ -45,10 +45,11 @@ public class DB_Get_User {
                 userDAO.setType(rs.getString("type"));
                 userDAO.setEmail(rs.getString("user_name"));
                 userDAO.setbDate(rs.getString("bDate"));
+                userDAO.setBio(rs.getString("bio"));
 
-                if (rs.getString("phoneNumber") != null) {
+                //if (rs.getString("phoneNumber") != null) {
                     userDAO.setPhoneNumber(rs.getString("phoneNumber"));
-                }
+                //}
             }
 
             rs.close();
