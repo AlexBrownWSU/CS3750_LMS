@@ -36,7 +36,6 @@ public class DB_Get_User_By_ID {
 
             ResultSet rs = stmt.executeQuery(sql);
 
-
             if (rs.next()) {
                 userDAO.setId(rs.getInt("id"));
                 userDAO.setlName(rs.getString("lName"));
@@ -45,10 +44,8 @@ public class DB_Get_User_By_ID {
                 userDAO.setType(rs.getString("type"));
                 userDAO.setEmail(rs.getString("user_name"));
                 userDAO.setbDate(rs.getString("bDate"));
-
-                if (rs.getString("phoneNumber") != null) {
-                    userDAO.setPhoneNumber(rs.getString("phoneNumber"));
-                }
+                userDAO.setBio(rs.getString("bio"));
+                userDAO.setPhoneNumber(rs.getString("phoneNumber"));
             }
 
             rs.close();
