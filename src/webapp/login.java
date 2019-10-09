@@ -48,7 +48,6 @@ public class login extends HttpServlet {
                 request.setAttribute("instructorId", String.valueOf(userDAO.getId()));
                 request.getRequestDispatcher("/userLandingPage.jsp").forward(request, response);
 
-
             } else { //Go to student page
 
                 UserDAO userDAO = new UserDAO();
