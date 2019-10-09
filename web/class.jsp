@@ -15,7 +15,7 @@
 <body>
 
 <div class="topnav">
-    <p style="color:red">User Profile: ${lName}, ${fName}, Class Id: ${id}</p>
+    <p style="color:red">User Profile: ${lName}, ${fName}, Class Id: ${cId}</p>
     <hr>
 </div>
 
@@ -29,10 +29,12 @@
 
 <div class="class-info">
 
-    <h2>Class name and other information</h2>
+    <h2>CLASS INFORMATION</h2>
     <hr>
-
-    <h2>Assignemnts</h2>
+    <p>Class Name: ${cName}</p>
+    <p>Meeting Time: ${meetingTime}</p>
+    <br>
+    <h2>ASSIGNMENTS</h2>
     <hr>
 
 </div>
