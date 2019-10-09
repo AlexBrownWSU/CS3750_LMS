@@ -21,12 +21,16 @@ public class viewClass extends HttpServlet {
         ClassDAO classDAO;
         GetClass getClass = new GetClass();
 
-        classDAO = getClass.getClassesById(request.getParameter("classId"));
+        classDAO = getClass.getClassesById(request.getParameter("id"));
 
-        request.setAttribute("id", String.valueOf(classDAO.getId()));
+        request.setAttribute("cId", String.valueOf(classDAO.getId()));
         request.setAttribute("instructorId", String.valueOf(classDAO.getInstructorId()));
         request.setAttribute("cName", classDAO.getcName());
         request.setAttribute("meetingTime", classDAO.getMeetingTime());
+
+        request.setAttribute("fName", request.getParameter("fName"));
+        request.setAttribute("lName", request.getParameter("lName"));
+        request.setAttribute("id", request.getParameter("instructorsId"));
 
         request.getRequestDispatcher("/class.jsp").forward(request, response);
 
