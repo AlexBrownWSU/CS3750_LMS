@@ -98,6 +98,10 @@
     font-size: 14px;
 }
 
+.checkbox-input {
+    display: inline-block;
+}
+
 .button input[type="submit"] {
     margin-top: 20px;
     width: 94%;
@@ -152,3 +156,4 @@ tr:not(:first-child):hover {
     margin-left: 100px;
     font-family: arial, sans-serif;
 }
+
