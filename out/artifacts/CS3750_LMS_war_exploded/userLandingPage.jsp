@@ -131,14 +131,14 @@
     });*/
 
 //AJAX call for table reload
-    /*$(function () {
+    (function () {
         $('form').on('submit', function (e) {
             e.preventDefault();
             $.ajax({
                 url: "/userLandingPage.jsp", // use original page here
                 type: 'POST',
                 data: { lName:${lName}, fName:${fName}, instructorId:${instructorId}, classes:${classes} },
-                dataType: 'html',
+                dataType: 'html', //look into this
                 success: function (html) {
 
                     // get the content of #myTable from the AJAX result
@@ -153,7 +153,7 @@
                 }
             });
         });
-    });*/
+    });
 
 
 </script>
