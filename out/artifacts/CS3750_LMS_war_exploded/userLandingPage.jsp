@@ -72,7 +72,7 @@
                         <div class="checkbox-input">
                             <input type="hidden" name="username" width="30" value="${username}"/>
                             <input type="hidden" name="password" width="30" value="${password}"/>
-                            <input type="text" name="dateTime" width="30" placeholder="Date & Time"/>
+                            <!--<input type="text" name="dateTime" width="30" placeholder="Date & Time"/>-->
                             <table>
                                 <tr>
                                     <td>
@@ -122,6 +122,13 @@
                                 </tr>
                             </table>
                         </div>
+                    </td>
+                    <td>
+                        <input type="text" name="time" width="30" placeholder="Time">
+                        <select name="ampm" required>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
                     </td>
                     <td>
                         <div class="button">

@@ -27,7 +27,9 @@ public class addClass extends HttpServlet {
                 request.getParameter("wednesday"),
                 request.getParameter("thursday"),
                 request.getParameter("friday"),
-                request.getParameter("saturday")
+                request.getParameter("saturday"),
+                request.getParameter("time"),
+                request.getParameter("ampm")
                 );
 
         newClass.writeClassToDB(
@@ -57,7 +59,7 @@ public class addClass extends HttpServlet {
 
     }
 
-    private String buildDateTime(String sun, String mon, String tue, String wed, String thu, String fri, String sat) {
+    private String buildDateTime(String sun, String mon, String tue, String wed, String thu, String fri, String sat, String time, String ampm) {
 
         String ss = "";
         String m = "";
@@ -95,6 +97,6 @@ public class addClass extends HttpServlet {
             s = sat;
         }
 
-        return ss + m + t + w + th + f + s;
+        return ss + m + t + w + th + f + s + " " + time + " " + ampm;
     }
 }

@@ -45,7 +45,6 @@ public class editUserPostInfo extends HttpServlet {
         request.setAttribute("username", request.getParameter("email"));
         request.setAttribute("password", request.getParameter("password"));
 
-
         //Send request and response
         request.getRequestDispatcher("/login").forward(request, response);
 

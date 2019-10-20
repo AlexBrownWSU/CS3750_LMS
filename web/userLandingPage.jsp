@@ -72,7 +72,7 @@
                         <div class="checkbox-input">
                             <input type="hidden" name="username" width="30" value="${username}"/>
                             <input type="hidden" name="password" width="30" value="${password}"/>
-                            <input type="text" name="dateTime" width="30" placeholder="Date & Time"/>
+                            <!--<input type="text" name="dateTime" width="30" placeholder="Date & Time"/>-->
                             <table>
                                 <tr>
                                     <td>
@@ -124,6 +124,13 @@
                         </div>
                     </td>
                     <td>
+                        <input type="text" name="time" width="30" placeholder="Time">
+                        <select name="ampm" required>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
+                    </td>
+                    <td>
                         <div class="button">
                             <input type="submit" value="Add"/>
                         </div>
@@ -165,46 +172,6 @@
             window.location = thisData;*/
         });
     });
-
-
-    /*
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
-        });
-    });*/
-
-    //Make table row clickable
-    /*$("#classTable tr:not(:first)").click(function() {
-    //$('#classTable').delegate('tr', 'click' , function(){
-            alert('You clicked row ' + ($(this).index()));
-    });*/
-
-/*AJAX call for table reload
-    (function () {
-        $('form').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/userLandingPage.jsp", // use original page here
-                type: 'POST',
-                data: { lName:${lName}, fName:${fName}, instructorId:${instructorId}, classes:${classes} },
-                dataType: 'html', //look into this
-                success: function (html) {
-
-                    // get the content of #myTable from the AJAX result
-                    var tableContent = $("#classTable", html).html();
-
-                    // set the content of #myTable to the result of the AJAX call
-                    $('#classTable').html(tableContent);
-
-                },
-                error: function(xhr, ajaxOptions, thrownError){
-                    alert('An error occurred! ' + thrownError);
-                }
-            });
-        });
-    });*/
-
 
 </script>
 

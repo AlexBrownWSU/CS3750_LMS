@@ -64,4 +64,24 @@
         <url-pattern>/editUserPostInfo</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>addAssignment</servlet-name>
+        <servlet-class>webapp.addAssignment</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addAssignment</servlet-name>
+        <url-pattern>/addAssignment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addQuestion</servlet-name>
+        <servlet-class>webapp.addQuestion</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addQuestion</servlet-name>
+        <url-pattern>/addQuestion</url-pattern>
+    </servlet-mapping>
+    
 </web-app>

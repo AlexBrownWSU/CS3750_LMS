@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
+
 <html>
 <head>
     <title>Student</title>
@@ -34,39 +38,69 @@
     <br>
 
     <br>
-    <p class="heading">MY CLASSES</p>
 
-    <table class="classTable">
-        <tr>
+    <p class="heading">ALL CLASSES</p>
+    <hr>
+    <button class="addButton" id="collapseAllClasses" onclick="showHideAllClasses()"><i class="fa fa-plus"></i></button>
+    <div id="allClasses" name="allClasses">
+        <table class="allClassTable" id="allClassTable">
+
+        <tr class="clickable-row">
             <th>CRN</th>
+            <th>Instructor Name</th>
             <th>Name</th>
             <th>Date & Time</th>
         </tr>
-        <tr>
-            <td>12345</td>
-            <td>CS3750</td>
-            <td>TR 9:30 - 11:20</td>
-        </tr>
-        <tr>
-            <td>12346</td>
-            <td>CS3100</td>
-            <td>MW 5:30 - 7:20</td>
-        </tr>
-        <tr>
-            <td>12346</td>
-            <td>CS3100</td>
-            <td>MW 5:30 - 7:20</td>
-        </tr>
-        <tr>
-            <td>12346</td>
-            <td>CS3100</td>
-            <td>MW 5:30 - 7:20</td>
-        </tr>
+
+        <c:forEach items="${classes}" var="classes">
+            <tr>
+                <td>${classes.id}</td>
+                <td>${classes.iLName}, ${classes.iFName}</td>
+                <td>${classes.cName}</td>
+                <td>${classes.meetingTime}</td>
+            </tr>
+        </c:forEach>
 
     </table>
+    </div>
+
+    <p class="heading">MY CLASS ENROLLMENTS</p>
+    <hr>
+    <button class="addButton" id="collapseMyClasses" onclick="showHideMyClasses()"><i class="fa fa-plus"></i></button>
+    <div id="myClasses" name="myClasses">
+        <table class="myClassesTable" id="myClassesTable">
+
+            <tr>
+                <td>Class Name</td>
+                <td>Meeting Time</td>
+            </tr>
+
+
+        </table>
+    </div>
 </div>
 
 <script>
+
+    //Show / hide all class div
+    function showHideAllClasses() {
+        var x = document.getElementById("allClasses");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    //Show / hide my class div
+    function showHideMyClasses() {
+        var x = document.getElementById("myClasses");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
 
 </script>
 
