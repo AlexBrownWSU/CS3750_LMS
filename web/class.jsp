@@ -252,9 +252,7 @@
         return questions;
     }
 
-    //Display Modal
-
-    // Get the modal
+    //Get the modal
     var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal

@@ -173,46 +173,6 @@
         });
     });
 
-
-    /*
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
-        });
-    });*/
-
-    //Make table row clickable
-    /*$("#classTable tr:not(:first)").click(function() {
-    //$('#classTable').delegate('tr', 'click' , function(){
-            alert('You clicked row ' + ($(this).index()));
-    });*/
-
-/*AJAX call for table reload
-    (function () {
-        $('form').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/userLandingPage.jsp", // use original page here
-                type: 'POST',
-                data: { lName:${lName}, fName:${fName}, instructorId:${instructorId}, classes:${classes} },
-                dataType: 'html', //look into this
-                success: function (html) {
-
-                    // get the content of #myTable from the AJAX result
-                    var tableContent = $("#classTable", html).html();
-
-                    // set the content of #myTable to the result of the AJAX call
-                    $('#classTable').html(tableContent);
-
-                },
-                error: function(xhr, ajaxOptions, thrownError){
-                    alert('An error occurred! ' + thrownError);
-                }
-            });
-        });
-    });*/
-
-
 </script>
 
 </body>

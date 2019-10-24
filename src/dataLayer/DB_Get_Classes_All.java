@@ -33,7 +33,7 @@ public class DB_Get_Classes_All {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT class.id, class.instructorId, class.class_name, class.meeting_Time, user.lName, user.fName " +
+            sql = "SELECT class.id, class.instructorId, class.class_name, class.meeting_Time, class.enrollments, user.lName, user.fName " +
                             "FROM class " +
                             "INNER JOIN user ON user.id=class.instructorId " +
                             "ORDER BY user.lName ";
@@ -52,6 +52,7 @@ public class DB_Get_Classes_All {
                 classDAO.setMeetingTime(rs.getString("class.meeting_time"));
                 classDAO.setiLName(rs.getString("user.lName"));
                 classDAO.setiFName(rs.getString("user.fName"));
+                classDAO.setEnrollments(rs.getInt("class.enrollments"));
 
                 classes.add(classDAO);
 
