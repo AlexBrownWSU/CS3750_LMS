@@ -1,26 +1,28 @@
 package dataLayer;
 
-import DAO.UserDAO;
+import DAO.Entity.StudentEnrollment;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-public class DB_Get_User_By_ID {
+public class DB_New_Enrollment {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+    static final String DB_URL = "jdbc:mysql://localhost/lms";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "FastStaff2020";
+    static final String PASS = "Ryu12ryu!";
 
-    public UserDAO getUserbyId(String id) {
-
-        UserDAO userDAO = new UserDAO();
+    public void writeNewEnrollment(StudentEnrollment studentEnrollment) {
 
         Connection conn = null;
         Statement stmt = null;
         String sql = "";
+        String sql2 = "";
 
         try {
             Class.forName(JDBC_DRIVER);
@@ -31,24 +33,18 @@ public class DB_Get_User_By_ID {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE id = \"" + id + "\"";
+            sql = "INSERT INTO enrollment "
+                    + "(student_id, class_id) "
+                    + "VALUES ( " + studentEnrollment.getsId() + ", " + studentEnrollment.getcId() + " )";
             System.out.println("sql");
 
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt.executeUpdate(sql);
 
-            if (rs.next()) {
-                userDAO.setId(rs.getInt("id"));
-                userDAO.setlName(rs.getString("lName"));
-                userDAO.setfName(rs.getString("fName"));
-                userDAO.setPassword(rs.getString("password"));
-                userDAO.setType(rs.getString("type"));
-                userDAO.setEmail(rs.getString("user_name"));
-                userDAO.setbDate(rs.getString("bDate"));
-                userDAO.setBio(rs.getString("bio"));
-                userDAO.setPhoneNumber(rs.getString("phoneNumber"));
-            }
+            sql2 = "UPDATE class SET enrollments = enrollments + 1 "
+                    + "WHERE id = " + studentEnrollment.getcId();
 
-            rs.close();
+            stmt.executeUpdate(sql2);
+
             stmt.close();
             conn.close();
 
@@ -68,7 +64,6 @@ public class DB_Get_User_By_ID {
 
         System.out.println("Closing DB COnnection");
 
-        return userDAO;
     }
 
 }

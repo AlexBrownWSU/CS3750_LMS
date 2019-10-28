@@ -48,12 +48,17 @@ public class login extends HttpServlet {
                 request.setAttribute("instructorId", String.valueOf(userDAO.getId()));
                 request.getRequestDispatcher("/userLandingPage.jsp").forward(request, response);
 
-
             } else { //Go to student page
 
+                //Get User
                 UserDAO userDAO = new UserDAO();
                 userDAO = user.getUser(request.getParameter("username"), request.getParameter("password"));
 
+                //Get list of all classes
+                List<ClassDAO> classes = new ArrayList<>();
+                classes = getClass.getAllClasses();
+
+                request.setAttribute("classes", classes);
                 request.setAttribute("lName", userDAO.getlName().toUpperCase());
                 request.setAttribute("fName", userDAO.getfName().toUpperCase());
                 request.setAttribute("studentId", String.valueOf(userDAO.getId()));

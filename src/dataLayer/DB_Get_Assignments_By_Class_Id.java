@@ -1,22 +1,25 @@
 package dataLayer;
 
-import DAO.UserDAO;
+import DAO.Entity.Address;
+import DAO.Entity.Assignment;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class DB_Get_User_By_ID {
+public class DB_Get_Assignments_By_Class_Id {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+    static final String DB_URL = "jdbc:mysql://localhost/lms";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "FastStaff2020";
+    static final String PASS = "Ryu12ryu!";
 
-    public UserDAO getUserbyId(String id) {
+    public List<Assignment> getAssifnmentsByClassId (int classId) {
 
-        UserDAO userDAO = new UserDAO();
+        List<Assignment> assignmentsList = new ArrayList<>();
 
         Connection conn = null;
         Statement stmt = null;
@@ -31,21 +34,25 @@ public class DB_Get_User_By_ID {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE id = \"" + id + "\"";
+            sql = "SELECT * FROM assignment WHERE classId = " + classId;
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
-            if (rs.next()) {
-                userDAO.setId(rs.getInt("id"));
-                userDAO.setlName(rs.getString("lName"));
-                userDAO.setfName(rs.getString("fName"));
-                userDAO.setPassword(rs.getString("password"));
-                userDAO.setType(rs.getString("type"));
-                userDAO.setEmail(rs.getString("user_name"));
-                userDAO.setbDate(rs.getString("bDate"));
-                userDAO.setBio(rs.getString("bio"));
-                userDAO.setPhoneNumber(rs.getString("phoneNumber"));
+
+            while (rs.next()) {
+
+                Assignment assignment = new Assignment();
+
+                assignment.setcId(rs.getInt("classId"));
+                assignment.setaId(rs.getInt("idassignment"));
+                assignment.setaName(rs.getString("aName"));
+                assignment.setcId(rs.getInt("tPoints"));
+                assignment.setStartDate(rs.getString("openDate"));
+                assignment.setDueDate(rs.getString("dueDate"));
+
+                assignmentsList.add(assignment);
+
             }
 
             rs.close();
@@ -66,9 +73,9 @@ public class DB_Get_User_By_ID {
             }
         }
 
-        System.out.println("Closing DB COnnection");
+        System.out.println("Closing DB Connection");
 
-        return userDAO;
+        return assignmentsList;
     }
 
 }

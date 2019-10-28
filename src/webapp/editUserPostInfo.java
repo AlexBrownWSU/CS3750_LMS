@@ -23,6 +23,7 @@ public class editUserPostInfo extends HttpServlet {
         userDAO.setbDate(request.getParameter("bDate"));
         userDAO.setPhoneNumber(request.getParameter("phoneNumber"));
         userDAO.setId(Integer.parseInt(request.getParameter("userId")));
+        userDAO.setBio(request.getParameter("bio"));
 
         //Set an instance of Address
         Address address = new Address();
@@ -40,8 +41,13 @@ public class editUserPostInfo extends HttpServlet {
         EditUser editUser = new EditUser();
         editUser.editUserInfo(userDAO, address);
 
+        //Set request data
+        request.setAttribute("username", request.getParameter("email"));
+        request.setAttribute("password", request.getParameter("password"));
+
         //Send request and response
-        request.getRequestDispatcher("/editUser.jsp").forward(request, response);
+        request.getRequestDispatcher("/login").forward(request, response);
+
 
     }
 

@@ -37,12 +37,14 @@
             <td>
                 <div class="text-input">
                     <input type="hidden" id="userId" name="userId" value="${id}">
-                    <input type="text" name="username" width="30" placeholder="Email" value="${email}" />
+                    <label for="username">Username (email)</label>
+                    <input type="text" name="username" width="30" placeholder="Email" value="${email}" id="username"/>
                 </div>
             </td>
                     <td>
             <div class="text-input">
-                <input type="password" name="password" width="30" placeholder="Password" value="${password}" readonly/>
+                <label for="password">Password</label>
+                <input type="password" name="password" width="30" placeholder="Password" value="${password}" id="password" readonly/>
             </div>
                     </td>
                 </tr>
@@ -63,26 +65,30 @@
                 <tr>
                     <td>
                         <div class="text-input">
-                            <input type="text" name="fName" width="30" placeholder="First Name" value="${fName}"/>
+                            <label for="fName">First Name</label>
+                            <input type="text" name="fName" width="30" placeholder="First Name" value="${fName}" id="fName"/>
                         </div>
                     </td>
                     <td>
                         <div class="text-input">
-                            <input type="text" name="lName" width="30" placeholder="Last Name" value="${lName}"/>
+                            <label for="lName">Last Name</label>
+                            <input type="text" name="lName" width="30" placeholder="Last Name" value="${lName}" id="lName"/>
                     </div>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" colspan="2">
                         <div class="text-input">
-                            <input type="date" name="bDate" width="30" placeholder="Birth Date" value="${bDate}"/>
+                            <label for="bDate">Birthday</label>
+                            <input type="date" name="bDate" width="30" placeholder="Birth Date" value="${bDate}" id="bDate"/>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td align="center" colspan="2">
                         <div class="text-input">
-                            <textarea name="bio" cols="40" rows="5" placeholder="Bio"></textarea>
+                            <label for="bio">Biography</label>
+                            <textarea name="bio" cols="40" rows="5" placeholder="Bio" id="bio">${bio}</textarea>
                         </div>
                     </td>
                 </tr>
@@ -97,48 +103,56 @@
                 <td>
                     <div class="text-input">
                         <input type="hidden" id="addressId" name="addressId" value="${addressId}">
-                        <input type="text" name="address1" width="30" placeholder="Line 1" value="${lineOne}"/>
+                        <label for="address1">Line 1</label>
+                        <input type="text" name="address1" width="30" placeholder="Line 1" value="${lineOne}" id="address1"/>
                     </div>
                 </td>
                 <td>
                     <div class="text-input">
-                        <input type="text" name="address2" width="30" placeholder="Line 2" value="${lineTwo}"/>
+                        <label for="address2">Line 2</label>
+                        <input type="text" name="address2" width="30" placeholder="Line 2" value="${lineTwo}" id="address2"/>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td>
                     <div class="text-input">
-                        <input type="text" name="address3" width="30" placeholder="Line 3" value="${lineThree}"/>
+                        <label for="address3">Line 3</label>
+                        <input type="text" name="address3" width="30" placeholder="Line 3" value="${lineThree}" id="address3" />
                     </div>
                 </td>
                 <td>
                     <div class="text-input">
-                        <input type="number" name="zip" width="30" placeholder="Zip" value="${zip}"/>
+                        <label for="Zip">Zip</label>
+                        <input type="number" name="zip" width="30" placeholder="Zip" value="${zip}" id="zip" />
                     </div>
                 </td>
             </tr>
                 <tr>
                     <td>
                         <div class="text-input">
-                            <input type="text" name="city" width="30" placeholder="City" value="${city}"/>
+                            <label for="city">City</label>
+                            <input type="text" name="city" width="30" placeholder="City" value="${city}" id="city"/>
                         </div>
                     </td>
                     <td>
             <div class="text-input">
-                <input type="text" name="phone" width="30" placeholder="Phone Number" value="${phoneNumber}"/>
+                <label for="phoneNumber">Phone Number</label>
+                <input type="text" name="phoneNumber" width="30" placeholder="Phone Number" value="${phoneNumber}" id="phoneNumber"/>
             </div>
                     </td>
                 </tr>
             <tr>
                 <td>
             <div class="text-input">
-                <input type="text" name="country" width="30" placeholder="County" value="${country}"/>
+                <label for="country">Country</label>
+                <input type="text" name="country" width="30" placeholder="County" value="${country}" id="country"/>
             </div>
                 </td>
                 <td>
             <div class="text-input">
-               <input type="text" name="state" width="30" placeholder="State" value="${state}"/>
+                <label for="state">State</label>
+               <input type="text" name="state" width="30" placeholder="State" value="${state}" id="state"/>
             </div>
                 </td>
             </tr>

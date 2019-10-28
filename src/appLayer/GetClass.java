@@ -3,6 +3,7 @@ package appLayer;
 import DAO.ClassDAO;
 import dataLayer.DB_Get_Class_By_Id;
 import dataLayer.DB_Get_Class_By_Instructor;
+import dataLayer.DB_Get_Classes_All;
 
 import java.util.List;
 
@@ -21,5 +22,12 @@ public class GetClass {
 
 
         return DB_Get_Class_By_Id_Object.getClassById(classId);
+    }
+
+    public List<ClassDAO> getAllClasses() {
+
+        DB_Get_Classes_All DB_Get_Classes = new DB_Get_Classes_All();
+
+        return DB_Get_Classes.getClasses();
     }
 }

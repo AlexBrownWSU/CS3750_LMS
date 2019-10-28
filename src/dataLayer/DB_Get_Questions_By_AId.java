@@ -1,22 +1,25 @@
 package dataLayer;
 
-import DAO.UserDAO;
+import DAO.Entity.Question;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Queue;
 
-public class DB_Get_User_By_ID {
+public class DB_Get_Questions_By_AId {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+    static final String DB_URL = "jdbc:mysql://localhost/lms";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "FastStaff2020";
+    static final String PASS = "Ryu12ryu!";
 
-    public UserDAO getUserbyId(String id) {
+    public List<Question> getQuestionByAId(String aId) {
 
-        UserDAO userDAO = new UserDAO();
+        List<Question> questions = new ArrayList<>();
 
         Connection conn = null;
         Statement stmt = null;
@@ -31,21 +34,24 @@ public class DB_Get_User_By_ID {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE id = \"" + id + "\"";
+            sql = "SELECT * FROM question WHERE aId = " + Integer.parseInt(aId);
+
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
-            if (rs.next()) {
-                userDAO.setId(rs.getInt("id"));
-                userDAO.setlName(rs.getString("lName"));
-                userDAO.setfName(rs.getString("fName"));
-                userDAO.setPassword(rs.getString("password"));
-                userDAO.setType(rs.getString("type"));
-                userDAO.setEmail(rs.getString("user_name"));
-                userDAO.setbDate(rs.getString("bDate"));
-                userDAO.setBio(rs.getString("bio"));
-                userDAO.setPhoneNumber(rs.getString("phoneNumber"));
+
+            while (rs.next()) {
+
+                Question question = new Question();
+
+                question.setqId(rs.getInt("idquestion"));
+                question.setaId(rs.getInt("aId"));
+                question.setQuestion(rs.getString("question"));
+                question.setqPoints(rs.getInt("qPoints"));
+
+                questions.add(question);
+
             }
 
             rs.close();
@@ -66,9 +72,9 @@ public class DB_Get_User_By_ID {
             }
         }
 
-        System.out.println("Closing DB COnnection");
+        System.out.println("Closing DB Connection");
 
-        return userDAO;
+        return questions;
     }
 
 }

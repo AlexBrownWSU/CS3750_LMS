@@ -35,11 +35,12 @@ public class editUserInfo extends HttpServlet {
         request.setAttribute("email", userDAO.getEmail());
         request.setAttribute("password", userDAO.getPassword());
         request.setAttribute("id", userDAO.getId());
+        request.setAttribute("bio", userDAO.getBio());
 
-        if (userDAO.getPhoneNumber() != null) {
+       if (userDAO.getPhoneNumber() != null) {
             request.setAttribute("phoneNumber", userDAO.getPhoneNumber());
         } else {
-            request.setAttribute("phoneNumber", "");
+            request.setAttribute("phoneNumber", "NO NUMBER GIVEN");
         }
 
         //Get user address info
