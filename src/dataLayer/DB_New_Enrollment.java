@@ -11,11 +11,11 @@ public class DB_New_Enrollment {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/lms";
+    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "Ryu12ryu!";
+    static final String PASS = "FastStaff2020";
 
     public void writeNewEnrollment(StudentEnrollment studentEnrollment) {
 
@@ -32,6 +32,8 @@ public class DB_New_Enrollment {
 
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
+
+
 
             sql = "INSERT INTO enrollment "
                     + "(student_id, class_id) "

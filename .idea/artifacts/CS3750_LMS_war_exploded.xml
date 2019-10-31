@@ -7,6 +7,10 @@
         <element id="directory" name="classes">
           <element id="module-output" name="CS3750_LMS" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="library" level="project" name="com.google.code.gson:gson:2.8.6" />
+        </element>
       </element>
     </root>
   </artifact>

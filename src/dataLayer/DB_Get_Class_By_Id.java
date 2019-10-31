@@ -8,13 +8,13 @@ public class DB_Get_Class_By_Id {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/lms";
+    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "Ryu12ryu!";
+    static final String PASS = "FastStaff2020";
 
-    public ClassDAO getClassById(String instructorId) {
+    public ClassDAO getClassById(String classId) {
 
         ClassDAO classDAO = new ClassDAO();
 
@@ -31,7 +31,7 @@ public class DB_Get_Class_By_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM class WHERE id = " + Integer.parseInt(instructorId);
+            sql = "SELECT * FROM class WHERE id = " + Integer.parseInt(classId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

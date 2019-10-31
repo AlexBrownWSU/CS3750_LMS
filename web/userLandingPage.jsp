@@ -27,7 +27,7 @@
     <a class="active" href="#"><i class="fa fa-home"></i></a>
     <a href="${pageContext.request.contextPath}/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
     <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="/viewClass?id=1"><i class="fa fa-globe"></i></a>
+    <a href="${pageContext.request.contextPath}/viewClass?id=1"><i class="fa fa-globe"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
 

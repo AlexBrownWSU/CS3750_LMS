@@ -37,9 +37,6 @@
     <br>
     <br>
 
-    <br>
-    <p class="heading">MY CLASSES</p>
-
     <p class="heading">ALL CLASSES</p>
     <hr>
     <button class="addButton" id="collapseAllClasses" onclick="showHideAllClasses()"><i class="fa fa-plus"></i></button>
@@ -54,18 +51,21 @@
             <th>Enrolled</th>
         </tr>
 
-        <c:forEach items="${classes}" var="classes">
+        <c:forEach items="${allclasses}" var="allclasses">
             <tr class="clickable-row">
-                <td>${classes.id}</td>
-                <td>${classes.iLName}, ${classes.iFName}</td>
-                <td>${classes.cName}</td>
-                <td>${classes.meetingTime}</td>
-                <td>${classes.enrollments}</td>
+                <td>${allclasses.id}</td>
+                <td>${allclasses.iLName}, ${allclasses.iFName}</td>
+                <td>${allclasses.cName}</td>
+                <td>${allclasses.meetingTime}</td>
+                <td>${allclasses.enrollments}</td>
             </tr>
         </c:forEach>
 
     </table>
     </div>
+
+    <br>
+    <br>
 
     <p class="heading">MY CLASS ENROLLMENTS</p>
     <hr>
@@ -73,10 +73,21 @@
     <div id="myClasses" name="myClasses">
         <table class="myClassesTable" id="myClassesTable">
 
-            <tr>
-                <td>Class Name</td>
-                <td>Meeting Time</td>
+            <tr class="clickable-row-gtc">
+                <th>CRN</th>
+                <th>Name</th>
+                <th>Date & Time</th>
+
             </tr>
+
+            <c:forEach items="${classes}" var="classes">
+                <tr class="clickable-row-gtc">
+                    <td>${classes.id}</td>
+                    <td>${classes.cName}</td>
+                    <td>${classes.meetingTime}</td>
+
+                </tr>
+            </c:forEach>
 
         </table>
     </div>
@@ -100,6 +111,13 @@
         </div>
 
     </div>
+
+<div id = "viewClass">
+    <input type="hidden" name = "classId" id="classId" >
+    <input type="hidden" name="sId" id="sId" value="${studentId}"/>
+</div>
+
+
 </div>
 
 
@@ -140,6 +158,23 @@
     btn.onclick = function() {
         modal.style.display = "block";
     }
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+
+        //Remove questions from table
+        $('#questionTable').find("tr:gt(0)").remove();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+
+            //Remove questions from table
+            $('#questionTable').find("tr:gt(0)").remove();
+        }
+    }
 
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
@@ -150,7 +185,7 @@
             var $meetingTime = $(this).find("td:nth-child(4)").html();
             var $enrollments = $(this).find("td:nth-child(5)").html();
 
-            alert($enrollments);
+
 
             //Set vars in modal
             document.getElementById("className").innerHTML = $name;
@@ -178,23 +213,11 @@
         });
     });
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
 
-        //Remove questions from table
-        $('#questionTable').find("tr:gt(0)").remove();
-    }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
 
-            //Remove questions from table
-            $('#questionTable').find("tr:gt(0)").remove();
-        }
-    }
+
+
 
     //Ajax call for enrolling student
     $(document).ready(function() {
@@ -205,9 +228,6 @@
                 dataType: "json",
                 data: $('#enrollStudent').serialize(),
                 success: function(data) {
-
-                    //alert(data);
-
                 }
             });
 
@@ -215,6 +235,18 @@
 
         });
     });
+
+    //Ajax call for go to student class
+
+    jQuery(document).ready(function($) {
+        $(".clickable-row-gtc").click(function() {
+            
+
+
+       });
+    });
+
+
 
 </script>
 

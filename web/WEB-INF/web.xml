@@ -93,5 +93,5 @@
         <servlet-name>enrollStudent</servlet-name>
         <url-pattern>/enrollStudent</url-pattern>
     </servlet-mapping>
-    
+
 </web-app>

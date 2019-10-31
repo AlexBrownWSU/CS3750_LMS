@@ -55,9 +55,13 @@ public class login extends HttpServlet {
                 userDAO = user.getUser(request.getParameter("username"), request.getParameter("password"));
 
                 //Get list of all classes
-                List<ClassDAO> classes = new ArrayList<>();
-                classes = getClass.getAllClasses();
+                List<ClassDAO> allclasses = new ArrayList<>();
+                allclasses = getClass.getAllClasses();
 
+                List<ClassDAO> classes = new ArrayList<>();
+                classes = getClass.getClassesForStudent(String.valueOf(userDAO.getId()));
+
+                request.setAttribute("allclasses", allclasses);
                 request.setAttribute("classes", classes);
                 request.setAttribute("lName", userDAO.getlName().toUpperCase());
                 request.setAttribute("fName", userDAO.getfName().toUpperCase());
