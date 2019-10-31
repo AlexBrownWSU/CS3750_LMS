@@ -17,7 +17,6 @@ public class DB_Connection {
             boolean isValidUser = false;
 
             Connection conn = null;
-            //Statement stmt = null;
             String sql = "";
 
             try {
@@ -32,7 +31,7 @@ public class DB_Connection {
                 e.printStackTrace();
             }
 
-            System.out.println("Closing DB COnnection");
+            System.out.println("Closing DB Connection");
 
     }
 }
