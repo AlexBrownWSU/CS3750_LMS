@@ -1,8 +1,10 @@
 package webapp;
 
 import DAO.ClassDAO;
+import DAO.Entity.StudentEnrollment;
 import DAO.UserDAO;
 import appLayer.GetClass;
+import appLayer.GetEnrollments;
 import appLayer.User;
 
 import javax.servlet.ServletException;
@@ -58,6 +60,13 @@ public class login extends HttpServlet {
                 List<ClassDAO> classes = new ArrayList<>();
                 classes = getClass.getAllClasses();
 
+                //Get list of students enrollments
+                GetEnrollments getEnrollments = new GetEnrollments();
+
+                List<ClassDAO> studentClasses = new ArrayList<>();
+                studentClasses = getEnrollments.getEnrollmentsByStudentId(userDAO.getId());
+
+                request.setAttribute("studentClasses", studentClasses);
                 request.setAttribute("classes", classes);
                 request.setAttribute("lName", userDAO.getlName().toUpperCase());
                 request.setAttribute("fName", userDAO.getfName().toUpperCase());

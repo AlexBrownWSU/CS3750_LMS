@@ -93,5 +93,15 @@
         <servlet-name>enrollStudent</servlet-name>
         <url-pattern>/enrollStudent</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewStudentClass</servlet-name>
+        <servlet-class>webapp.viewStudentClass</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewStudentClass</servlet-name>
+        <url-pattern>/viewStudentClass</url-pattern>
+    </servlet-mapping>
     
 </web-app>

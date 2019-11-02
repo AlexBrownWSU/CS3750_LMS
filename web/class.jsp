@@ -142,7 +142,12 @@
             <h1>Assignment Name: <span id="className"></span></h1>
             <hr>
             <br>
-            <div>
+
+            <button id="quetsionsBtn" onclick="showQuestions()">Question(s)</button>
+            <button id="submissionsBtn" onclick="showSubmissions()">Submission(s)</button>
+
+
+            <div id="questions">
                 <h3>CREATE NEW QUESTION</h3>
                 <form id="addQuestion">
                     <table id="questionsTable">
@@ -168,15 +173,30 @@
                         </tr>
                     </table>
                 </form>
+
+                <table class="questionTable" id="questionTable" name="questionTable">
+                    <tr>
+                        <th>Question</th>
+                        <th>Points</th>
+                        <th></th>
+                    </tr>
+                </table>
+
             </div>
 
-            <table class="questionTable" id="questionTable" name="questionTable">
-                <tr>
-                    <th>Question</th>
-                    <th>Points</th>
-                    <th></th>
-                </tr>
-            </table>
+            <div id="submissions" style="display: none;">
+                <table class="modalTable" id="submissionsTable" name="submissionsTable">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Submission Date</th>
+                        <th>Status</th>
+                    </tr>
+                </table>
+                <div id="studentSubission">
+
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -214,6 +234,28 @@
         } else {
             x.style.display = "none";
         }
+    }
+
+    //Show questions div
+    function showQuestions() {
+        var x = document.getElementById("questions");
+        var y = document.getElementById("submissions");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+        alert("here1");
+    }
+
+    //Show submissions div
+    function showSubmissions() {
+        var x = document.getElementById("submissions");
+        var y = document.getElementById("questions");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+        }
+        alert("here2");
     }
 
     //Add new question row
@@ -270,6 +312,8 @@
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
             //Show modal
+
+            alert("here1");
             modal.style.display ="block"
 
             //Get vars

@@ -1,6 +1,8 @@
 package appLayer;
 
+import DAO.ClassDAO;
 import DAO.Entity.StudentEnrollment;
+import dataLayer.DB_Get_Enrollments_By_Student_Id;
 import dataLayer.DB_Get_Students_By_Class_Id;
 import dataLayer.DB_New_Enrollment;
 
@@ -20,6 +22,14 @@ public class GetEnrollments {
         DB_New_Enrollment DB_New_Enrollment = new DB_New_Enrollment();
 
         DB_New_Enrollment.writeNewEnrollment(studentEnrollment);
+
+    }
+
+    public List<ClassDAO> getEnrollmentsByStudentId (int studentId) {
+
+        DB_Get_Enrollments_By_Student_Id DB_Get_Enrollments_By_Student_Id = new DB_Get_Enrollments_By_Student_Id();
+
+        return DB_Get_Enrollments_By_Student_Id.getEnrollmentsByStudentId(studentId);
 
     }
 }

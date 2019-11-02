@@ -77,25 +77,33 @@
                 <td>Meeting Time</td>
             </tr>
 
+            <c:forEach items="${studentClasses}" var="studentClasses">
+            <tr class="clickable-row-my-classes" data-href="/viewStudentClass?id=${studentClasses.id}$className=${studentClasses.cName}&fName=${fName}&lName=${lName}&studentId=${studentId}">
+                <td>${studentClasses.cName}</td>
+                <td>${studentClasses.meetingTime}</td>
+            </tr>
+            </c:forEach>
+
         </table>
     </div>
 
-    <button id="myBtn">Open Modal</button>
+    <!--<button id="myBtn">Open Modal</button>-->
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
+
             <span class="close">&times;</span>
-            <h1><span id="className"></span></h1>
-            <hr>
-            <h3><span id="meetingTime"></span></h3>
-            <h3><span id="registration"></span></h3>
 
-            <form id="enrollStudent">
-                <input type="hidden" name="cId" id="cId"/>
-                <input type="hidden" name="studentId" id="studentId" value="${studentId}"/>
-                <input type="submit" value="Enroll"/>
-            </form>
+                <h1>Class: <span id="className"></span></h1>
+                <hr>
+                <h3>Meeting Time: <span id="meetingTime"></span></h3>
+                <h3>Registration: <span id="registrationDot" class="registrationDot" ></span></h3>
 
+                <form id="enrollStudent">
+                    <input type="hidden" name="cId" id="cId"/>
+                    <input type="hidden" name="studentId" id="studentId" value="${studentId}"/>
+                    <input type="submit" value="Enroll"/>
+                </form>
         </div>
 
     </div>
@@ -149,7 +157,7 @@
             var $meetingTime = $(this).find("td:nth-child(4)").html();
             var $enrollments = $(this).find("td:nth-child(5)").html();
 
-            alert($enrollments);
+            alert($meetingTime);
 
             //Set vars in modal
             document.getElementById("className").innerHTML = $name;
@@ -158,18 +166,19 @@
             //Set hidden element
             $('input[name="cId"]').val($cId);
 
-            var regis = document.getElementById("registration");
+            var regis = document.getElementById("registrationDot");
 
             if (parseInt($enrollments, 10) === 30) {
-                //allow registration
                 var form = document.forms["enrollStudent"].getElementsByTagName("input");
                 for (var i = 0; i < form.length; i++) {
                     form[i].disabled = true;
                 }
 
-                regis.innerHTML = "Registration Unavailable";
+                //regis.innerHTML = "Registration Unavailable";
+                regis.style.color = "red";
             } else {
-                regis.innerHTML = "Registration Available";
+                //regis.innerHTML = "Registration Available";
+                regis.style.color = "green";
             }
 
             modal.style.display ="block"
@@ -212,6 +221,17 @@
 
             return false;
 
+        });
+    });
+
+    jQuery(document).ready(function($) {
+        $(".clickable-row-my-classes").click(function() {
+            window.location = $(this).data("href");
+            /*alert('You clicked row ' + ($(this).index()) + ' ' + $(this).attr('data-href'));
+            thisData = $(this).attr('data-href');
+            console.log(thisdata);*/
+
+            //window.location = thisData;
         });
     });
 
