@@ -78,7 +78,7 @@
             </tr>
 
             <c:forEach items="${studentClasses}" var="studentClasses">
-            <tr class="clickable-row-my-classes" data-href="/viewStudentClass?id=${studentClasses.id}$className=${studentClasses.cName}&fName=${fName}&lName=${lName}&studentId=${studentId}">
+            <tr class="clickable-row-my-classes" data-href="/viewStudentClass?id=${studentClasses.id}&fName=${fName}&lName=${lName}&studentId=${studentId}">
                 <td>${studentClasses.cName}</td>
                 <td>${studentClasses.meetingTime}</td>
             </tr>
@@ -138,15 +138,15 @@
     var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    //var btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+    //btn.onclick = function() {
+      //  modal.style.display = "block";
+    //}
 
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {

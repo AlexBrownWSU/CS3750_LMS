@@ -32,3 +32,10 @@
 .icon-bar .active {
     background-color: #FF5733;
 }
+
+.pageContent {
+    margin-left: 120px;
+    margin-right: 10px;
+    font-family: 'Bambi', sans-serif;
+    width: 80%;
+}

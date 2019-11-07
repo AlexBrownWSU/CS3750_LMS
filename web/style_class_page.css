@@ -98,3 +98,25 @@ tr:nth-child(even) {
 #submissionsTable {
 
 }
+
+.button {
+    margin-top: 20px;
+    width: 94%;
+    margin: 2em 3% 0;
+    border: none;
+    background: #FF5733;
+    padding: 1em 0;
+    font-size: 1.25em;
+    clear: both;
+    color: #FFFFFF;
+    border: #FF5733 1px solid;
+@include border-radius(5px);
+    outline: none;
+@include trans(all, .25s);
+    cursor: pointer;
+}
+
+.button:hover {
+    background: #FFFFFF;
+    color: #FF5733;
+}

@@ -11,7 +11,7 @@
 
 <html>
 <head>
-    <title>Class</title>
+    <title>FFDP - ${cName}</title>
     <link rel="stylesheet" href="style_class_page.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -32,14 +32,15 @@
 
 <div class="class-info">
 
-    <h2>CLASS INFORMATION</h2>
+    <button  class="collapseBtn" id="toggleInfoBtn" onclick="showHideInfo()">CLASS INFORMATION</button>
     <hr>
-    <p>Class Name: ${cName}</p>
-    <p>Meeting Time: ${meetingTime}</p>
+    <div id="classInfo" style="display:none">
+        <p>Class Name: ${cName}</p>
+        <p>Meeting Time: ${meetingTime}</p>
+    </div>
     <br>
     <div id="enrollmentsToggle">
-        <h2>CLASS ENROLLMENTS</h2>
-        <button class="addButton" id="toggleEnrollBtn" onclick="showHideEnrol()"><i class="fa fa-bars"></i></button>
+        <button class="collapseBtn" id="toggleEnrollBtn" onclick="showHideEnroll()">Enrollments</button>
         <div id="enrollments" style="display:none">
             <table class="enrollmentsTable" id="enrolmentsTable">
                 <tr>
@@ -59,8 +60,10 @@
         <hr>
     </div>
     <br>
+
     <div id="assignmentsToggle">
-        <h2>ASSIGNMENTS</h2>
+        <button class="collapseBtn" id="toggleAssignmentsBtn" onclick="showHideAssignment()">ASSIGNMENTS</button>
+        <div id="assignments2" style="display:none"></div>
         <button class="addButton" id="collapseBtn" onclick="showHideNewAssign()"><i class="fa fa-plus"></i></button>
         <button class="addButton" id="toggleAssignBtn" onclick="showHideAssign()"><i class="fa fa-bars"></i></button>
     </div>
@@ -108,7 +111,7 @@
 
         </div>
         <div id="assignments" style="display:none">
-            <h1>Assignment Lists</h1>
+            <button>Assignments</button>
                 <table class="assignmentsTable" id="assignmentsTable">
                     <tr>
                         <th>Assignment Name</th>
@@ -133,7 +136,7 @@
                 </table>
         </div>
         <hr>
-    <button id="myBtn">Open Modal</button>
+    <!--<button id="myBtn">Open Modal</button>-->
     <div id="myModal" class="modal">
 
         <!-- Modal content -->
@@ -206,9 +209,29 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 <script>
 
+    //Show / hide class info div
+    function showHideInfo() {
+        var x = document.getElementById("classInfo");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
     //Show / hide enrolments div
-    function showHideEnrol() {
+    function showHideEnroll() {
         var x = document.getElementById("enrollments");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
+    //Show / hide assignments div
+    function showHideAssignments() {
+        var x = document.getElementById("assignments2");
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {

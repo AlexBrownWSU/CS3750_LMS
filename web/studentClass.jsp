@@ -20,7 +20,7 @@
 <body>
 
     <div class="topnav">
-        <p style="color:red">STUDENT: ${lName}, ${fName} STUDENT ID: ${studentId}, Class Name: ${cName}</p>
+        <p style="color:red">STUDENT: ${lName}, ${fName} STUDENT ID: ${studentId}, Class Name: </p>
         <hr>
     </div>
 
@@ -33,6 +33,25 @@
     </div>
 
     <div class="pageContent">
+
+
+        <form action="/submitAssignment" method="post" enctype="multipart/form-data">
+            <div>
+                <input type="text" name="test" id="test" width="30" placeholder="test"/>
+                <label for="test">Test</label>
+
+            </div>
+            <div>
+                <input type="file" name="file" id="file" width="30" placeholder="file"/>
+                <label for="file">File Upload</label>
+            </div>
+            <div>
+                <input type="hidden" id="sId" name="sId" value="${studentId}">
+                <!--<input type="hidden" id="aId" name="aId" value="${id}">-->
+                <input type="hidden" id="cId" name="cId" value="${id}">
+                <input type="submit" value="submit"/>
+            </div>
+        </form>
 
     </div>
 

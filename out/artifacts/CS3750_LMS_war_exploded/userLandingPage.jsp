@@ -24,11 +24,10 @@
 </div>
 
 <div class="icon-bar">
-    <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <a href="/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
-    <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="/viewClass?id=1"><i class="fa fa-globe"></i></a>
-    <a href="#"><i class="fa fa-trash"></i></a>
+    <a class="active" href="#"><i class="fa fa-home" style="font-size:36px"></i>HOME</a>
+    <a href="/editUserInfo?userId=${instructorId}"><i class="fa fa-user" style="font-size:36px"></i>PROFILE</a>
+    <a href="/login.jsp"><i class="fa fa-sign-out" style="font-size:36px"></i>LOGOUT</a>
+    <a href="/viewClass?id=1"><i class="fa fa-globe" style="font-size:36px"></i></a>
 </div>
 
 <div class="pageContent">
