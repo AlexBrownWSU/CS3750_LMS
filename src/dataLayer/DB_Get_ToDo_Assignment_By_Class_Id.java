@@ -1,13 +1,12 @@
 package dataLayer;
 
 import DAO.Entity.Assignment;
-import DAO.Entity.SubmitAssignment;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DB_Get_Submitted_Assignments {
+public class DB_Get_ToDo_Assignment_By_Class_Id {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/test3750db";
@@ -16,12 +15,14 @@ public class DB_Get_Submitted_Assignments {
     static final String USER = "root";
     static final String PASS = "FastStaff2020";
 
-    public List<SubmitAssignment> getSubAssignByUserAndClassId(int classId, int userId){
-        List<SubmitAssignment> SubmittedAssignmentsList = new ArrayList<>();
+    public List<Assignment> getToDoAssignmentsByClassId (int classId, int userId) {
+
+        List<Assignment> assignmentsList = new ArrayList<>();
 
         Connection conn = null;
         Statement stmt = null;
         String sql = "";
+
         try {
             Class.forName(JDBC_DRIVER);
 
@@ -31,11 +32,10 @@ public class DB_Get_Submitted_Assignments {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT submission.*, assignment.*  FROM submission " +
-                    " JOIN assignment ON submission.aId = assignment.idAssignment " +
-                    " WHERE submission.sId = " + userId +
-                    " AND assignment.classId = " + classId +
-                    " ORDER BY submission.aId";
+            sql = "SELECT * FROM assignment WHERE classId = " + classId +
+                    " AND idassignment  NOT IN" +
+                    " (SELECT aId FROM submission " +
+                    " WHERE sId = " + userId +" )";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -43,18 +43,16 @@ public class DB_Get_Submitted_Assignments {
 
             while (rs.next()) {
 
-                SubmitAssignment assignment = new SubmitAssignment();
+                Assignment assignment = new Assignment();
 
-                assignment.setaId(rs.getInt("aId"));
-                assignment.setUId(rs.getInt("sId"));
+                assignment.setcId(rs.getInt("classId"));
+                assignment.setaId(rs.getInt("idassignment"));
                 assignment.setaName(rs.getString("aName"));
                 assignment.settPoints(rs.getInt("tPoints"));
-                assignment.setGrade(rs.getInt("grade"));
                 assignment.setStartDate(rs.getString("openDate"));
                 assignment.setDueDate(rs.getString("dueDate"));
-                assignment.setSubmissionDate(rs.getString("submissionDate"));
 
-                SubmittedAssignmentsList.add(assignment);
+                assignmentsList.add(assignment);
 
             }
 
@@ -78,6 +76,6 @@ public class DB_Get_Submitted_Assignments {
 
         System.out.println("Closing DB Connection");
 
-        return SubmittedAssignmentsList;
+        return assignmentsList;
     }
 }

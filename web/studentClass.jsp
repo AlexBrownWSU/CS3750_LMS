@@ -94,7 +94,7 @@
 
             </table>
         </div>
-            <button id="myBtn">Open Modal</button>
+            <button hidden id="myBtn">Open Modal</button>
 
             <div id="myModal" class="modal">
                 <!-- Modal content -->
@@ -127,9 +127,11 @@
                         </div>
 
                         <div>
-                            <input type="hidden" id="sId" name="sId" value="${studentId}">
+                            <input type="hidden" id="sId" name="sId" value="${id}">
                             <input type="hidden" id="aId" name="aId">
-                            <input type="hidden" id="cId" name="cId" value="${id}">
+                            <input type="hidden" id="cId" name="cId" value="${cId}">
+                            <input type="hidden" id="fName" name ="fName" value="${fName}">
+                            <input type="hidden" id="lName" name ="lName" value="${lName}">
                             <input type="submit" value="submit"/>
                         </div>
                     </form>

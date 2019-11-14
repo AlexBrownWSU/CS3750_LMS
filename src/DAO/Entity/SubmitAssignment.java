@@ -33,11 +33,11 @@ public class SubmitAssignment {
         this.sId = sId;
     }
 
-    public int getAId() {
+    public int getaId() {
         return aId;
     }
 
-    public void setAId(int aId) {
+    public void setaId(int aId) {
         this.aId = aId;
     }
 
