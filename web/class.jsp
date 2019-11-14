@@ -40,7 +40,7 @@
     </div>
     <br>
     <div id="enrollmentsToggle">
-        <button class="collapseBtn" id="toggleEnrollBtn" onclick="showHideEnroll()">Enrollments</button>
+        <button class="collapseBtn" id="toggleEnrollBtn" onclick="showHideEnroll()">ENROLLMENTS</button>
         <div id="enrollments" style="display:none">
             <table class="enrollmentsTable" id="enrolmentsTable">
                 <tr>
@@ -62,62 +62,61 @@
     <br>
 
     <div id="assignmentsToggle">
-        <button class="collapseBtn" id="toggleAssignmentsBtn" onclick="showHideAssignment()">ASSIGNMENTS</button>
-        <div id="assignments2" style="display:none"></div>
-        <button class="addButton" id="collapseBtn" onclick="showHideNewAssign()"><i class="fa fa-plus"></i></button>
-        <button class="addButton" id="toggleAssignBtn" onclick="showHideAssign()"><i class="fa fa-bars"></i></button>
-    </div>
-        <div id="newAssignmentDiv">
-            <form action="/addAssignment" method="post">
-                <table class="newAssignment" id="newAssignment">
-                    <tr>
-                        <td>
-                            <div class="text-input">
-                                <input type="text" name="aName" width="30" placeholder="Assignment Name"/>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-input">
-                                <input type="text" name="tPoints" width="30" placeholder="Total Points"/>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-input">
-                                <label for="startDate">Start Date & Time</label>
-                                <input type="datetime-local" id="startDate" name="startDate" width="30" placeholder="Start Date"/>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="text-input">
-                                <label for="dueDate">Due Date & Time</label>
-                                <input type="datetime-local" id="dueDate" name="dueDate" width="30" placeholder="Due Date"/>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="button">
-                                <input type="hidden" name="cId" value="${cId}"/>
-                                <input type="hidden" name="id" value="${cId}"/>
-                                <input type="hidden" name="instructorId" value="${instructorId}"/>
-                                <input type="hidden" name="fName" value="${fName}"/>
-                                <input type="hidden" name="lName" value="${lName}"/>
-                                <input type="submit" value="Add"/>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                    </tr>
-                </table>
-            </form>
+        <button class="collapseBtn" id="toggleAssignmentsBtn" onclick="showHideAssignments()">ASSIGNMENTS</button>
+        <div id="assignmentsMain" style="display:none">
+            <button class="addButton" id="collapseBtn" onclick="showHideNewAssign()"><i class="fa fa-plus"></i></button>
+            <button class="addButton" id="toggleAssignBtn" onclick="showHideAssign()"><i class="fa fa-bars"></i></button>
+
+            <div id="newAssignmentDiv">
+                <h3>NEW ASSIGNMENT</h3>
+                <form action="/addAssignment" method="post">
+                    <table class="newAssignment" id="newAssignment">
+                        <tr>
+                            <td>
+                                <div class="text-input">
+                                    <input type="text" name="aName" width="30" placeholder="Assignment Name"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-input">
+                                    <input type="text" name="tPoints" width="30" placeholder="Total Points"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-input">
+                                    <label for="startDate">Start Date & Time</label>
+                                    <input type="datetime-local" id="startDate" name="startDate" width="30" placeholder="Start Date"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="text-input">
+                                    <label for="dueDate">Due Date & Time</label>
+                                    <input type="datetime-local" id="dueDate" name="dueDate" width="30" placeholder="Due Date"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="button">
+                                    <input type="hidden" name="cId" value="${cId}"/>
+                                    <input type="hidden" name="id" value="${cId}"/>
+                                    <input type="hidden" name="instructorId" value="${instructorId}"/>
+                                    <input type="hidden" name="fName" value="${fName}"/>
+                                    <input type="hidden" name="lName" value="${lName}"/>
+                                    <input type="submit" value="Add"/>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
 
         </div>
         <div id="assignments" style="display:none">
-            <button>Assignments</button>
+                <h3>ASSIGNMENT LIST</h3>
                 <table class="assignmentsTable" id="assignmentsTable">
                     <tr>
-                        <th>Assignment Name</th>
-                        <th>Total Points</th>
-                        <th>Open Date</th>
-                        <th>Due Date</th>
+                        <th>ASSIGNMENT NAME</th>
+                        <th>TOTAL POINTS</th>
+                        <th>OPEN DATE</th>
+                        <th>DUE DATE</th>
                     </tr>
 
                     <c:forEach items="${assignments}" var="assignments">
@@ -135,6 +134,8 @@
 
                 </table>
         </div>
+        </div>
+    </div>
         <hr>
     <!--<button id="myBtn">Open Modal</button>-->
     <div id="myModal" class="modal">
@@ -148,6 +149,7 @@
 
             <button id="quetsionsBtn" onclick="showQuestions()">Question(s)</button>
             <button id="submissionsBtn" onclick="showSubmissions()">Submission(s)</button>
+            <span id="studentGradeName" style="display:none;"></span>
 
 
             <div id="questions">
@@ -177,17 +179,20 @@
                     </table>
                 </form>
 
-                <table class="questionTable" id="questionTable" name="questionTable">
-                    <tr>
-                        <th>Question</th>
-                        <th>Points</th>
-                        <th></th>
-                    </tr>
-                </table>
+                <div id="scrolltable">
+                    <table class="questionTable" id="questionTable" name="questionTable">
+                        <tr>
+                            <th>Question</th>
+                            <th>Points</th>
+                            <th></th>
+                        </tr>
+                    </table>
+                </div>
 
             </div>
 
             <div id="submissions" style="display: none;">
+                <br>
                 <table class="modalTable" id="submissionsTable" name="submissionsTable">
                     <tr>
                         <th>Student Name</th>
@@ -195,9 +200,29 @@
                         <th>Status</th>
                     </tr>
                 </table>
-                <div id="studentSubission">
+            </div>
 
-                </div>
+            <div id="grade" style="display:none;">
+                <br>
+                <form>
+                    <table class="gradeTable" id="gradeTable" name="gradeTable">
+                        <tr>
+                            <th>Question</th>
+                            <th>Response</th>
+                            <th>Total Points</th>
+                            <th>Grade</th>
+                        </tr>
+                    </table>
+                    <br>
+                    <button>View File</button>
+                    <input type="text" name="fileGrade" id="fileGrade" width="30" placeholder="File Grade"/>
+                    <!--<label for="fileGrade">File Grade</label>-->
+
+                    <input type="hidden" name="sId" id="sId">
+                    <input type="hidden" name="submissionId" id="submissionId">
+                    <input type="submit" value="Done">
+
+                </form>
             </div>
 
         </div>
@@ -231,7 +256,7 @@
 
     //Show / hide assignments div
     function showHideAssignments() {
-        var x = document.getElementById("assignments2");
+        var x = document.getElementById("assignmentsMain");
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -263,22 +288,36 @@
     function showQuestions() {
         var x = document.getElementById("questions");
         var y = document.getElementById("submissions");
+        var z = document.getElementById("grade");
         if (x.style.display === "none") {
             x.style.display = "block";
             y.style.display = "none";
+            z.style.display = "none";
         }
-        alert("here1");
     }
 
     //Show submissions div
     function showSubmissions() {
         var x = document.getElementById("submissions");
         var y = document.getElementById("questions");
+        var z = document.getElementById("grade");
         if (x.style.display === "none") {
             x.style.display = "block";
             y.style.display = "none";
+            z.style.display = "none";
         }
-        alert("here2");
+    }
+
+    //Set up submission div to grade
+    function setSubmissionToGrade() {
+        var x = document.getElementById("grade");
+        var y = document.getElementById("submissions");
+        var z = document.getElementById("studentGradeName");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.style.display = "none";
+            z.style.display = "block";
+        }
     }
 
     //Add new question row
@@ -321,32 +360,32 @@
     var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    //var btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
     // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+    //btn.onclick = function() {
+        //modal.style.display = "block";
+    //}
 
     //JQuery detect row click
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
-            //Show modal
 
-            alert("here1");
+            //Show modal
             modal.style.display ="block"
 
             //Get vars
             var $name = $(this).find("td:nth-child(1)").html();
             var $aId = $(this).find("td:nth-child(5)").html();
-            //alert($aId);
+
 
             document.getElementById("className").innerHTML = $name;
             $('input[name="aId"]').val($aId);
 
+            //Get Questions
             $.ajax({
                 url: "addQuestion",
                 type: "GET", //send it through get method
@@ -354,9 +393,32 @@
                 success: function(response) {
                     var trHTML = '';
                     $.each(response, function (i, item) {
-                        trHTML += '<tr><td>' + item.question + '</td><td>' + item.qPoints + '</td><td>';
+                        trHTML += '<tr><td>' + item.question + '</td><td>' + item.qPoints + '</td><td>' + '<button>Delete</button>' + '</td></tr>';
                     });
                     $('#questionTable').append(trHTML);
+                },
+                error: function(xhr) {
+                    //Do Something to handle error
+                }
+            });
+
+            //Get Submissions
+            $.ajax({
+                url: "getSubmissions",
+                type: "GET", //send it through get method
+                data: {"aId": $aId},
+                success: function(response) {
+                    var trHTML = '';
+                    $.each(response, function (i, item) {
+                        trHTML += '<tr><td>' + item.lName + ", " + item.fName
+                            + '</td><td>' + item.submissionDate
+                            + '</td><td>' + item.status
+                            + '</td><td class="aId" style="display:none;">' + item.aId
+                            + '</td><td class="sId" style="display:none;">' + item.sId
+                            + '</td><td class="answers" style="display:none;">' + item.answers
+                            + '</td><td>' + '<button class="setUpSubmission" onclick="setSubmissionToGrade()">Grade</button>' + '</td></tr>';
+                    });
+                    $('#submissionsTable').append(trHTML);
                 },
                 error: function(xhr) {
                     //Do Something to handle error
@@ -366,12 +428,45 @@
         });
     });
 
+    //Sets up submission content to grade
+    jQuery(document).ready(function($) {
+        $(".setUpSubmission").click(function () {
+
+            alert("Its working");
+
+            //TODO: Needs to do the following for each question and answer
+            var $aId = $(this).closest("tr")
+                .find(".aId")
+                .text();
+
+            var $sId = $(this).closest("tr")
+                .find(".sId")
+                .text();
+
+            $('input[name="sId"]').val($sId);
+
+            var $answers = $(this).closest("tr")
+                .find(".answers")
+                .text();
+
+            var trHTML = '<tr><td>' + "Question Text"
+                + '</td><td>' + $answers
+                + '</td><td>' + "Total Points "
+                + '</td><td">' + '<input type="text" name="points">' + '</td></tr>';
+
+            $("#gradeTable").append(trHTML);
+        });
+    //});
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
 
         //Remove questions from table
         $('#questionTable').find("tr:gt(0)").remove();
+
+        //Remove submissions from table
+        $('#submissionsTable').find("tr:gt(0)").remove();
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -381,8 +476,12 @@
 
             //Remove questions from table
             $('#questionTable').find("tr:gt(0)").remove();
+
+            //Remove submissions from table
+            $('#submissionsTable').find("tr:gt(0)").remove();
         }
     }
+
 
     //Ajax call for adding questions
     $(document).ready(function() {

@@ -2,6 +2,8 @@ package dataLayer;
 
 import DAO.Entity.AssignmentSubmission;
 
+import java.io.File;
+import java.io.InputStream;
 import java.sql.*;
 
 public class DB_Submit_Assignment {
@@ -16,10 +18,12 @@ public class DB_Submit_Assignment {
 
     public boolean submitAssignment(AssignmentSubmission submission) {
 
+        InputStream submissionFile = submission.getFile();
+
         boolean submitSuccessful = false;
 
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement stmt = null;
         String sql = "";
 
         try {
@@ -28,19 +32,47 @@ public class DB_Submit_Assignment {
             System.out.println("Creating statement...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            System.out.println("Creating Statment...");
-            stmt = conn.createStatement();
+            System.out.println("Creating Statement...");
+
 
             sql = "INSERT INTO submission "
-                    + "(sId, filename, file)"
-                    + "VALUES (\"" + submission.getsId() + "\", \"" + submission.getFileName() + "\", \"" + submission.getFile() + "\")";
+                    + "(aId, answer, sId, filename, file, submissionDate, status) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
             System.out.println("sql");
 
-            ResultSet rs = stmt.executeQuery(sql);
+            stmt = conn.prepareStatement(sql);
 
-            if (rs.next()) {
+            stmt.setInt(1, submission.getaId());
+            stmt.setString(2, submission.getAnswers());
+            stmt.setInt(3, submission.getsId());
+            stmt.setString(4, submission.getFileName());
+
+            //Add file as Blob
+            if (submissionFile != null) {
+                // fetches input stream of the upload file for the blob column
+                stmt.setBlob(5, submissionFile);
+            }
+
+            stmt.setString(6, submission.getSubmissionDate());
+
+            if (submission.isStatus()) {
+                stmt.setInt(7, 1);
+            } else {
+                stmt.setInt(7, 0);
+            }
+
+            // sends the statement to the database server
+            int row = stmt.executeUpdate();
+            if (row > 0) {
                 submitSuccessful = true;
             }
+
+            //ResultSet rs =
+            //stmt.executeUpdate(sql);
+
+            /*if (rs.next()) {
+                submitSuccessful = true;
+            }*/
 
             stmt.close();
             conn.close();

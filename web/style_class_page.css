@@ -69,6 +69,7 @@ tr:nth-child(even) {
     overflow: auto; /* Enable scroll if needed */
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+
 }
 
 /* Modal Content */
@@ -76,8 +77,10 @@ tr:nth-child(even) {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 3px solid #888;
     width: 80%;
+    height: 80%;
+    border-radius: 5px;
 }
 
 /* The Close Button */
@@ -99,24 +102,48 @@ tr:nth-child(even) {
 
 }
 
-.button {
+.collapseBtn {
     margin-top: 20px;
     width: 94%;
     margin: 2em 3% 0;
     border: none;
-    background: #FF5733;
+    background: #FFFFFF;
     padding: 1em 0;
     font-size: 1.25em;
     clear: both;
-    color: #FFFFFF;
+    color: #FF5733;
     border: #FF5733 1px solid;
+    border-radius: 5px;
+    width: 20%;
+    text-align: center;
 @include border-radius(5px);
     outline: none;
 @include trans(all, .25s);
     cursor: pointer;
 }
 
-.button:hover {
-    background: #FFFFFF;
-    color: #FF5733;
+.collapseBtn:hover {
+    background: #FF5733;
+    color: #FFFFFF;
+}
+
+/*
+#questionTable {
+
+    max-height: 200px;
+    overflow-y:scroll;
+    color: greenyellow;
+
+}
+*/
+
+
+#scrolltable {
+    margin-top: 20px;
+    height: 200px;
+    overflow: auto;
+}
+#scrolltable th div {
+    position: absolute;
+    margin-top: -20px;
 }
