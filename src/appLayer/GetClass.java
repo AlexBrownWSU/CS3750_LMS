@@ -26,7 +26,6 @@ public class GetClass {
     }
 
 
-
     public List<ClassDAO> getAllClasses() {
 
         DB_Get_Classes_All DB_Get_Classes = new DB_Get_Classes_All();

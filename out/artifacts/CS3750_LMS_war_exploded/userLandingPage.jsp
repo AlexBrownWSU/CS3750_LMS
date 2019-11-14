@@ -44,7 +44,7 @@
         </tr>
 
         <c:forEach items="${classes}" var="classes">
-            <tr class="clickable-row" data-href="/viewClass?id=${classes.id}&fName=${fName}&lName=${lName}&instructorId=${instructorId}">
+            <tr class="clickable-row" data-href="${pageContext.request.contextPath}/viewClass?id=${classes.id}&fName=${fName}&lName=${lName}&userId=${instructorId}">
                 <td>${classes.id}</td>
                 <td>${classes.cName}</td>
                 <td>${classes.meetingTime}</td>

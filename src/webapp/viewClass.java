@@ -2,10 +2,13 @@ package webapp;
 
 import DAO.ClassDAO;
 import DAO.Entity.Assignment;
+import DAO.Entity.Question;
 import DAO.Entity.StudentEnrollment;
+import DAO.Entity.SubmitAssignment;
 import appLayer.GetAssignments;
 import appLayer.GetClass;
 import appLayer.GetEnrollments;
+import appLayer.GetQuestion;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -51,7 +54,7 @@ public class viewClass extends HttpServlet {
         request.setAttribute("id", request.getParameter("instructorsId"));
 
         //Go to class.jsp
-        request.getRequestDispatcher("/class.jsp").forward(request, response);
+        request.getRequestDispatcher("/studentClass.jsp").forward(request, response);
 
     }
 
@@ -75,6 +78,7 @@ public class viewClass extends HttpServlet {
         List<Assignment> assignmentList = new ArrayList<>();
         assignmentList = getAssignments.getAssignmentsByClassId((classDAO.getId()));
 
+
         //Set attributes
         request.setAttribute("assignments", assignmentList);
         request.setAttribute("enrollments", enrollments);
@@ -85,10 +89,30 @@ public class viewClass extends HttpServlet {
 
         request.setAttribute("fName", request.getParameter("fName"));
         request.setAttribute("lName", request.getParameter("lName"));
-        request.setAttribute("id", request.getParameter("instructorsId"));
+        request.setAttribute("id", request.getParameter("userId"));
 
         //Go to class.jsp
-        request.getRequestDispatcher("/class.jsp").forward(request, response);
 
+        if(request.getParameter("userId").equals(String.valueOf(classDAO.getInstructorId()))){
+        request.getRequestDispatcher("/class.jsp").forward(request, response);
     }
+        else{
+//            GetQuestion getQuestion = new GetQuestion();
+//            List<Question> questions = new ArrayList<>();
+//
+//            questions = getQuestion.getQuestionByCId(String.valueOf(classDAO.getId()));
+
+            GetAssignments getSubAssignments = new GetAssignments();
+            List<SubmitAssignment> SubmittedAssignmentList = new ArrayList<>();
+
+            int uId = Integer.parseInt(request.getParameter("userId"));
+
+            SubmittedAssignmentList = getSubAssignments.getSubmittedAssignments(classDAO.getId(), uId);
+            request.setAttribute("submitted", SubmittedAssignmentList);
+//            request.setAttribute("questions", questions);
+
+            request.getRequestDispatcher("/studentClass.jsp").forward(request, response);
+        }
+    }
+
 }

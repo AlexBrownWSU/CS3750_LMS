@@ -34,9 +34,9 @@ public class DB_Get_Classes_All {
             stmt = conn.createStatement();
 
             sql = "SELECT class.id, class.instructorId, class.class_name, class.meeting_Time, class.enrollments, user.lName, user.fName " +
-                            "FROM class " +
-                            "INNER JOIN user ON user.id=class.instructorId " +
-                            "ORDER BY user.lName ";
+                    "FROM class " +
+                    "INNER JOIN user ON user.id=class.instructorId " +
+                    "ORDER BY user.lName ";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -82,3 +82,4 @@ public class DB_Get_Classes_All {
     }
 
 }
+

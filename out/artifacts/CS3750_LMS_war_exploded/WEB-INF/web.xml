@@ -94,4 +94,23 @@
         <url-pattern>/enrollStudent</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>viewAssignment</servlet-name>
+        <servlet-class>webapp.viewAssignment</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewAssignment</servlet-name>
+        <url-pattern>/viewAssignment</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>submitAssignment</servlet-name>
+        <servlet-class>webapp.submitAssignment</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>submitAssignment</servlet-name>
+        <url-pattern>/submitAssignment</url-pattern>
+    </servlet-mapping>
 </web-app>

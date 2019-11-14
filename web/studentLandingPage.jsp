@@ -81,11 +81,10 @@
             </tr>
 
             <c:forEach items="${classes}" var="classes">
-                <tr class="clickable-row-gtc">
+                <tr class="clickable-row-gtc" data-href="${pageContext.request.contextPath}/viewClass?id=${classes.id}&fName=${fName}&lName=${lName}&userId=${studentId}">
                     <td>${classes.id}</td>
                     <td>${classes.cName}</td>
                     <td>${classes.meetingTime}</td>
-
                 </tr>
             </c:forEach>
 
@@ -112,10 +111,6 @@
 
     </div>
 
-<div id = "viewClass">
-    <input type="hidden" name = "classId" id="classId" >
-    <input type="hidden" name="sId" id="sId" value="${studentId}"/>
-</div>
 
 
 </div>
@@ -236,14 +231,13 @@
         });
     });
 
-    //Ajax call for go to student class
+
 
     jQuery(document).ready(function($) {
         $(".clickable-row-gtc").click(function() {
-            
+            window.location = $(this).data("href");
 
-
-       });
+        });
     });
 
 

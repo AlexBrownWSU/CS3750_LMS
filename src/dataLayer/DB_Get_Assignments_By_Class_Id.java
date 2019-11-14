@@ -47,7 +47,7 @@ public class DB_Get_Assignments_By_Class_Id {
                 assignment.setcId(rs.getInt("classId"));
                 assignment.setaId(rs.getInt("idassignment"));
                 assignment.setaName(rs.getString("aName"));
-                assignment.setcId(rs.getInt("tPoints"));
+                assignment.settPoints(rs.getInt("tPoints"));
                 assignment.setStartDate(rs.getString("openDate"));
                 assignment.setDueDate(rs.getString("dueDate"));
 
