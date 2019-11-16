@@ -141,7 +141,25 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script>
+        //Show / hide all class div
+        function showHideAllAssignments() {
+            var x = document.getElementById("Assignments");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
 
+        //Show / hide my class div
+        function showHidePastAssignments() {
+            var x = document.getElementById("AssignmentsFinished");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
 
 
         // Get the modal

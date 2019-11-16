@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style_student_class.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="onSubmission(${marker})">
 
     <div class="topnav">
         <p style="color:red">STUDENT: ${lName}, ${fName}; Class: ${cName}</p>
@@ -141,7 +141,25 @@
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
     <script>
+        //Show / hide all class div
+        function showHideAllAssignments() {
+            var x = document.getElementById("Assignments");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
 
+        //Show / hide my class div
+        function showHidePastAssignments() {
+            var x = document.getElementById("AssignmentsFinished");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
 
 
         // Get the modal
@@ -201,25 +219,22 @@
                             //'<input type="text" id="question" name="question" readonly>'
                             //$("#question").val(item.question);
                         });
-
                         $('#questionTable').append(trHTML);
-
                     },
 
                     error: function(xhr) {
-
                         //Do Something to handle error
-
                     }
 
                 });
-
-
-
             });
-
         });
+function onSubmission(marker){
+    if(marker === 1){
+        alert("Submission Successful");
+    }
 
+}
 
     </script>
 </body>
