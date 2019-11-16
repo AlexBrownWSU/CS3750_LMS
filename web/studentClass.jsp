@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="style_student_class.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body>
+<body onload="onSubmission(${marker})">
 
     <div class="topnav">
         <p style="color:red">STUDENT: ${lName}, ${fName}; Class: ${cName}</p>
@@ -201,25 +201,22 @@
                             //'<input type="text" id="question" name="question" readonly>'
                             //$("#question").val(item.question);
                         });
-
                         $('#questionTable').append(trHTML);
-
                     },
 
                     error: function(xhr) {
-
                         //Do Something to handle error
-
                     }
 
                 });
-
-
-
             });
-
         });
+function onSubmission(marker){
+    if(marker === 1){
+        alert("Submission Successful");
+    }
 
+}
 
     </script>
 </body>
