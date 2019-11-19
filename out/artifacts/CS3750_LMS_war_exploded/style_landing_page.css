@@ -1,31 +1,6 @@
-/*.topnav {
-   background-color: #333;
-   overflow: hidden;
-}
-
-.topnav a {
-   float: right;
-   color: #f2f2f2;
-   text-align: center;
-   padding: 14px 16px;
-   text-decoration: none;
-   font-size: 17px;
-   font-family: Arial, Helvetica, sans-serif;
-}
-
-.topnav a:hover {
-   background-color: #ddd;
-   color: black;
-}
-
-.topnav a.active {
-   background-color: #FF5733;
-   color: white;
-}*/
-
 .topnav {
     margin-left: 100px;
-    font-family: arial, sans-serif;
+    font-family: 'Bambi', sans-serif;
 
 }
 
@@ -47,7 +22,9 @@
     padding: 16px;
     transition: all 0.3s ease;
     color: white;
-    font-size: 36px; /
+    font-size: 12px;
+    text-decoration: none;
+    font-family: 'Bambi', sans-serif;
 }
 
 .icon-bar a:hover {
@@ -82,12 +59,12 @@
 .newClass {
     margin-left: 120px;
     margin-right: 10px;
-    font-family: arial, sans-serif;
+    font-family: 'Bambi', sans-serif;
     width: 80%;
 }
 
 .text-input input[type="text"] {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Bambi', sans-serif;
     outline: 0;
     background: #f2f2f2;
     width: 100%;
@@ -125,13 +102,15 @@
 }
 
 table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
+    font-family: 'Bambi', sans-serif;
+    /*border-collapse: collapse;*/
+    border-collapse:separate;
     width: 90%;
     margin-left: 100px;
     margin-right: 10px;
     overflow-y:scroll;
     height:100px;
+    border-radius: 10px;
 
 }
 
@@ -147,6 +126,7 @@ tr:nth-child(even) {
 
 tr:not(:first-child):hover {
     background-color: #FF785B;
+    border-spacing:5em;
 }
 
 .newClassTable {
@@ -156,7 +136,7 @@ tr:not(:first-child):hover {
 
 .heading {
     margin-left: 100px;
-    font-family: arial, sans-serif;
+    font-family: 'Bambi', sans-serif;
 }
 
 /* The Modal (background) */
@@ -196,5 +176,13 @@ tr:not(:first-child):hover {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.registrationDot {
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
 }
 

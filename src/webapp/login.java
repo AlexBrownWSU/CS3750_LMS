@@ -1,8 +1,10 @@
 package webapp;
 
 import DAO.ClassDAO;
+import DAO.Entity.StudentEnrollment;
 import DAO.UserDAO;
 import appLayer.GetClass;
+import appLayer.GetEnrollments;
 import appLayer.User;
 
 import javax.servlet.ServletException;

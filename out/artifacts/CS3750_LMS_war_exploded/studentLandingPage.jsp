@@ -95,6 +95,7 @@
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
+
             <span class="close">&times;</span>
             <h1><span id="className"></span></h1>
             <hr>
@@ -198,9 +199,11 @@
                     form[i].disabled = true;
                 }
 
-                regis.innerHTML = "Registration Unavailable";
+                //regis.innerHTML = "Registration Unavailable";
+                regis.style.color = "red";
             } else {
-                regis.innerHTML = "Registration Available";
+                //regis.innerHTML = "Registration Available";
+                regis.style.color = "green";
             }
 
             modal.style.display ="block"
@@ -208,11 +211,23 @@
         });
     });
 
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
 
+        //Remove questions from table
+        $('#questionTable').find("tr:gt(0)").remove();
+    }
 
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
 
-
-
+            //Remove questions from table
+            $('#questionTable').find("tr:gt(0)").remove();
+        }
+    }
 
     //Ajax call for enrolling student
     $(document).ready(function() {

@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="war" build-on-make="true" name="CS3750_LMS:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/CS3750_LMS_war</output-path>
+    <root id="archive" name="CS3750_LMS_war.war">
+      <element id="artifact" artifact-name="CS3750_LMS:war exploded" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="/Applications/apache-tomcat-9.0.26/lib/gson-2.2.2.jar" />
+          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

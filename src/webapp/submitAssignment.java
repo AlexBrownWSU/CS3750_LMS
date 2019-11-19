@@ -2,6 +2,8 @@ package webapp;
 
 import DAO.Entity.SubmitAssignment;
 import appLayer.SetSubmitAssignment;
+import DAO.Entity.AssignmentSubmission;
+import appLayer.SubmitAssignment;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;

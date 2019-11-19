@@ -22,8 +22,9 @@
         <div class="text-input">
             <input type="text" name="username" width="30" placeholder="Email"/>
         </div>
-        <div class="text-input">
-            <input type="password" name="password" width="30" placeholder="Password"/>
+        <div class="field">
+            <input type="password" name="password" id="password" width="30" placeholder="Password"/>
+            <label for="password">Password</label>
         </div>
         <div class="button">
             <input type="submit" value="Login"/>

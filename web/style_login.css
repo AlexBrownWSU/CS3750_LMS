@@ -17,7 +17,74 @@ body {
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
-.text-input input[type="text"] {
+/* Input fields */
+form {
+    margin: 2em 0;
+}
+
+
+.field {
+    display: flex;
+    flex-flow: column-reverse;
+    margin-bottom: 1em;
+}
+
+label, input {
+    transition: all 0.2s;
+    touch-action: manipulation;
+}
+
+input {
+    font-size: 1.5em;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-family: inherit;
+    -webkit-appearance: none;
+    border-radius: 0;
+    padding: 0;
+    cursor: text;
+}
+
+input:focus {
+    outline: 0;
+    border-bottom: 1px solid #666;
+}
+
+label {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-align: left;
+    margin-bottom: 2px;
+    font-size: 10px;
+    padding-bottom: 2px;
+}
+
+input:placeholder-shown + label {
+    cursor: text;
+    max-width: 66.66%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    transform-origin: left bottom;
+    transform: translate(0, 2.125rem) scale(1.5);
+}
+
+::-webkit-input-placeholder {
+    opacity: 0;
+    transition: inherit;
+}
+
+input:focus::-webkit-input-placeholder {
+    opacity: 1;
+}
+
+input:not(:placeholder-shown) + label,
+input:focus + label {
+    transform: translate(0, 0) scale(1);
+    cursor: pointer;
+}
+
+/*.text-input input[type="text"] {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
@@ -39,7 +106,7 @@ body {
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
-}
+}*/
 
 .button input[type="submit"] {
     margin-top: 20px;
