@@ -1,0 +1,41 @@
+.topnav {
+    margin-left: 100px;
+    font-family: arial, sans-serif;
+
+}
+
+.icon-bar {
+    width: 90px;
+    height: 100%;
+    background-color: #333;
+    margin-top: 0px;
+    margin-right: 0px;
+    top: 0;
+    left: 0;
+    float: left;
+    position: fixed;
+}
+
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px; /
+}
+
+.icon-bar a:hover {
+    background-color: #ddd;
+}
+
+.icon-bar .active {
+    background-color: #FF5733;
+}
+
+.pageContent {
+    margin-left: 120px;
+    margin-right: 10px;
+    font-family: 'Bambi', sans-serif;
+    width: 80%;
+}

@@ -7,6 +7,9 @@ public class ClassDAO {
     String cName;
     String meetingTime;
     int instructorId;
+    String iFName;
+    String iLName;
+    int enrollments;
 
     public int getId() {
         return Id;
@@ -46,5 +49,29 @@ public class ClassDAO {
 
     public void setInstructorId(int instructorId) {
         this.instructorId = instructorId;
+    }
+
+    public String getiFName() {
+        return iFName;
+    }
+
+    public void setiFName(String iFName) {
+        this.iFName = iFName;
+    }
+
+    public String getiLName() {
+        return iLName;
+    }
+
+    public void setiLName(String iLName) {
+        this.iLName = iLName;
+    }
+
+    public int getEnrollments() {
+        return enrollments;
+    }
+
+    public void setEnrollments(int enrollments) {
+        this.enrollments = enrollments;
     }
 }

@@ -37,13 +37,10 @@ public class DB_Edit_User {
                     + "\", lName = \"" + userDAO.getlName()
                     + "\", bDate = \"" + userDAO.getbDate()
                     + "\", phoneNumber = \"" + userDAO.getPhoneNumber()
+                    + "\", bio = \"" + userDAO.getBio()
                     + "\" WHERE id = \"" + userDAO.getId() + "\"";
 
-
-            /*INSERT INTO address (userId, line_one, line_two, line_three, city, zip, state, country)
-            VALUES (2, "q1", "q2", "q3", "q4", 3, "q5", "q6")
-            ON DUPLICATE KEY UPDATE ID = 2;*/
-
+            //Update or insert address
             if (address.getAddressId() != 0) {
 
                 //Update or Insert (if not exist) address

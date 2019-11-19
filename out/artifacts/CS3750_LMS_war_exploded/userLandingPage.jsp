@@ -24,11 +24,10 @@
 </div>
 
 <div class="icon-bar">
-    <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <a href="/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
-    <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="/viewClass?id=1"><i class="fa fa-globe"></i></a>
-    <a href="#"><i class="fa fa-trash"></i></a>
+    <a class="active" href="#"><i class="fa fa-home" style="font-size:36px"></i>HOME</a>
+    <a href="/editUserInfo?userId=${instructorId}"><i class="fa fa-user" style="font-size:36px"></i>PROFILE</a>
+    <a href="/login.jsp"><i class="fa fa-sign-out" style="font-size:36px"></i>LOGOUT</a>
+    <a href="/viewClass?id=1"><i class="fa fa-globe" style="font-size:36px"></i></a>
 </div>
 
 <div class="pageContent">
@@ -44,7 +43,7 @@
         </tr>
 
         <c:forEach items="${classes}" var="classes">
-            <tr class="clickable-row" data-href="/viewClass?id=${classes.id}">
+            <tr class="clickable-row" data-href="/viewClass?id=${classes.id}&fName=${fName}&lName=${lName}&instructorId=${instructorId}">
                 <td>${classes.id}</td>
                 <td>${classes.cName}</td>
                 <td>${classes.meetingTime}</td>
@@ -69,9 +68,66 @@
                         </div>
                     </td>
                     <td>
-                        <div class="text-input">
-                            <input type="text" name="dateTime" width="30" placeholder="Date & Time"/>
+                        <div class="checkbox-input">
+                            <input type="hidden" name="username" width="30" value="${username}"/>
+                            <input type="hidden" name="password" width="30" value="${password}"/>
+                            <!--<input type="text" name="dateTime" width="30" placeholder="Date & Time"/>-->
+                            <table>
+                                <tr>
+                                    <td>
+                                        <label for="sunday">S</label>
+                                    </td>
+                                    <td>
+                                        <label for="monday">M</label>
+                                    </td>
+                                    <td>
+                                        <label for="tuesday">T</label>
+                                    </td>
+                                    <td>
+                                        <label for="wednesday">W</label>
+                                    </td>
+                                    <td>
+                                        <label for="thursday">T</label>
+                                    </td>
+                                    <td>
+                                        <label for="friday">F</label>
+                                    </td>
+                                    <td>
+                                        <label for="saturday">S</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="sunday" id="sunday" value="Sun"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="monday" id="monday" value="M"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="tuesday" id="tuesday" value="T"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="wednesday" id="wednesday" value="W"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="thursday" id="thursday" value="Th"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="friday" id="friday" value="F"/>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" name="saturday" id="saturday" value="Sat"/>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
+                    </td>
+                    <td>
+                        <input type="text" name="time" width="30" placeholder="Time">
+                        <select name="ampm" required>
+                            <option value="AM">AM</option>
+                            <option value="PM">PM</option>
+                        </select>
                     </td>
                     <td>
                         <div class="button">
@@ -115,46 +171,6 @@
             window.location = thisData;*/
         });
     });
-
-
-    /*
-    jQuery(document).ready(function($) {
-        $(".clickable-row").click(function() {
-            window.location = $(this).data("href");
-        });
-    });*/
-
-    //Make table row clickable
-    /*$("#classTable tr:not(:first)").click(function() {
-    //$('#classTable').delegate('tr', 'click' , function(){
-            alert('You clicked row ' + ($(this).index()));
-    });*/
-
-//AJAX call for table reload
-    (function () {
-        $('form').on('submit', function (e) {
-            e.preventDefault();
-            $.ajax({
-                url: "/userLandingPage.jsp", // use original page here
-                type: 'POST',
-                data: { lName:${lName}, fName:${fName}, instructorId:${instructorId}, classes:${classes} },
-                dataType: 'html', //look into this
-                success: function (html) {
-
-                    // get the content of #myTable from the AJAX result
-                    var tableContent = $("#classTable", html).html();
-
-                    // set the content of #myTable to the result of the AJAX call
-                    $('#classTable').html(tableContent);
-
-                },
-                error: function(xhr, ajaxOptions, thrownError){
-                    alert('An error occurred! ' + thrownError);
-                }
-            });
-        });
-    });
-
 
 </script>
 
