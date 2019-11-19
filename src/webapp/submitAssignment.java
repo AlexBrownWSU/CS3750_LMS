@@ -1,10 +1,6 @@
 package webapp;
 
-import DAO.ClassDAO;
-import DAO.Entity.Assignment;
 import DAO.Entity.SubmitAssignment;
-import appLayer.GetAssignments;
-import appLayer.GetClass;
 import appLayer.SetSubmitAssignment;
 
 import javax.servlet.ServletException;
@@ -19,9 +15,8 @@ import java.io.InputStream;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 @MultipartConfig
 
@@ -75,42 +70,25 @@ public class submitAssignment extends HttpServlet {
 
 
 
+
+
         //TODO: Completion
 
 
 
-        ClassDAO classDAO;
-        GetClass getClass = new GetClass();
 
-        classDAO = getClass.getClassesById(request.getParameter("cId"));
+        request.setAttribute("id", request.getParameter("cId"));
 
-        //Get assignments from DB
-        GetAssignments getAssignments = new GetAssignments();
-
-        List<Assignment> assignmentList = new ArrayList<>();
-
-        request.setAttribute("cId", request.getParameter("cId"));
-        request.setAttribute("instructorId", String.valueOf(classDAO.getInstructorId()));
-        request.setAttribute("cName", classDAO.getcName());
-        request.setAttribute("meetingTime", classDAO.getMeetingTime());
 
         request.setAttribute("fName", request.getParameter("fName"));
         request.setAttribute("lName", request.getParameter("lName"));
-        request.setAttribute("id", request.getParameter("sId"));
+        request.setAttribute("userId", request.getParameter("sId"));
 
-        GetAssignments getSubAssignments = new GetAssignments();
-        List<SubmitAssignment> SubmittedAssignmentList = new ArrayList<>();
-
-        int uId = Integer.parseInt(request.getParameter("sId"));
-
-        SubmittedAssignmentList = getSubAssignments.getSubmittedAssignments(classDAO.getId(), uId);
-        assignmentList = getAssignments.getToDoAssignmentByClassId((classDAO.getId()), uId);
 
         request.setAttribute("marker", 1);
-        request.setAttribute("assignments", assignmentList);
-        request.setAttribute("submitted", SubmittedAssignmentList);
 
-        request.getRequestDispatcher("/studentClass.jsp").forward(request, response);
+
+        request.getRequestDispatcher("viewClass").include(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

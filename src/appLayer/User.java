@@ -2,10 +2,13 @@ package appLayer;
 
 import DAO.UserDAO;
 import dataLayer.DB_Get_User;
+import dataLayer.DB_Get_User_By_ID;
 import dataLayer.DB_Instructor_Check;
 import dataLayer.DB_User;
 
 public class User {
+
+
 
     public boolean isValidUser(String username, String password) {
 
@@ -27,6 +30,8 @@ public class User {
 
         return DB_get_user_object.getUser(username, password);
     }
+
+
 
 
 }

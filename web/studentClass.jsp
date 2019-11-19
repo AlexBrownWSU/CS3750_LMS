@@ -231,7 +231,7 @@
         });
 function onSubmission(marker){
     if(marker === 1){
-        alert("Submission Successful");
+        alert("!!!SUBMISSION SUCCESSFUL!!!");
     }
 
 }
