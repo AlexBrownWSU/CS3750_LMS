@@ -3,11 +3,13 @@ package DAO.Entity;
 public class AnswerSubmission {
 
     String answer;
-    int qId;
+    String question;
+    int qPoints;
 
-    public void setAnswer(String answer, int qId) {
+    public void setAnswerSubmission(String answer, String question, int qPoints) {
         this.answer = answer;
-        this.qId = qId;
+        this.question = question;
+        this.qPoints = qPoints;
     }
 
 }
