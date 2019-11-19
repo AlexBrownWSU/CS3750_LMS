@@ -12,7 +12,7 @@ public class AssignmentSubmission {
     int cId;
     int sId;
     String submissionDate;
-    //List<AnswerSubmission> answerSubmissionList;
+    List<AnswerSubmission> answerSubmissionList;
     String answers;
     boolean status;
     String fName;
@@ -98,5 +98,13 @@ public class AssignmentSubmission {
 
     public void setAnswers(String answers) {
         this.answers = answers;
+    }
+
+    public List<AnswerSubmission> getAnswerSubmissionList() {
+        return answerSubmissionList;
+    }
+
+    public void setAnswerSubmissionList(List<AnswerSubmission> answerSubmissionList) {
+        this.answerSubmissionList = answerSubmissionList;
     }
 }

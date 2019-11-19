@@ -133,5 +133,25 @@
         <servlet-name>getSubmissions</servlet-name>
         <url-pattern>/getSubmissions</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getSubmission</servlet-name>
+        <servlet-class>webapp.getSubmission</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getSubmission</servlet-name>
+        <url-pattern>/getSubmission</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>gradeAssignment</servlet-name>
+        <servlet-class>webapp.gradeAssignment</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>gradeAssignment</servlet-name>
+        <url-pattern>/gradeAssignment</url-pattern>
+    </servlet-mapping>
     
 </web-app>

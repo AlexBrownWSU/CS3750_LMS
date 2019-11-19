@@ -9,6 +9,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<!--TODO: CSS Styling-->
 
 <html>
 <head>
@@ -69,17 +70,7 @@
                 <h1>Assignment: <span id="assignmentName"></span></h1>
                 <hr>
 
-                <form action="/submitAssignment" method="post" enctype="multipart/form-data">
-
-                    <!--<c:forEach items="${question}" var="questions">
-
-
-                        <div>
-                            <label for="answer">${questions.questionTex}</label>
-                            <input type="text" name="answer" id="answer" width="30" placeholder="answer"/>
-                        </div>
-                    </c:forEach>-->
-
+                <form id="submissionForm" method="post" enctype="multipart/form-data"> <!--action="/submitAssignment"-->
                     <table id="questionTable">
                         <tr>
                             <th>QUESTION</th>
@@ -103,7 +94,7 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
     <script>
 
     // Get the modal
@@ -128,17 +119,14 @@
     //JQuery detect row click
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
-            //Show modal
 
-            //alert("here1");
+            //Show modal
             modal.style.display ="block";
 
-            //Get vars
-            //var $name = $(this).find("td:nth-child(1)").html();
+            //Get var
             var $aId = $(this).find("td:nth-child(5)").html();
-            //alert($aId);
 
-            //document.getElementById("className").innerHTML = $name;
+            //Set var
             $('input[name="aId"]').val($aId);
 
             $.ajax({
@@ -149,8 +137,6 @@
                     var trHTML = '';
                     $.each(response, function (i, item) {
                         trHTML += '<tr><td>' + item.question + '</td><td>' + '<input type="text" id="response" name="response">' + '</td></tr>';
-                        //'<input type="text" id="question" name="question" readonly>'
-                        //$("#question").val(item.question);
                     });
                     $('#questionTable').append(trHTML);
                 },
@@ -162,8 +148,32 @@
         });
     });
 
+    //Submit assigniment through ajax
+    $("form#submissionForm").submit(function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
 
-    //'<input type="text" name="aId" value="$aId">'
+        //var tableFirstColumn=$("tr").find("td:first");
+
+        $.ajax({
+            url: "submitAssignment",
+            type: 'POST',
+            data: formData,
+            success: function (data) {
+                //Hide modal
+                $('#myModal').hide();
+
+                //Send alert
+                alert("Assignment submitted successfully." );
+
+                //Clear table
+                $("questionTable").find("tr:gt(0)").remove();
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
 
     </script>
 

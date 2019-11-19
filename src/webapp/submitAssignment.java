@@ -23,10 +23,14 @@ import java.util.Date;
 public class submitAssignment extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-//        String[] questions = request.getParameterValues("question");
-        String[] answers = request.getParameterValues("response");
+        //TODO: Error / null checking
 
-        String joinedAnswers = String.join(", ", answers);
+        String[] answers = request.getParameterValues("response");
+        String joinedAnswers = "";
+
+        if (null != answers) {
+            joinedAnswers = String.join(", ", answers);
+        }
 
         Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
@@ -50,10 +54,15 @@ public class submitAssignment extends HttpServlet {
 
         assignmentSubmission.setSubmissionDate(dateFormat.format(date));
 
+        //Params to call page
+
+
         SubmitAssignment submitAssignment = new SubmitAssignment();
         submitAssignment.submitAssignment(assignmentSubmission);
 
-        //TODO: Completion
+        //TODO: Completion reload page to update tables
+        //request.getRequestDispatcher("/studentClass.jsp").forward(request, response);
+
 
     }
 

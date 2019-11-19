@@ -18,7 +18,6 @@ public class getSubmissions extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String test = "test";
 
         //Get instance of GetQuestion
         GetSubmissions getSubmissions = new GetSubmissions();

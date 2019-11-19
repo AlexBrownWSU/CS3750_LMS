@@ -204,8 +204,8 @@
 
             <div id="grade" style="display:none;">
                 <br>
-                <form>
-                    <table class="gradeTable" id="gradeTable" name="gradeTable">
+                <form id="gradeForm" method="post">
+                    <table class="gradeTable" id="gradeTable" >
                         <tr>
                             <th>Question</th>
                             <th>Response</th>
@@ -219,7 +219,8 @@
                     <!--<label for="fileGrade">File Grade</label>-->
 
                     <input type="hidden" name="sId" id="sId">
-                    <input type="hidden" name="submissionId" id="submissionId">
+                    <input type="hidden" name="aId" id="aId2 ">
+                    <!--<input type="hidden" name="submissionId" id="submissionId">-->
                     <input type="submit" value="Done">
 
                 </form>
@@ -231,7 +232,7 @@
 
 </div>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
 <script>
 
     //Show / hide class info div
@@ -318,6 +319,7 @@
             y.style.display = "none";
             z.style.display = "block";
         }
+
     }
 
     //Add new question row
@@ -359,16 +361,58 @@
     //Get the modal
     var modal = document.getElementById("myModal");
 
-    // Get the button that opens the modal
-    //var btn = document.getElementById("myBtn");
-
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks the button, open the modal
-    //btn.onclick = function() {
-        //modal.style.display = "block";
-    //}
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+
+        //Remove questions from table
+        $('#questionTable').find("tr:gt(0)").remove();
+
+        //Remove submissions from table
+        $('#submissionsTable').find("tr:gt(0)").remove();
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+
+            //Remove questions from table
+            $('#questionTable').find("tr:gt(0)").remove();
+
+            //Remove submissions from table
+            $('#submissionsTable').find("tr:gt(0)").remove();
+        }
+    }
+
+    //Ajax call for adding questions
+    $(document).ready(function() {
+        $('#addQuestion').submit(function() {
+            $.ajax({
+                url: "addQuestion",
+                type: "POST",
+                dataType: "json",
+                data: $('#addQuestion').serialize(),
+                success: function(data) {
+
+                    var trHTML = '';
+                    trHTML += '<tr><td>' + data.question + '</td><td>' + data.qPoints + '</td><td>';
+
+                    $('#questionTable').append(trHTML);
+
+                }
+            });
+
+            $('input[name="question"]').val("");
+            $('input[name="qPoints"]').val("");
+
+            return false;
+
+        });
+    });
 
     //JQuery detect row click
     jQuery(document).ready(function($) {
@@ -380,7 +424,6 @@
             //Get vars
             var $name = $(this).find("td:nth-child(1)").html();
             var $aId = $(this).find("td:nth-child(5)").html();
-
 
             document.getElementById("className").innerHTML = $name;
             $('input[name="aId"]').val($aId);
@@ -413,10 +456,9 @@
                         trHTML += '<tr><td>' + item.lName + ", " + item.fName
                             + '</td><td>' + item.submissionDate
                             + '</td><td>' + item.status
-                            + '</td><td class="aId" style="display:none;">' + item.aId
-                            + '</td><td class="sId" style="display:none;">' + item.sId
-                            + '</td><td class="answers" style="display:none;">' + item.answers
-                            + '</td><td>' + '<button class="setUpSubmission" onclick="setSubmissionToGrade()">Grade</button>' + '</td></tr>';
+                            + '</td><td class="aId">' + item.aId
+                            + '</td><td class="sId">' + item.sId
+                            + '</td><td>' + '<button class="getSubmission" onclick="setSubmissionToGrade()">Grade</button>' + '</td></tr>';
                     });
                     $('#submissionsTable').append(trHTML);
                 },
@@ -428,87 +470,67 @@
         });
     });
 
-    //Sets up submission content to grade
-    jQuery(document).ready(function($) {
-        $(".setUpSubmission").click(function () {
+    $(document).on('click', '.getSubmission', function() {
+        //alert("testing");
 
-            alert("Its working");
+        var $aId = $(this).closest("tr")   // Finds the closest row <tr>
+            .find(".aId")     // Gets a descendent with class="aId"
+            .text();
 
-            //TODO: Needs to do the following for each question and answer
-            var $aId = $(this).closest("tr")
-                .find(".aId")
-                .text();
+        var $sId = $(this).closest("tr")   // Finds the closest row <tr>
+            .find(".sId")     // Gets a descendent with class="aId"
+            .text();
 
-            var $sId = $(this).closest("tr")
-                .find(".sId")
-                .text();
+        //alert("aId: " + $aId + "sId: " + $sId);
+        $('input[name="sId"]').val($sId);
+        $('input[name="aId2"]').val($aId);
 
-            $('input[name="sId"]').val($sId);
-
-            var $answers = $(this).closest("tr")
-                .find(".answers")
-                .text();
-
-            var trHTML = '<tr><td>' + "Question Text"
-                + '</td><td>' + $answers
-                + '</td><td>' + "Total Points "
-                + '</td><td">' + '<input type="text" name="points">' + '</td></tr>';
-
-            $("#gradeTable").append(trHTML);
-        });
-    //});
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
-
-        //Remove questions from table
-        $('#questionTable').find("tr:gt(0)").remove();
-
-        //Remove submissions from table
-        $('#submissionsTable').find("tr:gt(0)").remove();
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-
-            //Remove questions from table
-            $('#questionTable').find("tr:gt(0)").remove();
-
-            //Remove submissions from table
-            $('#submissionsTable').find("tr:gt(0)").remove();
-        }
-    }
-
-
-    //Ajax call for adding questions
-    $(document).ready(function() {
-        $('#addQuestion').submit(function() {
-            $.ajax({
-                url: "addQuestion",
-                type: "POST",
-                dataType: "json",
-                data: $('#addQuestion').serialize(),
-                success: function(data) {
-
-                    var trHTML = '';
-                        trHTML += '<tr><td>' + data.question + '</td><td>' + data.qPoints + '</td><td>';
-
-                    $('#questionTable').append(trHTML);
-
-                }
-            });
-
-            $('input[name="question"]').val("");
-            $('input[name="qPoints"]').val("");
-
-            return false;
-
+        $.ajax({
+            url: "getSubmission",
+            type: "GET", //send it through get method
+            data: {"aId": $aId, "sId": $sId},
+            success: function(response) {
+                var trHTML = '';
+                $.each(response, function (i, item) {
+                trHTML += '<tr><td>' + item.question + '</td><td>' + item.answer + '</td><td>' + item.qPoints + '</td><td>' + '<input type="number" name="grade">' + '</td></tr>';
+                });
+                $('#gradeTable').append(trHTML);
+            },
+            error: function(xhr) {
+                //Do Something to handle error
+            }
         });
     });
 
+    //Grade assignment through ajax
+    $("form#gradeForm").submit(function(e) {
+        //e.preventDefault();
+        //var formData = new FormData(this);
+
+        //alert("testing: working?");
+
+        $.ajax({
+            url: "gradeAssignment",
+            type: 'POST',
+            data: $('#gradeForm').serialize(),
+            success: function () {
+
+                //Hide grade
+                $('#grade').hide();
+
+                //Show submissions
+                $('#submissions').show();
+
+                //Send alert
+                alert("Assignment graded successfully." );
+
+                //Clear table
+                $("gradeTable").find("tr:gt(0)").remove();
+
+                $('#myModal').show();
+            }
+        });
+    });
 
 </script>
 
