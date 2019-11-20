@@ -36,7 +36,7 @@ public class DB_Get_Enrollments_By_Student_Id {
             sql = "SELECT A.aName, A.dueDate" +
                     "FROM Enrollment E" +
                     "INNER JOIN Assignment A ON E.class_id = A.classId" +
-                    "WHERE " + studentId + " = E.student_id;";
+                    "WHERE E.student_id = " + studentId;
 
             System.out.println("sql");
 
