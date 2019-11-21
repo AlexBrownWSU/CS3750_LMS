@@ -1,5 +1,5 @@
 .topnav {
-    margin-left: 10px;
+    margin-left: 100px;
     font-family: arial, sans-serif;
 
 }
@@ -76,8 +76,10 @@ tr:nth-child(even) {
     background-color: #fefefe;
     margin: auto;
     padding: 20px;
-    border: 1px solid #888;
+    border: 3px solid #888;
     width: 80%;
+    height: 80%;
+    border-radius: 5px;
 }
 
 /* The Close Button */
@@ -93,6 +95,56 @@ tr:nth-child(even) {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+#submissionsTable {
+
+}
+
+.collapseBtn {
+    margin-top: 20px;
+    width: 94%;
+    margin: 2em 3% 0;
+    border: none;
+    background: #FFFFFF;
+    padding: 1em 0;
+    font-size: 1.25em;
+    clear: both;
+    color: #FF5733;
+    border: #FF5733 1px solid;
+    border-radius: 5px;
+    width: 20%;
+    text-align: center;
+@include border-radius(5px);
+    outline: none;
+@include trans(all, .25s);
+    cursor: pointer;
+}
+
+.collapseBtn:hover {
+    background: #FF5733;
+    color: #FFFFFF;
+}
+
+/*
+#questionTable {
+
+    max-height: 200px;
+    overflow-y:scroll;
+    color: greenyellow;
+
+}
+*/
+
+
+#scrolltable {
+    margin-top: 20px;
+    height: 200px;
+    overflow: auto;
+}
+#scrolltable th div {
+    position: absolute;
+    margin-top: -20px;
 }
 
 label#question{margin-left: 100px; width: auto; height: auto}

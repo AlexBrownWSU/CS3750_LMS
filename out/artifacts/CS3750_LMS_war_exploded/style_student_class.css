@@ -33,6 +33,13 @@
     background-color: #FF5733;
 }
 
+.pageContent {
+    margin-left: 120px;
+    margin-right: 10px;
+    font-family: 'Bambi', sans-serif;
+    width: 80%;
+}
+
 .addButton {
     background-color: #333;
     border: none;
@@ -173,4 +180,33 @@ tr:not(:first-child):hover {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+/* Table */
+table {
+    font-family: 'Bambi', sans-serif;
+    /*border-collapse: collapse;*/
+    border-collapse:separate;
+    width: 90%;
+    margin-left: 100px;
+    margin-right: 10px;
+    overflow-y:scroll;
+    height:100px;
+    border-radius: 10px;
+
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr:not(:first-child):hover {
+    background-color: #FF785B;
+    border-spacing:5em;
 }

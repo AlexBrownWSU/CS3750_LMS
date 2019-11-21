@@ -81,7 +81,7 @@
             </tr>
 
             <c:forEach items="${classes}" var="classes">
-                <tr class="clickable-row-gtc" data-href="${pageContext.request.contextPath}/viewClass?id=${classes.id}&fName=${fName}&lName=${lName}&userId=${studentId}">
+                <tr class="clickable-row-gtc" data-href="${pageContext.request.contextPath}/viewStudentClass?cId=${classes.id}&fName=${fName}&lName=${lName}&studentId=${studentId}">
                     <td>${classes.id}</td>
                     <td>${classes.cName}</td>
                     <td>${classes.meetingTime}</td>

@@ -1,8 +1,9 @@
 <%--
   Created by IntelliJ IDEA.
   User: plisk
-  Date: 11/2/2019
-  Time: 11:23 AM
+  User: alexbrown
+  Date: 10/25/19
+  Time: 11:11 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -75,8 +76,6 @@
                     <th>Assignment Name</th>
                     <th>Total Points</th>
                     <th>Grade</th>
-                    <th>Open Date</th>
-                    <th>Due Date</th>
                     <th>Date Submitted</th>
 
                 </tr>
@@ -86,8 +85,6 @@
                         <td>${submitted.aName}</td>
                         <td>${submitted.tPoints}</td>
                         <td>${submitted.grade}</td>
-                        <td>${submitted.startDate}</td>
-                        <td>${submitted.dueDate}</td>
                         <td>${submitted.submissionDate}</td>
                     </tr>
                 </c:forEach>
@@ -231,7 +228,7 @@
         });
 function onSubmission(marker){
     if(marker === 1){
-        alert("Submission Successful");
+        alert("!!!SUBMISSION SUCCESSFUL!!!");
     }
 
 }

@@ -198,6 +198,8 @@
                         <th>Student Name</th>
                         <th>Submission Date</th>
                         <th>Status</th>
+                        <th>aId</th>
+                        <th>sId</th>
                     </tr>
                 </table>
             </div>

@@ -76,8 +76,6 @@
                     <th>Assignment Name</th>
                     <th>Total Points</th>
                     <th>Grade</th>
-                    <th>Open Date</th>
-                    <th>Due Date</th>
                     <th>Date Submitted</th>
 
                 </tr>
@@ -87,8 +85,6 @@
                         <td>${submitted.aName}</td>
                         <td>${submitted.tPoints}</td>
                         <td>${submitted.grade}</td>
-                        <td>${submitted.startDate}</td>
-                        <td>${submitted.dueDate}</td>
                         <td>${submitted.submissionDate}</td>
                     </tr>
                 </c:forEach>

@@ -1,7 +1,8 @@
 package dataLayer;
 
-import DAO.Entity.Assignment;
-import DAO.Entity.SubmitAssignment;
+
+import DAO.Entity.AssignmentSubmission;
+
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -16,8 +17,8 @@ public class DB_Get_Submitted_Assignments {
     static final String USER = "root";
     static final String PASS = "FastStaff2020";
 
-    public List<SubmitAssignment> getSubAssignByUserAndClassId(int classId, int userId){
-        List<SubmitAssignment> SubmittedAssignmentsList = new ArrayList<>();
+    public List<AssignmentSubmission> getSubAssignByUserAndClassId(int classId, int userId){
+        List<AssignmentSubmission> SubmittedAssignmentsList = new ArrayList<>();
 
         Connection conn = null;
         Statement stmt = null;
@@ -31,8 +32,9 @@ public class DB_Get_Submitted_Assignments {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT submission.*, assignment.*  FROM submission " +
+            sql = "SELECT submission.*, assignment.*, gradedSubmission.grade FROM submission " +
                     " JOIN assignment ON submission.aId = assignment.idAssignment " +
+                    " LEFT JOIN gradedSubmission ON assignment.idAssignment = gradedSubmission.aId" +
                     " WHERE submission.sId = " + userId +
                     " AND assignment.classId = " + classId +
                     " ORDER BY submission.aId";
@@ -43,15 +45,17 @@ public class DB_Get_Submitted_Assignments {
 
             while (rs.next()) {
 
-                SubmitAssignment assignment = new SubmitAssignment();
-
-                assignment.setaId(rs.getInt("aId"));
-                assignment.setUId(rs.getInt("sId"));
+                AssignmentSubmission assignment = new AssignmentSubmission();
                 assignment.setaName(rs.getString("aName"));
+                assignment.setaId(rs.getInt("aId"));
+                assignment.setsId(rs.getInt("sId"));
                 assignment.settPoints(rs.getInt("tPoints"));
+                int i;
+
                 assignment.setGrade(rs.getInt("grade"));
-                assignment.setStartDate(rs.getString("openDate"));
-                assignment.setDueDate(rs.getString("dueDate"));
+                if(assignment.getGrade() >= 0 ){
+                }
+                else{assignment.setGrade(0);}
                 assignment.setSubmissionDate(rs.getString("submissionDate"));
 
                 SubmittedAssignmentsList.add(assignment);

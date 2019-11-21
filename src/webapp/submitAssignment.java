@@ -1,7 +1,6 @@
 package webapp;
 
-import DAO.Entity.SubmitAssignment;
-import appLayer.SetSubmitAssignment;
+
 import DAO.Entity.AssignmentSubmission;
 import appLayer.SubmitAssignment;
 
@@ -41,7 +40,7 @@ public class submitAssignment extends HttpServlet {
         String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
         InputStream fileContent = filePart.getInputStream();
 
-        SubmitAssignment assignmentSubmission = new SubmitAssignment();
+        AssignmentSubmission assignmentSubmission = new AssignmentSubmission();
 
 
         assignmentSubmission.setaId(Integer.parseInt(request.getParameter("aId")));
@@ -67,7 +66,7 @@ public class submitAssignment extends HttpServlet {
         assignmentSubmission.setSubmissionDate(dateFormat.format(date));
 
 
-        SetSubmitAssignment submitAssignment = new SetSubmitAssignment();
+        SubmitAssignment submitAssignment = new SubmitAssignment();
         submitAssignment.submitAssignment(assignmentSubmission);
 
 
@@ -79,18 +78,18 @@ public class submitAssignment extends HttpServlet {
 
 
 
-        request.setAttribute("id", request.getParameter("cId"));
+        request.setAttribute("cId", request.getParameter("cId"));
 
 
         request.setAttribute("fName", request.getParameter("fName"));
         request.setAttribute("lName", request.getParameter("lName"));
-        request.setAttribute("userId", request.getParameter("sId"));
+        request.setAttribute("studentId", request.getParameter("sId"));
 
 
         request.setAttribute("marker", 1);
 
 
-        request.getRequestDispatcher("viewClass").include(request, response);
+        request.getRequestDispatcher("viewStudentClass").include(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

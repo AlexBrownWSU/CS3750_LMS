@@ -1,10 +1,8 @@
 package dataLayer;
 
 
-import DAO.Entity.SubmitAssignment;
 import DAO.Entity.AssignmentSubmission;
 
-import java.io.File;
 import java.io.InputStream;
 import java.sql.*;
 
@@ -20,7 +18,7 @@ public class DB_Submit_Assignment {
 
 
 
-    public boolean submitAssignment(SubmitAssignment submission) {
+    public boolean submitAssignment(AssignmentSubmission submission) {
 
         InputStream submissionFile = submission.getFile();
 

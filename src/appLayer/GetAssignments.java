@@ -1,7 +1,7 @@
 package appLayer;
 
 import DAO.Entity.Assignment;
-import DAO.Entity.SubmitAssignment;
+import DAO.Entity.AssignmentSubmission;
 import dataLayer.DB_Get_Assignment_By_Student_Id;
 import dataLayer.DB_Get_Assignments_By_Class_Id;
 import dataLayer.DB_Get_Submitted_Assignments;
@@ -35,7 +35,7 @@ public class GetAssignments {
 
 
 
-    public List<SubmitAssignment> getSubmittedAssignments(int classId, int userId) {
+    public List<AssignmentSubmission> getSubmittedAssignments(int classId, int userId) {
 
         DB_Get_Submitted_Assignments DB_Get_Submitted_Assignments = new DB_Get_Submitted_Assignments();
 

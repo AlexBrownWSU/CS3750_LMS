@@ -11,12 +11,15 @@ public class AssignmentSubmission {
     int aId;
     int cId;
     int sId;
+    int grade;
+    int tPoints;
     String submissionDate;
     List<AnswerSubmission> answerSubmissionList;
     String answers;
     boolean status;
     String fName;
     String lName;
+    String aName;
     String fileName;
     InputStream file;
 
@@ -76,6 +79,14 @@ public class AssignmentSubmission {
         this.lName = lName;
     }
 
+    public String getaName() {
+        return aName;
+    }
+
+    public void setaName(String aName) {
+        this.aName = aName;
+    }
+
     public boolean isStatus() {
         return status;
     }
@@ -107,4 +118,22 @@ public class AssignmentSubmission {
     public void setAnswerSubmissionList(List<AnswerSubmission> answerSubmissionList) {
         this.answerSubmissionList = answerSubmissionList;
     }
+
+    public int gettPoints() {
+        return tPoints;
+    }
+
+    public void settPoints(int tPoints) {
+        this.tPoints = tPoints;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+
 }
