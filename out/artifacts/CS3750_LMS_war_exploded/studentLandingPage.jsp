@@ -91,7 +91,7 @@
         </table>
     </div>
 
-    <button id="myBtn">Open Modal</button>
+    <button id="myBtn" hidden >Open Modal</button>
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
@@ -105,7 +105,7 @@
                 <form id="enrollStudent">
                     <input type="hidden" name="cId" id="cId"/>
                     <input type="hidden" name="studentId" id="studentId" value="${studentId}"/>
-                    <input type="submit" value="Enroll"/>
+                    <input type="submit" value="Enroll" class="submitData"/>
                 </form>
         </div>
 
@@ -146,6 +146,10 @@
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
 
+    var input = document.getElementsByClassName("submitData")[0];
+
+
+
     // When the user clicks the button, open the modal
     btn.onclick = function() {
         modal.style.display = "block";
@@ -154,6 +158,15 @@
     span.onclick = function() {
         modal.style.display = "none";
 
+        //Remove questions from table
+        $('#questionTable').find("tr:gt(0)").remove();
+    }
+
+        input.onclick = function() {
+        modal.style.display = "none";
+
+
+            alert("Enrollment Successful");
         //Remove questions from table
         $('#questionTable').find("tr:gt(0)").remove();
     }
@@ -172,6 +185,8 @@
         $(".clickable-row").click(function() {
 
             //Get vars
+
+
             var $name = $(this).find("td:nth-child(3)").html();
             var $cId = $(this).find("td:nth-child(1)").html();
             var $meetingTime = $(this).find("td:nth-child(4)").html();
@@ -240,6 +255,7 @@
             return false;
 
         });
+
     });
 
 

@@ -58,7 +58,7 @@ public class login extends HttpServlet {
 
                 //Get list of all classes
                 List<ClassDAO> allclasses = new ArrayList<>();
-                allclasses = getClass.getAllClasses();
+                allclasses = getClass.getAllClasses(String.valueOf(userDAO.getId()));
 
                 List<ClassDAO> classes = new ArrayList<>();
                 classes = getClass.getClassesForStudent(String.valueOf(userDAO.getId()));
@@ -79,6 +79,46 @@ public class login extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        User user = new User();
+        GetClass getClass = new GetClass();
+
+
+        UserDAO userDAO = new UserDAO();
+        userDAO = user.getUserById(request.getParameter("userId"));
+
+            if (user.isInstructor(userDAO.getEmail())){ //Go to instructor page
+
+
+
+                //ClassDAO
+                List<ClassDAO> classes = new ArrayList<ClassDAO>();
+                classes = getClass.getClasses(String.valueOf(userDAO.getId()));
+
+
+                //Set attributes
+                request.setAttribute("classes", classes);
+                request.setAttribute("lName", userDAO.getlName().toUpperCase());
+                request.setAttribute("fName", userDAO.getfName().toUpperCase());
+                request.setAttribute("instructorId", String.valueOf(userDAO.getId()));
+                request.getRequestDispatcher("/userLandingPage.jsp").forward(request, response);
+
+            } else { //Go to student page
+
+                //Get list of all classes
+                List<ClassDAO> allclasses = new ArrayList<>();
+                allclasses = getClass.getAllClasses(String.valueOf(userDAO.getId()));
+
+                List<ClassDAO> classes = new ArrayList<>();
+                classes = getClass.getClassesForStudent(String.valueOf(userDAO.getId()));
+
+                request.setAttribute("allclasses", allclasses);
+                request.setAttribute("classes", classes);
+                request.setAttribute("lName", userDAO.getlName().toUpperCase());
+                request.setAttribute("fName", userDAO.getfName().toUpperCase());
+                request.setAttribute("studentId", String.valueOf(userDAO.getId()));
+                request.getRequestDispatcher("/studentLandingPage.jsp").forward(request, response);
+            }
+
 
     }
 

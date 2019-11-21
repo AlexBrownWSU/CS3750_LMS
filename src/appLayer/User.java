@@ -31,6 +31,13 @@ public class User {
         return DB_get_user_object.getUser(username, password);
     }
 
+    public UserDAO getUserById(String uId){
+
+        DB_Get_User_By_ID DB_Get_User_By_ID = new DB_Get_User_By_ID();
+
+        return DB_Get_User_By_ID.getUserbyId(uId);
+    }
+
 
 
 

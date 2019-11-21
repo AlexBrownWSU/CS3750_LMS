@@ -16,7 +16,7 @@ public class DB_Get_Classes_All {
     static final String USER = "root";
     static final String PASS = "FastStaff2020";
 
-    public List<ClassDAO> getClasses() {
+    public List<ClassDAO> getClasses(String sId) {
 
         List<ClassDAO> classes = new ArrayList<>();
 
@@ -33,9 +33,11 @@ public class DB_Get_Classes_All {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT class.id, class.instructorId, class.class_name, class.meeting_Time, class.enrollments, user.lName, user.fName " +
+            sql = "SELECT class.*, user.lName, user.fName " +
                     "FROM class " +
                     "INNER JOIN user ON user.id=class.instructorId " +
+                    "WHERE class.id NOT IN " +
+                    "( SELECT class_id FROM enrollment WHERE student_id =" + sId + ")"+
                     "ORDER BY user.lName ";
             System.out.println("sql");
 

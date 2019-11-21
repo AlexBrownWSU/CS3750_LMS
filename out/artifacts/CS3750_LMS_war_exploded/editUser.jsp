@@ -20,15 +20,15 @@
 </div>
 
 <div class="icon-bar">
-    <a href="/userLandingPage.jsp"><i class="fa fa-home"></i></a>
-    <a class="active" href="/editUser.jsp "><i class="fa fa-user"></i></a>
-    <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
+    <a href="${pageContext.request.contextPath}/login?userId=${id}"><i class="fa fa-home"></i></a>
+    <a class="active" href="${pageContext.request.contextPath}/editUser.jsp "><i class="fa fa-user"></i></a>
+    <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
     <a href="#"><i class="fa fa-globe"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
 
 <div class="edit-user-form">
-    <form action="/editUserPostInfo" method="post">
+    <form action="${pageContext.request.contextPath}/editUserPostInfo" method="post">
         <p class="heading">User Information</p>
         <hr>
         <div class="info">

@@ -26,11 +26,11 @@ public class GetClass {
     }
 
 
-    public List<ClassDAO> getAllClasses() {
+    public List<ClassDAO> getAllClasses(String sId) {
 
         DB_Get_Classes_All DB_Get_Classes = new DB_Get_Classes_All();
 
-        return DB_Get_Classes.getClasses();
+        return DB_Get_Classes.getClasses(sId);
     }
 
     public List<ClassDAO> getClassesForStudent(String studentId) {
