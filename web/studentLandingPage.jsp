@@ -91,7 +91,7 @@
         </table>
     </div>
 
-    <button id="myBtn">Open Modal</button>
+    <button id="myBtn" hidden >Open Modal</button>
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
