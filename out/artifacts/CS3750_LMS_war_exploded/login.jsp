@@ -19,8 +19,9 @@
     <hr>
 
     <form action="${pageContext.request.contextPath}/login" method="post">
-        <div class="text-input">
-            <input type="text" name="username" width="30" placeholder="Email"/>
+        <div class="field">
+            <input type="text" name="username" id="email" width="30" placeholder="Email"/>
+            <label for="email">Email</label>
         </div>
         <div class="field">
             <input type="password" name="password" id="password" width="30" placeholder="Password"/>
