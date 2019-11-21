@@ -1,12 +1,12 @@
 body {
-    background-color: #DDDDDD;
+    background-color: #000000;
     font-family: 'Bambi', sans-serif;
     text-align: center;
     color: #000000;
 }
 
 .signUp {
-
+    border-radius: 25px;
     position: relative;
     z-index: 1;
     background: #FFFFFF;
@@ -58,12 +58,13 @@ body {
     width: 94%;
     margin: 2em 3% 0;
     border: none;
-    background: #FF5733;
+    background: #9900e6;
     padding: 1em 0;
     font-size: 1.25em;
     clear: both;
     color: #FFFFFF;
-    border: #FF5733 1px solid;
+    border: #9900e6 1px solid;
+    border-radius: 25px;
 @include border-radius(5px);
     outline: none;
 @include trans(all, .25s);
@@ -72,7 +73,7 @@ body {
 
 .button input[type="submit"]:hover {
     background: #FFFFFF;
-    color: #FF5733;
+    color: #9900e6;
 }
 
 .message {
