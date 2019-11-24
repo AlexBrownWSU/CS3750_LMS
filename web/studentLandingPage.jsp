@@ -29,7 +29,7 @@
     <!--<a href="/editUser.jsp "><i class="fa fa-user"></i></a>-->
     <a href="/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
     <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="#"><i class="fa fa-globe"></i></a>
+    <a href="/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
 
@@ -234,6 +234,8 @@
             //window.location = thisData;
         });
     });
+    
+    //TODO: Student analytics, high, low, medium and student. for each assignment and overall just student.
 
 </script>
 

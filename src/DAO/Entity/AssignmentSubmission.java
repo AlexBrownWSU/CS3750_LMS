@@ -19,6 +19,7 @@ public class AssignmentSubmission {
     String lName;
     String fileName;
     InputStream file;
+    int submissionId;
 
     public int getaId() {
         return aId;
@@ -106,5 +107,13 @@ public class AssignmentSubmission {
 
     public void setAnswerSubmissionList(List<AnswerSubmission> answerSubmissionList) {
         this.answerSubmissionList = answerSubmissionList;
+    }
+
+    public int getSubmissionId() {
+        return submissionId;
+    }
+
+    public void setSubmissionId(int submissionId) {
+        this.submissionId = submissionId;
     }
 }

@@ -1,13 +1,8 @@
 package dataLayer;
 
-import DAO.Entity.GradedSubmission;
+import java.sql.*;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class DB_Grade_Submission {
+public class DB_Update_Submission_Status {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -17,7 +12,7 @@ public class DB_Grade_Submission {
     static final String USER = "root";
     static final String PASS = "Ryu12ryu!";
 
-    public void grade(GradedSubmission gradedSubmission) {
+    public void updateSubmissionStatus (int submissionId) {
 
         Connection conn = null;
         Statement stmt = null;
@@ -32,13 +27,9 @@ public class DB_Grade_Submission {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "INSERT INTO gradedSubmission "
-                    + "(aId, sId, submissionId, grade)"
-                    + " VALUES (\""
-                    + gradedSubmission.getaId() + "\", \""
-                    + gradedSubmission.getsId() + "\", \""
-                    + gradedSubmission.getSubmissionId() + "\", \""
-                    + gradedSubmission.getGrade() + "\")";
+            sql = "UPDATE submission " +
+                    "SET status = 1 " +
+                    "WHERE idsubmission = " + submissionId;
 
             System.out.println("sql");
 

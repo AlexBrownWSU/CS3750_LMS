@@ -1,13 +1,12 @@
 package dataLayer;
 
-import DAO.Entity.GradedSubmission;
+import DAO.Entity.FileSubmission;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.io.InputStream;
+import java.sql.*;
 
-public class DB_Grade_Submission {
+
+public class DB_Get_File {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -17,7 +16,9 @@ public class DB_Grade_Submission {
     static final String USER = "root";
     static final String PASS = "Ryu12ryu!";
 
-    public void grade(GradedSubmission gradedSubmission) {
+    public FileSubmission getSubmissionFile (String aId, String sId) {
+
+        FileSubmission fileSubmission = new FileSubmission();
 
         Connection conn = null;
         Statement stmt = null;
@@ -32,18 +33,27 @@ public class DB_Grade_Submission {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "INSERT INTO gradedSubmission "
-                    + "(aId, sId, submissionId, grade)"
-                    + " VALUES (\""
-                    + gradedSubmission.getaId() + "\", \""
-                    + gradedSubmission.getsId() + "\", \""
-                    + gradedSubmission.getSubmissionId() + "\", \""
-                    + gradedSubmission.getGrade() + "\")";
+            sql = "SELECT filename, file " +
+                    "FROM submission " +
+                    "WHERE aId = " + Integer.parseInt(aId) + " " +
+                    "AND sId = " + Integer.parseInt(sId);
 
             System.out.println("sql");
 
-            stmt.executeUpdate(sql);
+            ResultSet rs = stmt.executeQuery(sql);
 
+
+            if (rs.next()) {
+
+                // gets file name and file blob data
+                fileSubmission.setFilename(rs.getString("filename"));
+                fileSubmission.setFile(rs.getBlob("file"));
+                fileSubmission.setFileInput(rs.getBlob("file").getBinaryStream());
+                fileSubmission.setFileLength(rs.getBlob("file").getBinaryStream().available());
+
+            }
+
+            rs.close();
             stmt.close();
             conn.close();
 
@@ -63,6 +73,6 @@ public class DB_Grade_Submission {
 
         System.out.println("Closing DB Connection");
 
+        return fileSubmission;
     }
-
 }

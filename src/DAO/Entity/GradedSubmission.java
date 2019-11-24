@@ -5,10 +5,12 @@ public class GradedSubmission {
     int aId;
     int sId;
     int grade;
+    int submissionId;
 
-    public void setGrade(int aId, int sId, int grade) {
+    public void setGrade(int aId, int sId, int submissionId, int grade) {
         this.aId = aId;
         this.sId = sId;
+        this.submissionId = submissionId;
         this.grade = grade;
     }
 
@@ -22,5 +24,9 @@ public class GradedSubmission {
 
     public int getGrade() {
         return grade;
+    }
+
+    public int getSubmissionId() {
+        return submissionId;
     }
 }

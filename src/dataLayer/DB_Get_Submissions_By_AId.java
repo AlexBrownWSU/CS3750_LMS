@@ -61,6 +61,7 @@ public class DB_Get_Submissions_By_AId {
 
                 AssignmentSubmission assignmentSubmission = new AssignmentSubmission();
 
+                assignmentSubmission.setSubmissionId(rs.getInt("submission.idsubmission"));
                 assignmentSubmission.setsId(rs.getInt("submission.sId"));
                 assignmentSubmission.setaId(rs.getInt("submission.aId"));
                 assignmentSubmission.setSubmissionDate(rs.getString("submission.submissionDate"));

@@ -16,20 +16,29 @@ public class gradeAssignment extends HttpServlet {
 
         int gradeTotal = 0;
         String[] grades = request.getParameterValues("grade");
+        String fileGrade = request.getParameter("fileGrade");
 
+        int submissionId = Integer.parseInt(request.getParameter("submissionId"));
 
         for(int i = 0; i < grades.length; i++) {
             gradeTotal += Integer.parseInt(grades[i]);
         }
 
+        gradeTotal += Integer.parseInt(fileGrade);
+
         int x = Integer.parseInt(request.getParameter("aId"));
         int y = Integer.parseInt(request.getParameter("sId"));
 
         GradedSubmission gradedSubmission = new GradedSubmission();
-        gradedSubmission.setGrade(Integer.parseInt(request.getParameter("aId")), Integer.parseInt(request.getParameter("sId")), gradeTotal);
+        gradedSubmission.setGrade(Integer.parseInt(request.getParameter("aId")),
+                Integer.parseInt(request.getParameter("sId")),
+                submissionId,
+                gradeTotal);
 
         GradeAssignment gradeAssignment = new GradeAssignment();
         gradeAssignment.gradeAssignment(gradedSubmission);
+
+        gradeAssignment.updateSubmissionStatus(submissionId);
 
         //TODO: Update status
         //TODO: Stop hiding modal div after submit
