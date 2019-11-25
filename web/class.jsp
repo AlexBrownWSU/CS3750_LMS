@@ -166,14 +166,8 @@
                                 </div>
                                 <div class="button">
                                     <input type="hidden" name="aId" id="aId" />
-                                    <!--<input type="hidden" name="cId" value="${cId}"/>
-                                    <input type="hidden" name="id" value="${cId}"/>
-                                    <input type="hidden" name="instructorId" value="${instructorId}"/>
-                                    <input type="hidden" name="fName" value="${fName}"/>
-                                    <input type="hidden" name="lName" value="${lName}"/>-->
                                     <input type="submit" value="Add"/>
                                 </div>
-                                <!--<button type="button" onclick="addQuestionRow()">Add Question</button>-->
                             </td>
                         </tr>
                     </table>
@@ -193,6 +187,7 @@
 
             <div id="submissions" style="display: none;">
                 <br>
+                <h3>Need To Grade</h3>
                 <table class="modalTable" id="submissionsTable" name="submissionsTable">
                     <tr>
                         <th>Student Name</th>
@@ -202,6 +197,15 @@
                         <th>sId</th>
                     </tr>
                 </table>
+                <h3>Graded</h3>
+                <table class="modalTable" id="gradedSubmissionTable" name="gradedSubmissionTable">
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Submission Date</th>
+                        <th>GradedDate</th>
+                    </tr>
+                </table>
+
             </div>
 
             <div id="grade" style="display:none;">
@@ -216,13 +220,13 @@
                         </tr>
                     </table>
                     <br>
-                    <button>View File</button>
-                    <input type="text" name="fileGrade" id="fileGrade" width="30" placeholder="File Grade"/>
+                    <button id="downloadFile">View File</button>
+                    <input type="text" name="fileGrade" id="fileGrade" width="30" placeholder="File Grade" required="required"/>
                     <!--<label for="fileGrade">File Grade</label>-->
-
                     <input type="hidden" name="sId" id="sId">
-                    <input type="hidden" name="aId" id="aId2 ">
-                    <!--<input type="hidden" name="submissionId" id="submissionId">-->
+                    <input type="hidden" name="aId" id="aId2">
+                    <input type="hidden" name="submissionId" id="submissionId">
+                    <!--<a href="path_to_file" download="proposed_file_name">Download</a>-->
                     <input type="submit" value="Done">
 
                 </form>
@@ -375,6 +379,9 @@
 
         //Remove submissions from table
         $('#submissionsTable').find("tr:gt(0)").remove();
+
+        //Remove gradedSubmissions from table
+        $('#gradedSubmissionTable').find("tr:gt(0)").remove();
     }
 
     // When the user clicks anywhere outside of the modal, close it
@@ -387,6 +394,9 @@
 
             //Remove submissions from table
             $('#submissionsTable').find("tr:gt(0)").remove();
+
+            //Remove gradedSubmissions from table
+            $('#gradedSubmissionTable').find("tr:gt(0)").remove();
         }
     }
 
@@ -454,15 +464,25 @@
                 data: {"aId": $aId},
                 success: function(response) {
                     var trHTML = '';
+                    var trHTML2 = '';
                     $.each(response, function (i, item) {
-                        trHTML += '<tr><td>' + item.lName + ", " + item.fName
-                            + '</td><td>' + item.submissionDate
-                            + '</td><td>' + item.status
-                            + '</td><td class="aId">' + item.aId
-                            + '</td><td class="sId">' + item.sId
-                            + '</td><td>' + '<button class="getSubmission" onclick="setSubmissionToGrade()">Grade</button>' + '</td></tr>';
+
+                        if (item.status == false) {
+                            trHTML += '<tr><td>' + item.lName + ", " + item.fName
+                                + '</td><td>' + item.submissionDate
+                                + '</td><td>' + item.status
+                                + '</td><td class="aId">' + item.aId
+                                + '</td><td class="sId">' + item.sId
+                                + '</td><td class="submissionId">' + item.submissionId
+                                + '</td><td>' + '<button class="getSubmission" onclick="setSubmissionToGrade()">Grade</button>' + '</td></tr>';
+                        } else {
+                            trHTML2 += '<tr><td>' + item.lName + ", " + item.fName
+                                + '</td><td>' + item.submissionDate
+                                + '</td><td>' + item.status + '</td></tr>';
+                        }
                     });
                     $('#submissionsTable').append(trHTML);
+                    $('#gradedSubmissionTable').append(trHTML2);
                 },
                 error: function(xhr) {
                     //Do Something to handle error
@@ -483,24 +503,54 @@
             .find(".sId")     // Gets a descendent with class="aId"
             .text();
 
+        var $submissionId = $(this).closest("tr")
+            .find(".submissionId")
+            .text();
+
         //alert("aId: " + $aId + "sId: " + $sId);
         $('input[name="sId"]').val($sId);
         $('input[name="aId2"]').val($aId);
+        $('input[name="submissionId"]').val($submissionId);
 
         $.ajax({
             url: "getSubmission",
             type: "GET", //send it through get method
-            data: {"aId": $aId, "sId": $sId},
+            data: {"aId": $aId, "sId": $sId, "submissionId": $submissionId},
             success: function(response) {
                 var trHTML = '';
                 $.each(response, function (i, item) {
-                trHTML += '<tr><td>' + item.question + '</td><td>' + item.answer + '</td><td>' + item.qPoints + '</td><td>' + '<input type="number" name="grade">' + '</td></tr>';
+                trHTML += '<tr><td>' + item.question + '</td><td>' + item.answer + '</td><td>' + item.qPoints + '</td><td>' + '<input type="number" name="grade" required="required">' + '</td></tr>';
                 });
                 $('#gradeTable').append(trHTML);
             },
             error: function(xhr) {
                 //Do Something to handle error
             }
+        });
+    });
+
+    jQuery(document).ready(function($) {
+        $("#downloadFile").click(function() {
+
+            var $sId = document.getElementById("sId").value;
+            var $aId = document.getElementById("aId2").value;
+
+
+            //alert("test: " + $aId + " " + $sId);
+
+            $.ajax({
+                url: "getSubmissionFile",
+                type: "GET", //send it through get method
+                data: {"aId": $aId, "sId": $sId},
+                success: function(response) {
+                    alert("Home work file has been moved to your Download file");
+                },
+                error: function(xhr) {
+                    //Do Something to handle error
+                    alert("Home work file has been moved to your Download file");
+                }
+            });
+
         });
     });
 
@@ -533,6 +583,12 @@
             }
         });
     });
+
+    $('#mymodal').on('hidden.bs.modal', function() {
+        return false;
+    });
+
+    //TODO: Clear questions from grade table
 
 </script>
 

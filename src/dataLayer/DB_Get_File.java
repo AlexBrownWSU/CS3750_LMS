@@ -1,25 +1,24 @@
 package dataLayer;
 
-import DAO.Entity.Address;
-import DAO.Entity.Assignment;
+import DAO.Entity.FileSubmission;
 
+import java.io.InputStream;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DB_Get_Assignments_By_Class_Id {
+
+public class DB_Get_File {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+    static final String DB_URL = "jdbc:mysql://localhost/lms";
 
     // Database credentials
     static final String USER = "root";
-    static final String PASS = "FastStaff2020";
+    static final String PASS = "Ryu12ryu!";
 
-    public List<Assignment> getAssignmentsByClassId (int classId) {
+    public FileSubmission getSubmissionFile (String aId, String sId) {
 
-        List<Assignment> assignmentsList = new ArrayList<>();
+        FileSubmission fileSubmission = new FileSubmission();
 
         Connection conn = null;
         Statement stmt = null;
@@ -34,24 +33,23 @@ public class DB_Get_Assignments_By_Class_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM assignment WHERE classId = " + classId;
+            sql = "SELECT filename, file " +
+                    "FROM submission " +
+                    "WHERE aId = " + Integer.parseInt(aId) + " " +
+                    "AND sId = " + Integer.parseInt(sId);
+
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
 
-            while (rs.next()) {
+            if (rs.next()) {
 
-                Assignment assignment = new Assignment();
-
-                assignment.setcId(rs.getInt("classId"));
-                assignment.setaId(rs.getInt("idassignment"));
-                assignment.setaName(rs.getString("aName"));
-                assignment.settPoints(rs.getInt("tPoints"));
-                assignment.setStartDate(rs.getString("openDate"));
-                assignment.setDueDate(rs.getString("dueDate"));
-
-                assignmentsList.add(assignment);
+                // gets file name and file blob data
+                fileSubmission.setFilename(rs.getString("filename"));
+                fileSubmission.setFile(rs.getBlob("file"));
+                fileSubmission.setFileInput(rs.getBlob("file").getBinaryStream());
+                fileSubmission.setFileLength(rs.getBlob("file").getBinaryStream().available());
 
             }
 
@@ -75,7 +73,6 @@ public class DB_Get_Assignments_By_Class_Id {
 
         System.out.println("Closing DB Connection");
 
-        return assignmentsList;
+        return fileSubmission;
     }
-
 }

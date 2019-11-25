@@ -154,4 +154,24 @@
         <url-pattern>/gradeAssignment</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>getSubmissionFile</servlet-name>
+        <servlet-class>webapp.getSubmissionFile</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getSubmissionFile</servlet-name>
+        <url-pattern>/getSubmissionFile</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getCalendar</servlet-name>
+        <servlet-class>webapp.getCalendar</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getCalendar</servlet-name>
+        <url-pattern>/getCalendar</url-pattern>
+    </servlet-mapping>
+
 </web-app>

@@ -15,7 +15,7 @@ public class GetAssignments {
 
         DB_Get_Assignments_By_Class_Id DB_Get_Assignments_By_Class_Id = new DB_Get_Assignments_By_Class_Id();
 
-        return DB_Get_Assignments_By_Class_Id.getAssifnmentsByClassId(classId);
+        return DB_Get_Assignments_By_Class_Id.getAssignmentsByClassId(classId);
 
     }
 

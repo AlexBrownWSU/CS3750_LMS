@@ -22,6 +22,7 @@ public class AssignmentSubmission {
     String aName;
     String fileName;
     InputStream file;
+    int submissionId;
 
     public int getaId() {
         return aId;
@@ -136,4 +137,12 @@ public class AssignmentSubmission {
     }
 
 
+
+    public int getSubmissionId() {
+        return submissionId;
+    }
+
+    public void setSubmissionId(int submissionId) {
+        this.submissionId = submissionId;
+    }
 }

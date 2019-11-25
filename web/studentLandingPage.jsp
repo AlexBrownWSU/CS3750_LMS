@@ -29,7 +29,7 @@
     <!--<a href="/editUser.jsp "><i class="fa fa-user"></i></a>-->
     <a href="${pageContext.request.contextPath}/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
     <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="#"><i class="fa fa-globe"></i></a>
+    <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
 
@@ -185,8 +185,6 @@
         $(".clickable-row").click(function() {
 
             //Get vars
-
-
             var $name = $(this).find("td:nth-child(3)").html();
             var $cId = $(this).find("td:nth-child(1)").html();
             var $meetingTime = $(this).find("td:nth-child(4)").html();
@@ -255,10 +253,7 @@
             return false;
 
         });
-
     });
-
-
 
     jQuery(document).ready(function($) {
         $(".clickable-row-gtc").click(function() {
@@ -267,7 +262,7 @@
         });
     });
 
-
+    //TODO: Student analytics, high, low, medium and student. for each assignment and overall just student.
 
 </script>
 

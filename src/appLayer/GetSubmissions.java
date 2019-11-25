@@ -1,12 +1,11 @@
 package appLayer;
 
 import DAO.Entity.AssignmentSubmission;
+import DAO.Entity.FileSubmission;
 import DAO.Entity.Question;
-import dataLayer.DB_Get_As;
-import dataLayer.DB_Get_Qs;
-import dataLayer.DB_Get_Submissions_By_AId;
-import dataLayer.DB_Get_Submissions_By_AId_SId;
+import dataLayer.*;
 
+import java.sql.Blob;
 import java.util.List;
 
 public class GetSubmissions {
@@ -38,6 +37,14 @@ public class GetSubmissions {
         DB_Get_Qs DB_Get_Qs = new DB_Get_Qs();
 
         return DB_Get_Qs.getQs(aId);
+
+    }
+
+    public FileSubmission getSubmissionFile (String aId, String sId) {
+
+        DB_Get_File_2 DB_Get_File = new DB_Get_File_2();
+
+        return DB_Get_File.getSubmissionFile(aId, sId);
 
     }
 }
