@@ -49,7 +49,7 @@ public class viewStudentClass extends HttpServlet {
             SubmittedAssignmentList = getSubAssignments.getSubmittedAssignments(classDAO.getId(), uId);
             assignmentList = getAssignments.getToDoAssignmentByClassId((classDAO.getId()), uId);
 
-            request.setAttribute("marker", 1);
+            request.setAttribute("marker", request.getAttribute("marker"));
             request.setAttribute("assignments", assignmentList);
             request.setAttribute("submitted", SubmittedAssignmentList);
 

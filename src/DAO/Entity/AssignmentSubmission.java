@@ -11,7 +11,7 @@ public class AssignmentSubmission {
     int aId;
     int cId;
     int sId;
-    int grade;
+    String grade;
     int tPoints;
     String submissionDate;
     List<AnswerSubmission> answerSubmissionList;
@@ -128,11 +128,11 @@ public class AssignmentSubmission {
         this.tPoints = tPoints;
     }
 
-    public int getGrade() {
+    public String getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(String grade) {
         this.grade = grade;
     }
 

@@ -28,7 +28,7 @@
 
 <div class="icon-bar">
 
-    <a href="${pageContext.request.contextPath}/studentLandingPage.jsp"><i class="fa fa-home"></i></a>
+    <a href="${pageContext.request.contextPath}/login?userId=${id}"><i class="fa fa-home"></i></a>
     <a href="${pageContext.request.contextPath}/editUserInfo?userId=${id}"><i class="fa fa-user"></i></a>
     <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
     <a href="#"><i class="fa fa-globe"></i></a>

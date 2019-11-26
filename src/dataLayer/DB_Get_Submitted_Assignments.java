@@ -52,10 +52,12 @@ public class DB_Get_Submitted_Assignments {
                 assignment.settPoints(rs.getInt("tPoints"));
                 int i;
 
-                assignment.setGrade(rs.getInt("grade"));
-                if(assignment.getGrade() >= 0 ){
+                String grade = "" + rs.getString("grade");
+                if(!grade.equals("null") ){
+                    grade = "" + rs.getInt("grade");
+                    assignment.setGrade(grade);
                 }
-                else{assignment.setGrade(0);}
+                else{assignment.setGrade("Not Graded");}
                 assignment.setSubmissionDate(rs.getString("submissionDate"));
 
                 SubmittedAssignmentsList.add(assignment);

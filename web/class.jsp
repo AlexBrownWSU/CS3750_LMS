@@ -23,7 +23,7 @@
 </div>
 
 <div class="icon-bar">
-    <a href="${pageContext.request.contextPath}/userLandingPage.jsp"><i class="fa fa-home"></i></a>
+    <a href="${pageContext.request.contextPath}/login?userId=${instructorId}"><i class="fa fa-home"></i></a>
     <a href="${pageContext.request.contextPath}/editUser.jsp "><i class="fa fa-user"></i></a>
     <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
     <a href="#"><i class="fa fa-globe"></i></a>
@@ -69,7 +69,7 @@
 
             <div id="newAssignmentDiv">
                 <h3>NEW ASSIGNMENT</h3>
-                <form action="/addAssignment" method="post">
+                <form action="${pageContext.request.contextPath}/addAssignment" method="post">
                     <table class="newAssignment" id="newAssignment">
                         <tr>
                             <td>
@@ -195,6 +195,7 @@
                         <th>Status</th>
                         <th>aId</th>
                         <th>sId</th>
+                        <th>subId</th>
                     </tr>
                 </table>
                 <h3>Graded</h3>

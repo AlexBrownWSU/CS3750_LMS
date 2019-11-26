@@ -67,8 +67,13 @@ public class submitAssignment extends HttpServlet {
 
 
         SubmitAssignment submitAssignment = new SubmitAssignment();
-        submitAssignment.submitAssignment(assignmentSubmission);
-
+        if(submitAssignment.alreadySubmittedCheck(request.getParameter("aId"), request.getParameter("sId"))) {
+            submitAssignment.submitAssignment(assignmentSubmission);
+            request.setAttribute("marker", 1);
+        }
+        else {
+            request.setAttribute("marker", 2);
+        }
 
 
 
@@ -86,7 +91,7 @@ public class submitAssignment extends HttpServlet {
         request.setAttribute("studentId", request.getParameter("sId"));
 
 
-        request.setAttribute("marker", 1);
+
 
 
         request.getRequestDispatcher("viewStudentClass").include(request, response);

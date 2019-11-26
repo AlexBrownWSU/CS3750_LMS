@@ -23,7 +23,7 @@ public class DB_New_Enrollment {
         Statement stmt = null;
         String sql = "";
         String sql2 = "";
-        String sql3 = "";
+
 
         try {
             Class.forName(JDBC_DRIVER);

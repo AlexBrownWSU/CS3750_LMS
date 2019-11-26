@@ -19,16 +19,16 @@
 <body onload="onSubmission(${marker})">
 
     <div class="topnav">
-        <p style="color:red">STUDENT: ${lName}, ${fName}; Class: ${cName}</p>
+        <p style="color:red">STUDENT: ${lName}, ${fName} STUDENT ID = ${id} Class: ${cName}</p>
         <hr>
     </div>
 
     <div class="icon-bar">
 
-        <a href="${pageContext.request.contextPath}/studentLandingPage.jsp"><i class="fa fa-home"></i></a>
+        <a href="${pageContext.request.contextPath}/login?userId=${id}"><i class="fa fa-home"></i></a>
         <a href="${pageContext.request.contextPath}/editUserInfo?userId=${id}"><i class="fa fa-user"></i></a>
         <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-        <a href="#"><i class="fa fa-globe"></i></a>
+        <a href="${pageContext.request.contextPath}/getCalendar?studentId=${id}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
         <a href="#"><i class="fa fa-trash"></i></a>
     </div>
 
@@ -72,20 +72,22 @@
         <div id="AssignmentsFinished" name="AssignmentsFinished">
             <table class="AssignmentsF" id="AssignmentsF">
 
-                <tr >
+                <tr class = "clickable-row-analytics" >
                     <th>Assignment Name</th>
                     <th>Total Points</th>
                     <th>Grade</th>
                     <th>Date Submitted</th>
+                    <th hidden>aId</th>
 
                 </tr>
 
                 <c:forEach items="${submitted}" var="submitted">
-                        <tr >
+                        <tr class = "clickable-row-analytics">
                         <td>${submitted.aName}</td>
                         <td>${submitted.tPoints}</td>
                         <td>${submitted.grade}</td>
                         <td>${submitted.submissionDate}</td>
+                        <td hidden>${submitted.aId}</td>
                     </tr>
                 </c:forEach>
 
@@ -213,8 +215,6 @@
                         var trHTML = '';
                         $.each(response, function (i, item) {
                             trHTML += '<tr><td>' + item.question + '</td><td>' + '<input type="text" id="response" name="response">' + '</td></tr>';
-                            //'<input type="text" id="question" name="question" readonly>'
-                            //$("#question").val(item.question);
                         });
                         $('#questionTable').append(trHTML);
                     },
@@ -230,8 +230,34 @@ function onSubmission(marker){
     if(marker === 1){
         alert("!!!SUBMISSION SUCCESSFUL!!!");
     }
-
 }
+
+        jQuery(document).ready(function($) {
+            $(".clickable-row-analytics").click(function() {
+
+                //Show modal
+
+
+
+                //Get vars
+                //var $name = $(this).find("td:nth-child(1)").html();
+                var $aId = $(this).find("td:nth-child(5)").html();
+                //alert($aId);
+
+                //document.getElementById("className").innerHTML = $name;
+
+                $.ajax({
+                    url: "GetAssignmentAnalytics",
+                    type: "GET", //send it through get method
+                    data: {"aId": $aId, "cId": ${cId}, "sId": ${id}},
+                    success: function(response) {
+                        alert("MAX: " + response.max + " MIN: " + response.min + " MEDIAN: " + response.median + " Your Grade: " + response.uGrade )
+
+                    }
+
+                });
+            });
+        });
 
     </script>
 </body>

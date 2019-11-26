@@ -1,9 +1,10 @@
 package dataLayer;
 
+
+
 import java.sql.*;
 
-public class DB_Update_Submission_Status {
-
+public class DB_Check_If_Already_Submitted {
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/test3750db";
@@ -12,8 +13,8 @@ public class DB_Update_Submission_Status {
     static final String USER = "root";
     static final String PASS = "FastStaff2020";
 
-    public void updateSubmissionStatus (int submissionId) {
-
+    public boolean checkIfAlreadySubmitted(String aId, String sId){
+        boolean check = true;
         Connection conn = null;
         Statement stmt = null;
         String sql = "";
@@ -27,14 +28,25 @@ public class DB_Update_Submission_Status {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "UPDATE submission " +
-                    "SET status = 1 " +
-                    "WHERE submissionId = " + submissionId;
-
+            sql = "select isNull(aId) as isNull  from submission " +
+                    "where aId =" + aId + " and sId = "+ sId ;
             System.out.println("sql");
 
-            stmt.executeUpdate(sql);
+            ResultSet rs = stmt.executeQuery(sql);
 
+            if( rs.next()){
+                check = false;
+
+            }
+            else{
+                check = true;
+
+            }
+
+
+
+
+            rs.close();
             stmt.close();
             conn.close();
 
@@ -54,6 +66,6 @@ public class DB_Update_Submission_Status {
 
         System.out.println("Closing DB Connection");
 
+        return check;
     }
-
 }
