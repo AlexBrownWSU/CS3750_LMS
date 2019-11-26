@@ -251,7 +251,7 @@ function onSubmission(marker){
                     type: "GET", //send it through get method
                     data: {"aId": $aId, "cId": ${cId}, "sId": ${id}},
                     success: function(response) {
-                        alert("MAX: " + response.max + " MIN: " + response.min + " MEDIAN: " + response.median + " Your Grade: " + response.uGrade )
+                        alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
 
                     }
 

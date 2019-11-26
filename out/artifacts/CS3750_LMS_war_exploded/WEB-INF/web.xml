@@ -174,4 +174,14 @@
         <url-pattern>/getCalendar</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>GetAssignmentAnalytics</servlet-name>
+        <servlet-class>webapp.GetAssignmentAnalytics</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetAssignmentAnalytics</servlet-name>
+        <url-pattern>/GetAssignmentAnalytics</url-pattern>
+    </servlet-mapping>
+
 </web-app>
