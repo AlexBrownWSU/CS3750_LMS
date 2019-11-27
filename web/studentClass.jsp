@@ -72,7 +72,7 @@
         <div id="AssignmentsFinished" name="AssignmentsFinished">
             <table class="AssignmentsF" id="AssignmentsF">
 
-                <tr class = "clickable-row-analytics" >
+                <tr  >
                     <th>Assignment Name</th>
                     <th>Total Points</th>
                     <th>Grade</th>
@@ -136,6 +136,9 @@
                     </form>
                 </div>
             </div>
+
+        <canvas
+
         </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
@@ -251,7 +254,7 @@ function onSubmission(marker){
                     type: "GET", //send it through get method
                     data: {"aId": $aId, "cId": ${cId}, "sId": ${id}},
                     success: function(response) {
-                        alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
+                        // alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
 
                     }
 

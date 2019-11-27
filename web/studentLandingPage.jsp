@@ -25,12 +25,29 @@
 </div>
 
 <div class="icon-bar">
+    <div class="tooltip">
     <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <!--<a href="/editUser.jsp "><i class="fa fa-user"></i></a>-->
+        <span class="tooltiptext">Home</span>
+    </div>
+    <div class="tooltip">
     <a href="${pageContext.request.contextPath}/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
+        <span class="tooltiptext">User Profile</span>
+    </div>
+
+    <div class="tooltip">
     <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
+        <span class="tooltiptext">Logout</span>
+    </div>
+
+    <div class="tooltip">
+    <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-Calendar"></i></a>
+        <span class="tooltiptext">Calendar</span>
+    </div>
+
+    <div class="tooltip">
     <a href="#"><i class="fa fa-trash"></i></a>
+        <span class="tooltiptext">Trash</span>
+    </div>
 </div>
 
 <div class="pageContent">
@@ -91,16 +108,16 @@
         </table>
     </div>
 
-    <button id="myBtn" hidden >Open Modal</button>
+    <%--<button id="myBtn" hidden >Open Modal</button>--%>
     <div id="myModal" class="modal">
         <!-- Modal content -->
         <div class="modal-content">
 
             <span class="close">&times;</span>
-            <h1><span id="className"></span></h1>
+            <h1>Class: <span id="className"></span></h1>
             <hr>
-            <h3><span id="meetingTime"></span></h3>
-            <h3><span id="registration"></span></h3>
+            <h3>Meeting Time: <span id="meetingTime"></span></h3>
+            <h3>Registration: <span id="registrationDot" class="registrationDot"></span></h3>
 
                 <form id="enrollStudent">
                     <input type="hidden" name="cId" id="cId"/>
@@ -141,7 +158,7 @@
     var modal = document.getElementById("myModal");
 
     // Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
+    // var btn = document.getElementById("myBtn");
 
     // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
@@ -151,9 +168,10 @@
 
 
     // When the user clicks the button, open the modal
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
+    // btn.onclick = function() {
+    //     modal.style.display = "block";
+    // }
+
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
         modal.style.display = "none";
@@ -162,6 +180,7 @@
         $('#questionTable').find("tr:gt(0)").remove();
     }
 
+    // When the user clicks submit, close it
         input.onclick = function() {
         modal.style.display = "none";
 
@@ -170,6 +189,7 @@
         //Remove questions from table
         $('#questionTable').find("tr:gt(0)").remove();
     }
+
 
     // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
@@ -180,6 +200,7 @@
             $('#questionTable').find("tr:gt(0)").remove();
         }
     }
+
 
     jQuery(document).ready(function($) {
         $(".clickable-row").click(function() {
@@ -199,7 +220,7 @@
             //Set hidden element
             $('input[name="cId"]').val($cId);
 
-            var regis = document.getElementById("registration");
+            var regis = document.getElementById("registrationDot");
 
             if (parseInt($enrollments, 10) === 30) {
                 //allow registration
@@ -220,23 +241,7 @@
         });
     });
 
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-        modal.style.display = "none";
 
-        //Remove questions from table
-        $('#questionTable').find("tr:gt(0)").remove();
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-
-            //Remove questions from table
-            $('#questionTable').find("tr:gt(0)").remove();
-        }
-    }
 
     //Ajax call for enrolling student
     $(document).ready(function() {
