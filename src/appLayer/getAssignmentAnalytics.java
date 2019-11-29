@@ -9,4 +9,5 @@ public class getAssignmentAnalytics {
 
         return DB_Get_Assignment_Analytics.getAnalytics(aId, cId, sId);
     }
+
 }

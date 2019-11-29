@@ -14,6 +14,7 @@
 <head>
     <title>Student Class</title>
     <link rel="stylesheet" href="style_student_class.css">
+    <link rel="stylesheet" href="style_student_analytics.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body onload="onSubmission(${marker})">
@@ -30,6 +31,84 @@
         <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
         <a href="${pageContext.request.contextPath}/getCalendar?studentId=${id}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
         <a href="#"><i class="fa fa-trash"></i></a>
+    </div>
+
+    <div class = "container">
+        <div class = "card">
+            <div class = "box">
+                <div class = "percent">
+                    <svg>
+                        <circle cx="35" cy="35" r="35"></circle>
+                        <circle cx="35" cy="35" r="35"></circle>
+                    </svg>
+                    <div class = "number">
+                        <h2 class = "high">${classAnalytics.max}<span>%</span></h2>
+                    </div>
+                </div>
+                <h2 class = "text">Class High</h2>
+            </div>
+
+        </div>
+        <div class = "card">
+            <div class = "box">
+                <div class = "percent">
+                    <svg>
+                        <circle cx="35" cy="35" r="35"></circle>
+                        <circle cx="35" cy="35" r="35"></circle>
+                    </svg>
+                    <div class = "number">
+                        <h2 class = "median">${classAnalytics.median}<span>%</span></h2>
+                    </div>
+                </div>
+                <h2 class = "text">Class median</h2>
+            </div>
+
+        </div>
+        <div class = "card">
+            <div class = "box">
+                <div class = "percent">
+                    <svg>
+                        <circle cx="35" cy="35" r="35"></circle>
+                        <circle cx="35" cy="35" r="35"></circle>
+                    </svg>
+                    <div class = "number">
+                        <h2 class = "avg">${classAnalytics.avg}<span>%</span></h2>
+                    </div>
+                </div>
+                <h2 class = "text">Class avg</h2>
+            </div>
+
+        </div>
+        <div class = "card">
+            <div class = "box">
+                <div class = "percent">
+                    <svg>
+                        <circle cx="35" cy="35" r="35"></circle>
+                        <circle cx="35" cy="35" r="35"></circle>
+                    </svg>
+                    <div class = "number">
+                        <h2 class = "low">${classAnalytics.low}<span>%</span></h2>
+                    </div>
+                </div>
+                <h2 class = "text">Class low</h2>
+            </div>
+
+        </div>
+        <div class = "card">
+            <div class = "box">
+                <div class = "percent">
+                    <svg>
+                        <circle cx="35" cy="35" r="35"></circle>
+                        <circle cx="35" cy="35" r="35"></circle>
+                    </svg>
+                    <div class = "number">
+                        <h2 class = "userGrade">${classAnalytics.uGrade}<span>%</span></h2>
+                    </div>
+                </div>
+                <h2 class = "text">your Grade</h2>
+            </div>
+
+        </div>
     </div>
 
     <div class="pageContent">
@@ -72,7 +151,7 @@
         <div id="AssignmentsFinished" name="AssignmentsFinished">
             <table class="AssignmentsF" id="AssignmentsF">
 
-                <tr class = "clickable-row-analytics" >
+                <tr  >
                     <th>Assignment Name</th>
                     <th>Total Points</th>
                     <th>Grade</th>
@@ -82,13 +161,15 @@
                 </tr>
 
                 <c:forEach items="${submitted}" var="submitted">
-                        <tr class = "clickable-row-analytics">
+                     <tr class = "clickable-row-analytics">
                         <td>${submitted.aName}</td>
                         <td>${submitted.tPoints}</td>
                         <td>${submitted.grade}</td>
                         <td>${submitted.submissionDate}</td>
                         <td hidden>${submitted.aId}</td>
                     </tr>
+                    <div class = "analytics">
+                    </div>
                 </c:forEach>
 
             </table>
@@ -136,6 +217,9 @@
                     </form>
                 </div>
             </div>
+
+        <canvas
+
         </div>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
@@ -235,9 +319,6 @@ function onSubmission(marker){
         jQuery(document).ready(function($) {
             $(".clickable-row-analytics").click(function() {
 
-                //Show modal
-
-
 
                 //Get vars
                 //var $name = $(this).find("td:nth-child(1)").html();
@@ -251,7 +332,9 @@ function onSubmission(marker){
                     type: "GET", //send it through get method
                     data: {"aId": $aId, "cId": ${cId}, "sId": ${id}},
                     success: function(response) {
-                        alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
+                        var trHTML = '';
+                        // alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
+
 
                     }
 
