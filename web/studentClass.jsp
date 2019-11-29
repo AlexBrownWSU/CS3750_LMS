@@ -29,7 +29,7 @@
         <a href="${pageContext.request.contextPath}/login?userId=${id}"><i class="fa fa-home"></i></a>
         <a href="${pageContext.request.contextPath}/editUserInfo?userId=${id}"><i class="fa fa-user"></i></a>
         <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-        <a href="${pageContext.request.contextPath}/getCalendar?studentId=${id}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
+        <a href="${pageContext.request.contextPath}/getCalendar?studentId=${id}&fName=${fName}&lName=${lName}"><i class="fa fa-calendar"></i></a>
         <a href="#"><i class="fa fa-trash"></i></a>
     </div>
 
@@ -319,13 +319,7 @@ function onSubmission(marker){
         jQuery(document).ready(function($) {
             $(".clickable-row-analytics").click(function() {
 
-
-                //Get vars
-                //var $name = $(this).find("td:nth-child(1)").html();
                 var $aId = $(this).find("td:nth-child(5)").html();
-                //alert($aId);
-
-                //document.getElementById("className").innerHTML = $name;
 
                 $.ajax({
                     url: "GetAssignmentAnalytics",
@@ -333,7 +327,7 @@ function onSubmission(marker){
                     data: {"aId": $aId, "cId": ${cId}, "sId": ${id}},
                     success: function(response) {
                         var trHTML = '';
-                        // alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
+                         alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
 
 
                     }
