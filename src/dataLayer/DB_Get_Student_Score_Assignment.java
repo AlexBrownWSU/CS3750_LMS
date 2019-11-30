@@ -1,14 +1,9 @@
 package dataLayer;
 
-import DAO.ClassDAO;
-
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class DB_Get_Enrollments_By_Student_Id {
+public class DB_Get_Student_Score_Assignment {
 
-    // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     static final String DB_URL = "jdbc:mysql://localhost/lms";
 
@@ -16,9 +11,9 @@ public class DB_Get_Enrollments_By_Student_Id {
     static final String USER = "root";
     static final String PASS = "Ryu12ryu!";
 
-    public List<ClassDAO> getEnrollmentsByStudentId(int studentId) {
+    public double getStudentAssignmentScore (int sId, int cId, int aId) {
 
-        List<ClassDAO> classes = new ArrayList<>();
+        double studentScore = 0.0;
 
         Connection conn = null;
         Statement stmt = null;
@@ -30,30 +25,22 @@ public class DB_Get_Enrollments_By_Student_Id {
             System.out.println("Creating statement...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
-            System.out.println("Creating Statment...");
+            System.out.println("Creating Statement...");
             stmt = conn.createStatement();
 
-            sql = "SELECT class.id, class.instructorId, class.class_name, class.meeting_time, class.enrollments FROM class "
-                    + "INNER JOIN  enrollment ON enrollment.class_id=class.id "
-                    + "WHERE enrollment.student_id = " + studentId;
-
+            sql = "SELECT grade, idassignment "
+                    + "FROM gradedSubmission g "
+                    + "INNER JOIN assignment a on a.idassignment=g.aId "
+                    + "WHERE a.classid = " + cId + " "
+                    + "AND a.idassignment = " + aId + " "
+                    + "AND g.sId = " + sId;
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
 
-
-            while (rs.next()) {
-
-                ClassDAO myClass = new ClassDAO();
-
-                myClass.setEnrollments(rs.getInt("class.enrollments"));
-                myClass.setId(rs.getInt("class.id"));
-                myClass.setMeetingTime(rs.getString("class.meeting_Time"));
-                myClass.setInstructorId(rs.getInt("class.instructorId"));
-                myClass.setcName(rs.getString("class.class_name"));
-
-                classes.add(myClass);
-
+            if (rs.next()) {
+                //TODO: Count the return set
+                studentScore = rs.getInt("grade");
             }
 
             rs.close();
@@ -76,7 +63,8 @@ public class DB_Get_Enrollments_By_Student_Id {
 
         System.out.println("Closing DB Connection");
 
-        return classes;
-    }
 
+        return studentScore;
+
+    }
 }

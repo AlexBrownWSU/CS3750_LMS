@@ -29,7 +29,7 @@
     <!--<a href="/editUser.jsp "><i class="fa fa-user"></i></a>-->
     <a href="/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
     <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-globe"></i></a>
+    <a href="/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-calendar"></i></a>
     <a href="#"><i class="fa fa-trash"></i></a>
 </div>
 
@@ -81,6 +81,7 @@
             <tr class="clickable-row-my-classes" data-href="/viewStudentClass?id=${studentClasses.id}&fName=${fName}&lName=${lName}&studentId=${studentId}">
                 <td>${studentClasses.cName}</td>
                 <td>${studentClasses.meetingTime}</td>
+                <td>Id: ${studentClasses.id}</td>
             </tr>
             </c:forEach>
 

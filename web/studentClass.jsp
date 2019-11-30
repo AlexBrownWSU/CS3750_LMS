@@ -16,6 +16,12 @@
     <title>Student</title>
     <link rel="stylesheet" href="style_student_class.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 </head>
 
 <body>
@@ -29,11 +35,56 @@
         <a class="active" href="#"><i class="fa fa-home"></i></a>
         <a href="/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
         <a href="/login.jsp"><i class="fa fa-sign-out"></i></a>
-        <a href="#"><i class="fa fa-globe"></i></a>
+        <a href="/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-calendar"></i></a>
         <a href="#"><i class="fa fa-trash"></i></a>
     </div>
 
     <div class="pageContent">
+
+        <div class="w3-container">
+
+            <h2>Dynamic Progress Bar with Labels</h2>
+            <p>Left-aligned label:</p>
+
+            <div class="w3-light-grey">
+                <div id="myBar" class="w3-container w3-green" style="width:20%">20%</div>
+            </div>
+            <br>
+            <button class="w3-button w3-green" onclick="move()">Click Me</button>
+        </div>
+
+
+        <div class="classAverages">
+            <h2>Class Average</h2>
+            <div class="progress">
+                <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated" style="width:39%">
+                    Low: 39%
+                </div>
+                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" style="width:20%">
+                    Medium: 59%
+                </div>
+                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" style="width:20%">
+                    High: 79%
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="bar_container">
+            <div id="main_container">
+                <div id="pbar" class="progress-pie-chart" data-percent="0">
+                    <div class="ppc-progress">
+                        <div class="ppc-progress-fill"></div>
+                    </div>
+                    <div class="ppc-percents">
+                        <div class="pcc-percents-wrapper">
+                            <span>%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <progress style="display: none" id="progress_bar" value="0" max="100"></progress>
+            </div>
+        </div>-->
 
         <div>
 
@@ -173,6 +224,37 @@
             contentType: false,
             processData: false
         });
+    });
+
+    //Pie chart
+    $(document).ready(function() {
+        var progressbar = $('#progress_bar');
+        max = progressbar.attr('max');
+        time = (1000 / max) * 5;
+        value = progressbar.val();
+
+        var loading = function() {
+            value += 1;
+            addValue = progressbar.val(value);
+
+            $('.progress-value').html(value + '%');
+            var $ppc = $('.progress-pie-chart'),
+                deg = 360 * value / 100;
+            if (value > 50) {
+                $ppc.addClass('gt-50');
+            }
+
+            $('.ppc-progress-fill').css('transform', 'rotate(' + deg + 'deg)');
+            $('.ppc-percents span').html(value + '%');
+
+            if (value == max) {
+                clearInterval(animate);
+            }
+        };
+
+        var animate = setInterval(function() {
+            loading();
+        }, time);
     });
 
     </script>
