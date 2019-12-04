@@ -23,6 +23,8 @@ public class DB_Get_Submitted_Assignments {
         Connection conn = null;
         Statement stmt = null;
         String sql = "";
+        String sql2 = "";
+
         try {
             Class.forName(JDBC_DRIVER);
 
@@ -32,15 +34,15 @@ public class DB_Get_Submitted_Assignments {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT submission.*, assignment.*, gradedSubmission.grade FROM submission " +
+            sql = "SELECT submission.*, assignment.* FROM submission " +
                     " JOIN assignment ON submission.aId = assignment.idAssignment " +
-                    " LEFT JOIN gradedSubmission ON assignment.idAssignment = gradedSubmission.aId" +
                     " WHERE submission.sId = " + userId +
                     " AND assignment.classId = " + classId +
                     " ORDER BY submission.aId";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
+
 
 
             while (rs.next()) {
@@ -50,21 +52,32 @@ public class DB_Get_Submitted_Assignments {
                 assignment.setaId(rs.getInt("aId"));
                 assignment.setsId(rs.getInt("sId"));
                 assignment.settPoints(rs.getInt("tPoints"));
-                int i;
 
-                String grade = "" + rs.getString("grade");
-                if(!grade.equals("null") ){
-                    grade = "" + rs.getInt("grade");
-                    assignment.setGrade(grade);
-                }
-                else{assignment.setGrade("Not Graded");}
                 assignment.setSubmissionDate(rs.getString("submissionDate"));
 
                 SubmittedAssignmentsList.add(assignment);
 
             }
+            sql2 = "SELECT grade " +
+                    "from gradedsubmission " +
+                    "join assignment on gradedsubmission.aId = assignment.idassignment " +
+                    "where assignment.classId = " + classId +
+                    " And gradedsubmission.sId = " + userId;
+            System.out.println("sql2");
 
+            rs = stmt.executeQuery(sql2);
+
+          for(int i = 0; i < SubmittedAssignmentsList.size(); i++) {
+              String grade = "";
+                if(rs.next()){
+                    grade = "" + rs.getInt("grade");
+                   SubmittedAssignmentsList.get(i).setGrade(grade);
+                }
+                else{SubmittedAssignmentsList.get(i).setGrade("NG");}
+
+          }
             rs.close();
+
             stmt.close();
             conn.close();
 

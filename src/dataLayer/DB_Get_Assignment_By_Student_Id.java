@@ -38,7 +38,12 @@ public class DB_Get_Assignment_By_Student_Id {
             sql = "SELECT assignment.aName, assignment.tPoints, assignment.openDate, assignment.dueDate, assignment.classId, assignment.idassignment "
                 + "FROM assignment "
                 + "INNER JOIN enrollment ON enrollment.class_Id=assignment.classId "
-                + "WHERE enrollment.student_id = " + studentId + " "
+                + "WHERE enrollment.student_id = " + studentId +
+                    " And assignment.idassignment not in " +
+                    " ( select aId " +
+                    " from submission" +
+                    " where sId = "+ studentId +
+                    " ) "
                 + "ORDER BY assignment.dueDate";
             System.out.println("sql");
 

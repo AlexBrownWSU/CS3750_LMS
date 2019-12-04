@@ -13,9 +13,9 @@ public class DB_Get_Assignment_Analytics {
     static final String USER = "root";
     static final String PASS = "FastStaff2020";
 
-    public assignmentAnalyntics getAnalytics(String aId, String cId, String sId){
+    public Averages getAnalytics(String aId, String cId, String sId){
 
-        assignmentAnalyntics assignmentAnalyntics = new assignmentAnalyntics();
+        Averages assignmentAnalyntics = new Averages();
 
         Connection conn = null;
         Statement stmt = null;
@@ -40,27 +40,27 @@ public class DB_Get_Assignment_Analytics {
             ResultSet rs = stmt.executeQuery(sql);
 
             if (rs.next()) {
-                assignmentAnalyntics.setMax(rs.getDouble("max"));
-                assignmentAnalyntics.setMin(rs.getDouble("min"));
-                assignmentAnalyntics.setAvg(rs.getDouble("avg"));
+                assignmentAnalyntics.setHigh(rs.getInt("max"));
+                assignmentAnalyntics.setLow(rs.getInt("min"));
+                assignmentAnalyntics.setAverage(rs.getDouble("avg"));
             }
 
-            sql2 = "Select avg(gs.grade) as median_val" +
-                    " from (" +
-                    "SELECT gs.grade, @rownum:=@rownum+1 as `row_number`, @total_rows:=@rownum" +
-                    " from gradedsubmission gs" +
-                    " Join assignment a on gs.aId = a.idassignment" +
-                    ", (SELECT @rownum:=0) r" +
-                    " where gs.aId =" +  aId + " and a.classId = "+ cId +
-                    ") as gs" +
-                    " WHERE gs.row_number IN ( FLOOR((@total_rows+1)/2), FLOOR((@total_rows+2)/2) ) ";
-            System.out.println("sql2");
-
-             rs = stmt.executeQuery(sql2);
-
-            if (rs.next()) {
-                assignmentAnalyntics.setMedian(rs.getDouble("median_val"));
-            }
+//            sql2 = "Select avg(gs.grade) as median_val" +
+//                    " from (" +
+//                    "SELECT gs.grade, @rownum:=@rownum+1 as `row_number`, @total_rows:=@rownum" +
+//                    " from gradedsubmission gs" +
+//                    " Join assignment a on gs.aId = a.idassignment" +
+//                    ", (SELECT @rownum:=0) r" +
+//                    " where gs.aId =" +  aId + " and a.classId = "+ cId +
+//                    ") as gs" +
+//                    " WHERE gs.row_number IN ( FLOOR((@total_rows+1)/2), FLOOR((@total_rows+2)/2) ) ";
+//            System.out.println("sql2");
+//
+//             rs = stmt.executeQuery(sql2);
+//
+//            if (rs.next()) {
+//                assignmentAnalyntics.setMedian(rs.getDouble("median_val"));
+//            }
 
             sql3 = "select grade from gradedsubmission" +
                     " where aId = " +  aId + " and sId = " +  sId ;
@@ -68,7 +68,7 @@ public class DB_Get_Assignment_Analytics {
 
             rs = stmt.executeQuery(sql3);
             if (rs.next()) {
-                assignmentAnalyntics.setuGrade(rs.getDouble("grade"));
+                assignmentAnalyntics.setStudentScore(rs.getDouble("grade"));
             }
 
             rs.close();

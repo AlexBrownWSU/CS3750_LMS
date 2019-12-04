@@ -24,14 +24,34 @@
         <hr>
     </div>
 
-    <div class="icon-bar">
 
-        <a href="${pageContext.request.contextPath}/login?userId=${id}"><i class="fa fa-home"></i></a>
-        <a href="${pageContext.request.contextPath}/editUserInfo?userId=${id}"><i class="fa fa-user"></i></a>
-        <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-        <a href="${pageContext.request.contextPath}/getCalendar?studentId=${id}&fName=${fName}&lName=${lName}"><i class="fa fa-calendar"></i></a>
-        <a href="#"><i class="fa fa-trash"></i></a>
-    </div>
+        <div class="icon-bar">
+            <div class="tooltip">
+                <a href="${pageContext.request.contextPath}/login?userId=${id}"><i class="fa fa-home"></i></a>
+                <span class="tooltiptext">Home</span>
+            </div>
+            <div class="tooltip">
+                <a href="${pageContext.request.contextPath}/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
+                <span class="tooltiptext">User Profile</span>
+            </div>
+
+            <div class="tooltip">
+                <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
+                <span class="tooltiptext">Logout</span>
+            </div>
+
+            <div class="tooltip">
+                <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-Calendar"></i></a>
+                <span class="tooltiptext">Calendar</span>
+            </div>
+
+            <div class="tooltip">
+                <a href="#"><i class="fa fa-trash"></i></a>
+                <span class="tooltiptext">Trash</span>
+            </div>
+        </div>
+
+
 
     <div class = "container">
         <div class = "card">
@@ -42,28 +62,15 @@
                         <circle cx="35" cy="35" r="35"></circle>
                     </svg>
                     <div class = "number">
-                        <h2 class = "high">${classAnalytics.max}<span>%</span></h2>
+                        <h2 class = "high">${averages.high}<span>%</span></h2>
                     </div>
                 </div>
                 <h2 class = "text">Class High</h2>
             </div>
 
         </div>
-        <div class = "card">
-            <div class = "box">
-                <div class = "percent">
-                    <svg>
-                        <circle cx="35" cy="35" r="35"></circle>
-                        <circle cx="35" cy="35" r="35"></circle>
-                    </svg>
-                    <div class = "number">
-                        <h2 class = "median">${classAnalytics.median}<span>%</span></h2>
-                    </div>
-                </div>
-                <h2 class = "text">Class median</h2>
-            </div>
 
-        </div>
+
         <div class = "card">
             <div class = "box">
                 <div class = "percent">
@@ -72,7 +79,7 @@
                         <circle cx="35" cy="35" r="35"></circle>
                     </svg>
                     <div class = "number">
-                        <h2 class = "avg">${classAnalytics.avg}<span>%</span></h2>
+                        <h2 class = "avg">${averages.average}<span>%</span></h2>
                     </div>
                 </div>
                 <h2 class = "text">Class avg</h2>
@@ -87,7 +94,7 @@
                         <circle cx="35" cy="35" r="35"></circle>
                     </svg>
                     <div class = "number">
-                        <h2 class = "low">${classAnalytics.low}<span>%</span></h2>
+                        <h2 class = "low">${averages.low}<span>%</span></h2>
                     </div>
                 </div>
                 <h2 class = "text">Class low</h2>
@@ -102,12 +109,20 @@
                         <circle cx="35" cy="35" r="35"></circle>
                     </svg>
                     <div class = "number">
-                        <h2 class = "userGrade">${classAnalytics.uGrade}<span>%</span></h2>
+                        <h2 class = "userGrade">${averages.studentScore}<span>%</span></h2>
                     </div>
                 </div>
                 <h2 class = "text">your Grade</h2>
             </div>
 
+        </div>
+        <div class = "AssignmentAnalytics" >
+            <h2>Assignment Scores</h2>
+            <h3 id = "max" ></h3>
+            <h3 id = "med"></h3>
+            <h3 id = "avg"></h3>
+            <h3 id = "low"></h3>
+            <h3 id = "sGrade"></h3>
         </div>
     </div>
 
@@ -174,6 +189,8 @@
 
             </table>
         </div>
+
+
             <button hidden id="myBtn">Open Modal</button>
 
             <div id="myModal" class="modal">
@@ -218,7 +235,7 @@
                 </div>
             </div>
 
-        <canvas
+
 
         </div>
 
@@ -244,6 +261,7 @@
             }
         }
 
+        var popUp = document.getElementById("AssignmentAnalytics");
 
         // Get the modal
         var modal = document.getElementById("myModal");
@@ -319,22 +337,33 @@ function onSubmission(marker){
         jQuery(document).ready(function($) {
             $(".clickable-row-analytics").click(function() {
 
+
                 var $aId = $(this).find("td:nth-child(5)").html();
+
 
                 $.ajax({
                     url: "GetAssignmentAnalytics",
                     type: "GET", //send it through get method
                     data: {"aId": $aId, "cId": ${cId}, "sId": ${id}},
                     success: function(response) {
-                        var trHTML = '';
-                         alert("MAX: " + response.max + " \nMIN: " + response.min + " \nAVG: " + response.avg +" \nMEDIAN: " + response.median + " \nYour Grade: " + response.uGrade )
+                        var HTML = '';
+
+                        $("#max").text("HIGH: " + response.high);
+                        $("#avg").text("AVG: " + response.average);
+                        $("#low").text("LOW: " + response.low);
+                        $("#sGrade").text("YOUR GRADE: " + response.studentScore);
 
 
                     }
-
                 });
+
             });
         });
+
+
+
+
+
 
     </script>
 </body>

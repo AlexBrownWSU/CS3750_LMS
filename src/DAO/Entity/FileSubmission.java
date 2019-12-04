@@ -6,7 +6,6 @@ import java.sql.Blob;
 public class FileSubmission {
     String fileName;
     Blob file;
-
     InputStream fileInput;
     int fileLength;
 
