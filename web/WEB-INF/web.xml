@@ -153,5 +153,15 @@
         <servlet-name>gradeAssignment</servlet-name>
         <url-pattern>/gradeAssignment</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>getCalendar</servlet-name>
+        <servlet-class>webapp.getCalendar</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>getCalendar</servlet-name>
+        <url-pattern>/getCalendar</url-pattern>
+    </servlet-mapping>
     
 </web-app>
