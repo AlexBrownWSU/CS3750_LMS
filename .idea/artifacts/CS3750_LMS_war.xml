@@ -5,11 +5,14 @@
       <element id="artifact" artifact-name="CS3750_LMS:war exploded" />
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/out/artifacts/CS3750_LMS_war_exploded/WEB-INF/classes/META-INF/MANIFEST.MF" />
       </element>
       <element id="directory" name="WEB-INF">
         <element id="directory" name="lib">
           <element id="file-copy" path="/Applications/apache-tomcat-9.0.26/lib/gson-2.2.2.jar" />
           <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/gson-2.8.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar" />
         </element>
       </element>
     </root>

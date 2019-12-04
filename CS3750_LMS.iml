@@ -20,16 +20,52 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="PROVIDED" name="Tomcat 9.0.26" level="application_server_libraries" />
-    <orderEntry type="library" name="javax.servlet:jstl:1.2" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar:///Applications/apache-tomcat-9.0.26/lib/gson-2.2.2.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/jar_files/jstl-1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="gson-1.1" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/json-20180813.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/build/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/demo/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/generated/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/legacy/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/main/core-api/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/main/core-impl/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/main/protocol-impl/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/main/user-api/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/main/user-impl/java" />
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18.zip!/mysql-connector-java-8.0.18/src/test/java" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/gson-2.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

@@ -10,11 +10,11 @@ public class DB_Get_Assignment_By_Student_Id {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/lms";
+    static final String DB_URL = "jdbc:mysql://18.191.104.66:3306/lms";
 
     // Database credentials
-    static final String USER = "root";
-    static final String PASS = "Ryu12ryu!";
+    static final String USER = "ubuntu";
+    static final String PASS = "cs3750lms";
 
     public List<Assignment> getAssignmentByStudentId ( int studentId) {
 
@@ -35,11 +35,11 @@ public class DB_Get_Assignment_By_Student_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT assignment.aName, assignment.tPoints, assignment.openDate, assignment.dueDate, assignment.classId, assignment.idassignment "
-                + "FROM assignment "
-                + "INNER JOIN enrollment ON enrollment.class_Id=assignment.classId "
-                + "WHERE enrollment.student_id = " + studentId + " "
-                + "ORDER BY assignment.dueDate";
+            sql = "SELECT Assignment.aName, Assignment.tPoints, Assignment.openDate, Assignment.dueDate, Assignment.classId, Assignment.idassignment "
+                + "FROM Assignment "
+                + "INNER JOIN Enrollment ON Enrollment.class_Id=Assignment.classId "
+                + "WHERE Enrollment.student_id = " + studentId + " "
+                + "ORDER BY Assignment.dueDate";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

@@ -7,6 +7,13 @@
         <element id="directory" name="classes">
           <element id="module-output" name="CS3750_LMS" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="javax.servlet:jstl:1.2" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/json-20180813.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/jar_files/jstl-1.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/gson-2.8.2.jar" />
+          <element id="file-copy" path="$USER_HOME$/Downloads/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18/mysql-connector-java-8.0.18.jar" />
+        </element>
       </element>
     </root>
   </artifact>
