@@ -24,11 +24,29 @@
 </div>
 
 <div class="icon-bar">
-    <a class="active" href="#"><i class="fa fa-home"></i></a>
-    <a href="${pageContext.request.contextPath}/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
-    <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
-    <a href="${pageContext.request.contextPath}/viewClass?id=1"><i class="fa fa-globe"></i></a>
-    <a href="#"><i class="fa fa-trash"></i></a>
+    <div class="tooltip">
+        <a class="active" href="#"><i class="fa fa-home"></i></a>
+        <span class="tooltiptext">Home</span>
+    </div>
+    <div class="tooltip">
+        <a href="${pageContext.request.contextPath}/editUserInfo?userId=${instructorId}"><i class="fa fa-user"></i></a>
+        <span class="tooltiptext">User Profile</span>
+    </div>
+
+    <div class="tooltip">
+        <a href="${pageContext.request.contextPath}/login.jsp"><i class="fa fa-sign-out"></i></a>
+        <span class="tooltiptext">Logout</span>
+    </div>
+
+    <div class="tooltip">
+        <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-Calendar"></i></a>
+        <span class="tooltiptext">Calendar</span>
+    </div>
+
+    <div class="tooltip">
+        <a href="#"><i class="fa fa-trash"></i></a>
+        <span class="tooltiptext">Trash</span>
+    </div>
 </div>
 
 <div class="pageContent">
