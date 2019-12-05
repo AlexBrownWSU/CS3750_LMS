@@ -39,7 +39,7 @@
     </div>
 
     <div class="tooltip">
-        <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-Calendar"></i></a>
+        <a href="#"><i class="fa fa-Calendar"></i></a>
         <span class="tooltiptext">Calendar</span>
     </div>
 
