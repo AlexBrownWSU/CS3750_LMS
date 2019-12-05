@@ -35,7 +35,7 @@ public class DB_Get_As {
             stmt = conn.createStatement();
 
             sql = "SELECT answer " +
-                    "FROM submission " +
+                    "FROM Submission " +
                     "WHERE aId = " + Integer.parseInt(aId) + " " +
                     "AND " + Integer.parseInt(sId);
             System.out.println("sql");

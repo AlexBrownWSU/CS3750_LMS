@@ -28,7 +28,7 @@ public class DB_Check_If_Already_Submitted {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "select isNull(aId) as isNull  from submission " +
+            sql = "select isNull(aId) as isNull  from Submission " +
                     "where aId =" + aId + " and sId = "+ sId ;
             System.out.println("sql");
 

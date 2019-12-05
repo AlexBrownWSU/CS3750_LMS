@@ -36,7 +36,7 @@ public class DB_Submit_Assignment {
             System.out.println("Creating Statement...");
 
 
-            sql = "INSERT INTO submission "
+            sql = "INSERT INTO Submission "
                     + "(aId, answer, sId, filename, file, submissionDate, status) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?)";
             System.out.println("sql");

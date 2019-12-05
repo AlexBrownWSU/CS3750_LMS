@@ -44,7 +44,7 @@ public class DB_Edit_User {
             if (address.getAddressId() != 0) {
 
                 //Update or Insert (if not exist) address
-                sql_update_address = "INSERT INTO address (userId, line_one, line_two, line_three, city, zip, state, country) "
+                sql_update_address = "INSERT INTO Address (userId, line_one, line_two, line_three, city, zip, state, country) "
                         + "VALUES (\"" + address.getUserId()
                         + "\", \"" + address.getLineOne()
                         + "\", \"" + address.getLineTwo()
@@ -57,7 +57,7 @@ public class DB_Edit_User {
 
             } else {
 
-                sql_update_address = "INSERT INTO address (userId, line_one, line_two, line_three, city, zip, state, country) "
+                sql_update_address = "INSERT INTO Address (userId, line_one, line_two, line_three, city, zip, state, country) "
                         + "VALUES (\"" + address.getUserId()
                         + "\", \"" + address.getLineOne()
                         + "\", \"" + address.getLineTwo()

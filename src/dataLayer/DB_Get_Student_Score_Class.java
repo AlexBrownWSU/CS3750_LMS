@@ -33,7 +33,7 @@ public class DB_Get_Student_Score_Class {
 
             sql = "SELECT grade, idassignment "
                     + "FROM gradedSubmission g "
-                    + "INNER JOIN assignment a on a.idassignment=g.aId "
+                    + "INNER JOIN Assignment a on a.idassignment=g.aId "
                     + "WHERE a.classid = " + cId + " "
                     + "AND g.sId = " + sId;
             System.out.println("sql");

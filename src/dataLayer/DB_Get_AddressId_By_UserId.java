@@ -31,7 +31,7 @@ public class DB_Get_AddressId_By_UserId {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM address WHERE userId = " + Integer.parseInt(userId);
+            sql = "SELECT * FROM Address WHERE userId = " + Integer.parseInt(userId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

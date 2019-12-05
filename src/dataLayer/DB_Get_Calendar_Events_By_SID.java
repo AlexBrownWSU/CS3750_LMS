@@ -39,9 +39,9 @@ public class DB_Get_Calendar_Events_By_SID {
             stmt = conn.createStatement();
 
             sql = "SELECT aName, dueDate  " +
-                    "FROM assignment a " +
-                    "INNER JOIN enrollment e ON a.classId=e.class_id " +
-                    "INNER JOIN user u ON u.id=e.student_id " +
+                    "FROM Assignment a " +
+                    "INNER JOIN Enrollment e ON a.classId=e.class_id " +
+                    "INNER JOIN User u ON u.id=e.student_id " +
                     "WHERE u.id = " + studentId;
             System.out.println("sql");
 

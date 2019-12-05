@@ -33,7 +33,7 @@ public class DB_Get_Questions_By_AId {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM question WHERE aId = " + Integer.parseInt(aId);
+            sql = "SELECT * FROM Question WHERE aId = " + Integer.parseInt(aId);
 
             System.out.println("sql");
 

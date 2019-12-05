@@ -32,9 +32,9 @@ public class DB_Get_Enrollments_By_Student_Id {
                 System.out.println("Creating Statment...");
                 stmt = conn.createStatement();
 
-                sql = "SELECT class.id, class.instructorId, class.class_name, class.meeting_time, class.enrollments FROM class "
-                        + "INNER JOIN  enrollment ON enrollment.class_id=class.id "
-                        + "WHERE enrollment.student_id = " + studentId;
+                sql = "SELECT Class.id, Class.instructorId, Class.class_name, Class.meeting_time, Class.enrollments FROM Class "
+                        + "INNER JOIN  Enrollment ON Enrollment.class_id=Class.id "
+                        + "WHERE Enrollment.student_id = " + studentId;
 
                 System.out.println("sql");
 

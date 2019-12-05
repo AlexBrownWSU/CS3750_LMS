@@ -44,7 +44,7 @@ public class DB_Get_Averages {
 
             sql = "SELECT grade, a.aName, a.tPoints "
                     + "FROM gradedSubmission g "
-                    + "INNER JOIN assignment a ON a.idassignment=g.aId "
+                    + "INNER JOIN Assignment a ON a.idassignment=g.aId "
                     + " WHERE a.classid = 1";
 
             System.out.println("sql");

@@ -30,7 +30,7 @@ public class DB_Get_Student_Score_Assignment {
 
             sql = "SELECT grade, idassignment "
                     + "FROM gradedSubmission g "
-                    + "INNER JOIN assignment a on a.idassignment=g.aId "
+                    + "INNER JOIN Assignment a on a.idassignment=g.aId "
                     + "WHERE a.classid = " + cId + " "
                     + "AND a.idassignment = " + aId + " "
                     + "AND g.sId = " + sId;

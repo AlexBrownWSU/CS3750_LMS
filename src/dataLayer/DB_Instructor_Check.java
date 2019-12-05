@@ -28,7 +28,7 @@ public class DB_Instructor_Check {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE user_name = \"" + username + "\" AND type = 1";
+            sql = "SELECT * FROM User WHERE user_name = \"" + username + "\" AND type = 1";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

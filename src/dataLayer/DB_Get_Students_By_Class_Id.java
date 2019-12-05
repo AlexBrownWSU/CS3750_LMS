@@ -33,11 +33,11 @@ public class DB_Get_Students_By_Class_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT user.lName, user.fName, user.id, enrollment.class_id  " +
-                    "FROM enrollment " +
-                    "INNER JOIN  user ON user.id=enrollment.student_id " +
-                    "WHERE enrollment.class_id = " + classId + " "+
-                    "ORDER BY user.lName";
+            sql = "SELECT User.lName, User.fName, User.id, Enrollment.class_id  " +
+                    "FROM Enrollment " +
+                    "INNER JOIN  User ON User.id=enrollment.student_id " +
+                    "WHERE Enrollment.class_id = " + classId + " "+
+                    "ORDER BY User.lName";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

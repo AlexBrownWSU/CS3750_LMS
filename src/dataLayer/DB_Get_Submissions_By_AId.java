@@ -35,21 +35,21 @@ public class DB_Get_Submissions_By_AId {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT submission.submissionId, " +
-                    "submission.aId, " +
-                    "submission.answer, " +
-                    "submission.sId, " +
-                    "submission.filename, " +
-                    "submission.file, " +
-                    "submission.submissionDate, " +
-                    "submission.status, " +
-                    "submission.answer, " +
-                    "user.lName, " +
-                    "user.fName " +
-                    "FROM submission " +
-                    "INNER JOIN user ON user.id=submission.sId " +
-                    "WHERE submission.aId = " + Integer.parseInt(aId) + " " +
-                    "ORDER BY submission.submissionDate";
+            sql = "SELECT Submission.submissionId, " +
+                    "Submission.aId, " +
+                    "Submission.answer, " +
+                    "Submission.sId, " +
+                    "Submission.filename, " +
+                    "Submission.file, " +
+                    "Submission.submissionDate, " +
+                    "Submission.status, " +
+                    "Submission.answer, " +
+                    "User.lName, " +
+                    "User.fName " +
+                    "FROM Submission " +
+                    "INNER JOIN User ON User.id=Submission.sId " +
+                    "WHERE Submission.aId = " + Integer.parseInt(aId) + " " +
+                    "ORDER BY Submission.submissionDate";
 
             System.out.println("sql");
 

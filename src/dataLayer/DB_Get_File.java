@@ -33,7 +33,7 @@ public class DB_Get_File {
             stmt = conn.createStatement();
 
             sql = "SELECT filename, file " +
-                    "FROM submission " +
+                    "FROM Submission " +
                     "WHERE aId = " + Integer.parseInt(aId) + " " +
                     "AND sId = " + Integer.parseInt(sId);
 

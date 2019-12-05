@@ -33,7 +33,7 @@ public class DB_Get_Submissions_By_AId_SId {
             stmt = conn.createStatement();
 
             sql = "SELECT answer " +
-                    "FROM submission " +
+                    "FROM Submission " +
                     "WHERE aId = " + Integer.parseInt(aId) + " " +
                     "AND " + Integer.parseInt(sId);
             System.out.println("sql");

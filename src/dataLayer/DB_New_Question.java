@@ -32,7 +32,7 @@ public class DB_New_Question {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "INSERT INTO question "
+            sql = "INSERT INTO Question "
                     + "(aId, question, qPoints)"
                     + "VALUES (\""
                     + question.getaId()

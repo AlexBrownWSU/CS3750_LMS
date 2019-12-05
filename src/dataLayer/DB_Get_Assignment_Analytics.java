@@ -32,8 +32,8 @@ public class DB_Get_Assignment_Analytics {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "select max(grade) as max, min(grade) as min, avg(grade) as avg  from gradedsubmission" +
-                    " Join assignment on gradedsubmission.aId = assignment.idassignment" +
+            sql = "select max(grade) as max, min(grade) as min, avg(grade) as avg  from gradedSubmission" +
+                    " Join Assignment on gradedSubmission.aId = Assignment.idassignment" +
                     " where aId =" +  aId + " and classId = "+ cId;
             System.out.println("sql");
 
@@ -62,7 +62,7 @@ public class DB_Get_Assignment_Analytics {
 //                assignmentAnalyntics.setMedian(rs.getDouble("median_val"));
 //            }
 
-            sql3 = "select grade from gradedsubmission" +
+            sql3 = "select grade from gradedSubmission" +
                     " where aId = " +  aId + " and sId = " +  sId ;
             System.out.println("sql3");
 

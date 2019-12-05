@@ -35,16 +35,16 @@ public class DB_Get_Assignment_By_Student_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT assignment.aName, assignment.tPoints, assignment.openDate, assignment.dueDate, assignment.classId, assignment.idassignment "
-                + "FROM assignment "
-                + "INNER JOIN enrollment ON enrollment.class_Id=assignment.classId "
-                + "WHERE enrollment.student_id = " + studentId +
-                    " And assignment.idassignment not in " +
+            sql = "SELECT Assignment.aName, Assignment.tPoints, Assignment.openDate, Assignment.dueDate, Assignment.classId, Assignment.idassignment "
+                + "FROM Assignment "
+                + "INNER JOIN Enrollment ON Enrollment.class_Id=Assignment.classId "
+                + "WHERE Enrollment.student_id = " + studentId +
+                    " And Assignment.idassignment not in " +
                     " ( select aId " +
-                    " from submission" +
+                    " from Submission" +
                     " where sId = "+ studentId +
                     " ) "
-                + "ORDER BY assignment.dueDate";
+                + "ORDER BY Assignment.dueDate";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

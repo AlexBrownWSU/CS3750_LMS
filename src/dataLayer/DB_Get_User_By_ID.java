@@ -30,7 +30,7 @@ public class DB_Get_User_By_ID {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM user WHERE id = \"" + id + "\"";
+            sql = "SELECT * FROM User WHERE id = \"" + id + "\"";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

@@ -31,7 +31,7 @@ public class DB_New_Assignment {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "INSERT INTO assignment "
+            sql = "INSERT INTO Assignment "
                     + "(aName, tPoints, openDate, dueDate, classId)"
                     + "VALUES (\""
                     + assignment.getaName()

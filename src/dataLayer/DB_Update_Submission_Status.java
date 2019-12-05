@@ -27,7 +27,7 @@ public class DB_Update_Submission_Status {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "UPDATE submission " +
+            sql = "UPDATE Submission " +
                     "SET status = 1 " +
                     "WHERE submissionId = " + submissionId;
 

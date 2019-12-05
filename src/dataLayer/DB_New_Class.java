@@ -29,7 +29,7 @@ public class DB_New_Class {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "INSERT INTO class "
+            sql = "INSERT INTO Class "
                     + "(instructorId, class_name, meeting_time)"
                     + "VALUES (\"" + instructorId + "\", \"" + cName + "\", \"" + dateTime + "\")";
             System.out.println("sql");

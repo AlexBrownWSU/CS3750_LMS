@@ -34,14 +34,14 @@ public class DB_New_Enrollment {
             stmt = conn.createStatement();
 
 
-            sql = "INSERT INTO enrollment "
+            sql = "INSERT INTO Enrollment "
                     + "(student_id, class_id) "
                     + "VALUES ( " + studentEnrollment.getsId() + ", " + studentEnrollment.getcId() + " )";
             System.out.println("sql");
 
             stmt.executeUpdate(sql);
 
-            sql2 = "UPDATE class SET enrollments = enrollments + 1 "
+            sql2 = "UPDATE Class SET enrollments = enrollments + 1 "
                     + "WHERE id = " + studentEnrollment.getcId();
 
             stmt.executeUpdate(sql2);

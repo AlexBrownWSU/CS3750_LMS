@@ -30,7 +30,7 @@ public class DB_New_User {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "INSERT INTO user "
+            sql = "INSERT INTO User "
                     + "(user_name, password, fName, lName, bDate, type)"
                     + "VALUES (\"" + email + "\", \"" + password + "\", \"" + fName + "\", \"" + lName + "\", \"" + bDate + "\", \"" + type + "\")";
             System.out.println("sql");

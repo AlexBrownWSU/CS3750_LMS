@@ -37,7 +37,7 @@ public class DB_User {
                 System.out.println("Creating Statment...");
                 stmt = conn.createStatement();
 
-                sql = "SELECT * FROM user WHERE user_name = \"" + username + "\" AND password = \"" + password + "\"";
+                sql = "SELECT * FROM User WHERE user_name = \"" + username + "\" AND password = \"" + password + "\"";
                 System.out.println("sql");
 
                 ResultSet rs = stmt.executeQuery(sql);

@@ -34,7 +34,7 @@ public class DB_Get_Assignments_By_Class_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM assignment WHERE classId = " + classId;
+            sql = "SELECT * FROM Assignment WHERE classId = " + classId;
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

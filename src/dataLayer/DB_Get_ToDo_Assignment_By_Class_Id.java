@@ -32,9 +32,9 @@ public class DB_Get_ToDo_Assignment_By_Class_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM assignment WHERE classId = " + classId +
+            sql = "SELECT * FROM Assignment WHERE classId = " + classId +
                     " AND idassignment  NOT IN" +
-                    " (SELECT aId FROM submission " +
+                    " (SELECT aId FROM Submission " +
                     " WHERE sId = " + userId +" )";
             System.out.println("sql");
 

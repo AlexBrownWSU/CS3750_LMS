@@ -33,7 +33,7 @@ public class DB_Get_Class_By_Instructor {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM class WHERE instructorId = " + Integer.parseInt(instructorId);
+            sql = "SELECT * FROM Class WHERE instructorId = " + Integer.parseInt(instructorId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

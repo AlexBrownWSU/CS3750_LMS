@@ -32,12 +32,12 @@ public class DB_Get_Classes_by_student {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql =   " SELECT class.*, user.lName, user.fName " +
-                    " FROM class " +
-                    " JOIN enrollment ON class.id=enrollment.class_id " +
-                    "JOIN user ON enrollment.student_id = user.id" +
-                    " WHERE enrollment.student_id =" + studentId +
-                    " ORDER BY class.id";
+            sql =   " SELECT Class.*, User.lName, User.fName " +
+                    " FROM Class " +
+                    " JOIN Enrollment ON Class.id=Enrollment.class_id " +
+                    "JOIN User ON Enrollment.student_id = User.id" +
+                    " WHERE Enrollment.student_id =" + studentId +
+                    " ORDER BY Class.id";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

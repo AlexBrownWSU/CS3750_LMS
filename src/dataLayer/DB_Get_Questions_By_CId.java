@@ -31,10 +31,10 @@ public class DB_Get_Questions_By_CId {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT question.* FROM question " +
-                    "JOIN assignment " +
-                    "ON question.aId = assignment.idassignment " +
-                    "WHERE assignment.classId = " + Integer.parseInt(cId);
+            sql = "SELECT Question.* FROM Question " +
+                    "JOIN Assignment " +
+                    "ON Question.aId = Assignment.idassignment " +
+                    "WHERE Assignment.classId = " + Integer.parseInt(cId);
 
             System.out.println("sql");
 

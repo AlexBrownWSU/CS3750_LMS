@@ -31,7 +31,7 @@ public class DB_Get_Class_By_Id {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT * FROM class WHERE id = " + Integer.parseInt(classId);
+            sql = "SELECT * FROM Class WHERE id = " + Integer.parseInt(classId);
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);

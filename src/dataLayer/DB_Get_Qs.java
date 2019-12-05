@@ -36,7 +36,7 @@ public class DB_Get_Qs {
             stmt = conn.createStatement();
 
             sql = "SELECT question, qPoints " +
-                    "FROM question " +
+                    "FROM Question " +
                     "WHERE aId = " + Integer.parseInt(aId);
 
             ResultSet rs = stmt.executeQuery(sql);

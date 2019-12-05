@@ -34,11 +34,11 @@ public class DB_Get_Submitted_Assignments {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT submission.*, assignment.* FROM submission " +
-                    " JOIN assignment ON submission.aId = assignment.idAssignment " +
-                    " WHERE submission.sId = " + userId +
-                    " AND assignment.classId = " + classId +
-                    " ORDER BY submission.aId";
+            sql = "SELECT Submission.*, Assignment.* FROM Submission " +
+                    " JOIN Assignment ON Submission.aId = Assignment.idAssignment " +
+                    " WHERE Submission.sId = " + userId +
+                    " AND Assignment.classId = " + classId +
+                    " ORDER BY Submission.aId";
             System.out.println("sql");
 
             ResultSet rs = stmt.executeQuery(sql);
@@ -59,10 +59,10 @@ public class DB_Get_Submitted_Assignments {
 
             }
             sql2 = "SELECT grade " +
-                    "from gradedsubmission " +
-                    "join assignment on gradedsubmission.aId = assignment.idassignment " +
-                    "where assignment.classId = " + classId +
-                    " And gradedsubmission.sId = " + userId;
+                    "from gradedSubmission " +
+                    "join Assignment on gradedSubmission.aId = Assignment.idassignment " +
+                    "where Assignment.classId = " + classId +
+                    " And gradedSubmission.sId = " + userId;
             System.out.println("sql2");
 
             rs = stmt.executeQuery(sql2);
