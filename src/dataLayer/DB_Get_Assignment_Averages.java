@@ -104,6 +104,7 @@ public class DB_Get_Assignment_Averages {
         System.out.println("Closing DB Connection");
 
         assignmentAverage.setAverages(setAverages(totalRows, gradeList));
+
         return assignmentAverage;
 
     }

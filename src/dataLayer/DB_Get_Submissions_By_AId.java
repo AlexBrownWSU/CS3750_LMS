@@ -35,7 +35,7 @@ public class DB_Get_Submissions_By_AId {
             System.out.println("Creating Statment...");
             stmt = conn.createStatement();
 
-            sql = "SELECT Submission.submissionId, " +
+            sql = "SELECT Submission.idsubmission, " +
                     "Submission.aId, " +
                     "Submission.answer, " +
                     "Submission.sId, " +
@@ -60,7 +60,7 @@ public class DB_Get_Submissions_By_AId {
 
                 AssignmentSubmission assignmentSubmission = new AssignmentSubmission();
 
-                assignmentSubmission.setSubmissionId(rs.getInt("submission.submissionId"));
+                assignmentSubmission.setSubmissionId(rs.getInt("submission.idsubmission"));
                 assignmentSubmission.setsId(rs.getInt("submission.sId"));
                 assignmentSubmission.setaId(rs.getInt("submission.aId"));
                 assignmentSubmission.setSubmissionDate(rs.getString("submission.submissionDate"));

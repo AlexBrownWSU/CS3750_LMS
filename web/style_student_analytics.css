@@ -133,6 +133,7 @@
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: 0.5s;
+
 }
 
 .card:hover .text

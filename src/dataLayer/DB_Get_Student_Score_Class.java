@@ -75,9 +75,13 @@ public class DB_Get_Student_Score_Class {
 
     public int addStudentScores (List<Integer> grades) {
         int sum = 0;
+        int numOfGrade = grades.size();
         for (int i: grades) {
             sum += i;
         }
+        if(numOfGrade > 0){
+        sum = sum/numOfGrade;}
+
         return sum;
     }
 }

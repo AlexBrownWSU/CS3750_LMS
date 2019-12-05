@@ -44,7 +44,7 @@ public class DB_Get_Questions_By_AId {
 
                 Question question = new Question();
 
-                question.setqId(rs.getInt("qId"));
+                question.setqId(rs.getInt("idquestion"));
                 question.setaId(rs.getInt("aId"));
                 question.setQuestion(rs.getString("question"));
                 question.setqPoints(rs.getInt("qPoints"));

@@ -35,7 +35,7 @@ public class DB_Get_Students_By_Class_Id {
 
             sql = "SELECT User.lName, User.fName, User.id, Enrollment.class_id  " +
                     "FROM Enrollment " +
-                    "INNER JOIN  User ON User.id=enrollment.student_id " +
+                    "INNER JOIN  User ON User.id= Enrollment.student_id " +
                     "WHERE Enrollment.class_id = " + classId + " "+
                     "ORDER BY User.lName";
             System.out.println("sql");

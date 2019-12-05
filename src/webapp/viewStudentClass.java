@@ -29,8 +29,8 @@ public class viewStudentClass extends HttpServlet {
         int cId = Integer.parseInt(request.getAttribute("cId").toString());
 
         GetAssignments getAssignments = new GetAssignments();
-        List<Assignment> assignments = getAssignments.getAssignmentsByStudentId(sId);
-
+        List<Assignment> assignments = getAssignments.getToDoAssignmentByClassId(cId,sId);
+        List<Assignment> allAssignments = getAssignments.getAssignmentsByClassId(cId);
 
         Averages averagesClass = getAssignments.getClassAverages(sId, cId);
         averagesClass.setStudentScore((double) getAssignments.getStudentClassScore(sId, cId));
@@ -38,8 +38,8 @@ public class viewStudentClass extends HttpServlet {
         List<AssignmentAverages> assignmentAverages = new ArrayList<>();
 
         //get averages - assignment
-        for (int i = 0; i < assignments.size(); i++) {
-            Assignment assignment = assignments.get(i);
+        for (int i = 0; i < allAssignments.size(); i++) {
+            Assignment assignment = allAssignments.get(i);
 
             int aId = assignment.getaId();
 
@@ -88,18 +88,19 @@ public class viewStudentClass extends HttpServlet {
         int cId = Integer.parseInt(request.getParameter("cId"));
 
         GetAssignments getAssignments = new GetAssignments();
-        List<Assignment> assignments = getAssignments.getAssignmentsByStudentId(sId);
+        List<Assignment> assignments = getAssignments.getToDoAssignmentByClassId(cId,sId);
 
+        List<Assignment> allAssignments = getAssignments.getAssignmentsByClassId(cId);
 
-        //Get averages - class
+//        Get averages - class
         Averages averagesClass = getAssignments.getClassAverages(sId, cId);
         averagesClass.setStudentScore((double) getAssignments.getStudentClassScore(sId, cId));
 
         List<AssignmentAverages> assignmentAverages = new ArrayList<>();
 
         //get averages - assignment
-        for (int i = 0; i < assignments.size(); i++) {
-            Assignment assignment = assignments.get(i);
+        for (int i = 0; i < allAssignments.size(); i++) {
+            Assignment assignment = allAssignments.get(i);
 
             int aId = assignment.getaId();
 

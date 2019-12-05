@@ -29,7 +29,7 @@ public class DB_Update_Submission_Status {
 
             sql = "UPDATE Submission " +
                     "SET status = 1 " +
-                    "WHERE submissionId = " + submissionId;
+                    "WHERE idsubmission = " + submissionId;
 
             System.out.println("sql");
 

@@ -44,8 +44,8 @@ public class DB_Get_Averages {
 
             sql = "SELECT grade, a.aName, a.tPoints "
                     + "FROM gradedSubmission g "
-                    + "INNER JOIN Assignment a ON a.idassignment=g.aId "
-                    + " WHERE a.classid = 1";
+                    + "INNER JOIN Assignment a ON a.idassignment = g.aId "
+                    + " WHERE a.classid = " + cId;
 
             System.out.println("sql");
 
@@ -91,10 +91,10 @@ public class DB_Get_Averages {
     public Averages setAverages (int totalRows,  List<Integer> gradeList) {
 
         Averages averages = new Averages();
-
-        averages.setHigh(Collections.max(gradeList));
-        averages.setLow(Collections.min(gradeList));
-
+if (totalRows>1) {
+    averages.setHigh(Collections.max(gradeList));
+    averages.setLow(Collections.min(gradeList));
+}
         double classAverage = 0;
 
         for (int grade: gradeList) {
@@ -103,7 +103,11 @@ public class DB_Get_Averages {
 
         averages.settPoints((int)classAverage);
 
-        averages.setAverage(classAverage / totalRows);
+
+        classAverage = classAverage / totalRows;
+        classAverage = Math.round(classAverage * 100);
+        classAverage = classAverage / 100;
+        averages.setAverage(classAverage);
 
         return averages;
     }

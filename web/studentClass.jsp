@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="style_student_analytics.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body onload="onSubmission(${marker})">
+<body onload="onSubmission(${marker})" >
 
     <div class="topnav">
         <p style="color:red">STUDENT: ${lName}, ${fName} STUDENT ID = ${id} Class: ${cName}</p>
@@ -31,7 +31,7 @@
                 <span class="tooltiptext">Home</span>
             </div>
             <div class="tooltip">
-                <a href="${pageContext.request.contextPath}/editUserInfo?userId=${studentId}"><i class="fa fa-user"></i></a>
+                <a href="${pageContext.request.contextPath}/editUserInfo?userId=${id}"><i class="fa fa-user"></i></a>
                 <span class="tooltiptext">User Profile</span>
             </div>
 
@@ -41,7 +41,7 @@
             </div>
 
             <div class="tooltip">
-                <a href="${pageContext.request.contextPath}/getCalendar?studentId=${studentId}&fName=${fName}&lName=${lName}"><i class="fa fa-Calendar"></i></a>
+                <a href="${pageContext.request.contextPath}/getCalendar?studentId=${id}&fName=${fName}&lName=${lName}"><i class="fa fa-Calendar"></i></a>
                 <span class="tooltiptext">Calendar</span>
             </div>
 
@@ -79,7 +79,7 @@
                         <circle cx="35" cy="35" r="35"></circle>
                     </svg>
                     <div class = "number">
-                        <h2 class = "avg">${averages.average}<span>%</span></h2>
+                        <h2 class = "avg"  >${averages.average}<span>%</span></h2>
                     </div>
                 </div>
                 <h2 class = "text">Class avg</h2>
@@ -349,7 +349,7 @@ function onSubmission(marker){
                         var HTML = '';
 
                         $("#max").text("HIGH: " + response.high);
-                        $("#avg").text("AVG: " + response.average);
+                        $("#avg").text("AVG: " + response.average.toFixed(2));
                         $("#low").text("LOW: " + response.low);
                         $("#sGrade").text("YOUR GRADE: " + response.studentScore);
 
