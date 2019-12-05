@@ -8,11 +8,11 @@ public class DB_Get_AddressId_By_UserId {
 
     // JDBC driver name and database URL
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+    static final String DB_URL = "jdbc:mysql://18.191.104.66:3306/lms";
 
     // Database credentials
-    static final String USER = "root";
-    static final String PASS = "FastStaff2020";
+    static final String USER = "ubuntu";
+    static final String PASS = "cs3750lms";
 
     public Address getAddressByUserId(String userId) {
 

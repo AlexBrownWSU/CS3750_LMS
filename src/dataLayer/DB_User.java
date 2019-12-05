@@ -3,14 +3,22 @@ package dataLayer;
 import java.sql.*;
 
 public class DB_User {
+    // JDBC driver name and database URL
+    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+    static final String DB_URL = "jdbc:mysql://18.191.104.66:3306/lms";
 
-        // JDBC driver name and database URL
-        static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-        static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+    // Database credentials
+    static final String USER = "ubuntu";
+    static final String PASS = "cs3750lms";
 
-        // Database credentials
-        static final String USER = "root";
-        static final String PASS = "FastStaff2020";
+
+//        // JDBC driver name and database URL
+//        static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+//        static final String DB_URL = "jdbc:mysql://localhost/test3750db";
+//
+//        // Database credentials
+//        static final String USER = "root";
+//        static final String PASS = "FastStaff2020";
 
         public boolean isValidUserLogin(String username, String password) {
 
