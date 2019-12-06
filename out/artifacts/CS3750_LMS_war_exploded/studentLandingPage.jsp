@@ -252,6 +252,7 @@
                 dataType: "json",
                 data: $('#enrollStudent').serialize(),
                 success: function(data) {
+                    alert("!!!Enrollment Successful!!!")
                 }
             });
 
