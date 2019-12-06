@@ -2,6 +2,7 @@ package appLayer;
 
 import DAO.ClassDAO;
 import DAO.Entity.StudentEnrollment;
+import dataLayer.DB_Check_If_Already_Enrolled;
 import dataLayer.DB_Get_Enrollments_By_Student_Id;
 import dataLayer.DB_Get_Students_By_Class_Id;
 import dataLayer.DB_New_Enrollment;
@@ -31,5 +32,12 @@ public class GetEnrollments {
 
         return DB_Get_Enrollments_By_Student_Id.getEnrollmentsByStudentId(studentId);
 
+    }
+
+    public boolean checkIfEnrolled(int cId, int sId){
+
+        DB_Check_If_Already_Enrolled DB_Check_If_Already_Enrolled = new DB_Check_If_Already_Enrolled();
+
+        return DB_Check_If_Already_Enrolled.checkIfAlreadyEnrolled(cId , sId);
     }
 }

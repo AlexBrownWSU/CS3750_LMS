@@ -51,6 +51,7 @@ public class DB_Get_Submitted_Assignments {
                 assignment.setaName(rs.getString("aName"));
                 assignment.setaId(rs.getInt("aId"));
                 assignment.setsId(rs.getInt("sId"));
+                assignment.setGrade("ng");
                 assignment.settPoints(rs.getInt("tPoints"));
 
                 assignment.setSubmissionDate(rs.getString("submissionDate"));
@@ -58,24 +59,32 @@ public class DB_Get_Submitted_Assignments {
                 SubmittedAssignmentsList.add(assignment);
 
             }
-            sql2 = "SELECT grade " +
+            sql2 = "SELECT grade, aId " +
                     "from gradedSubmission " +
                     "join Assignment on gradedSubmission.aId = Assignment.idassignment " +
                     "where Assignment.classId = " + classId +
-                    " And gradedSubmission.sId = " + userId;
+                    " And gradedSubmission.sId = " + userId +
+                    " order by gradedSubmission.aId";
             System.out.println("sql2");
 
             rs = stmt.executeQuery(sql2);
 
-          for(int i = 0; i < SubmittedAssignmentsList.size(); i++) {
-              String grade = "";
-                if(rs.next()){
-                    grade = "" + rs.getInt("grade");
-                   SubmittedAssignmentsList.get(i).setGrade(grade);
-                }
-                else{SubmittedAssignmentsList.get(i).setGrade("NG");}
+            while (rs.next()) {
+                AssignmentSubmission assignment = new AssignmentSubmission();
+                assignment.setaId(rs.getInt("aId"));
 
-          }
+                for (int j = 0; j < SubmittedAssignmentsList.size(); j++){
+                    AssignmentSubmission AS = SubmittedAssignmentsList.get(j);
+                    if(assignment.getaId() == AS.getaId()){
+                        String grade = "";
+                        grade = "" + rs.getInt("grade");
+                        SubmittedAssignmentsList.get(j).setGrade(grade);
+                    }
+
+                }
+
+
+            }
             rs.close();
 
             stmt.close();

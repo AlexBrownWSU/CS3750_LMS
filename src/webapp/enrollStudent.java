@@ -22,7 +22,9 @@ public class enrollStudent extends HttpServlet {
 
         GetEnrollments getEnrollments = new GetEnrollments();
 
-        getEnrollments.setStudentEnrollment(studentEnrollment);
+        if(getEnrollments.checkIfEnrolled(Integer.parseInt(request.getParameter("cId")), Integer.parseInt(request.getParameter("studentId"))))
+        {getEnrollments.setStudentEnrollment(studentEnrollment);}
+
 
     }
 
