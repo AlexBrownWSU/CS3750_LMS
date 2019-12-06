@@ -24,21 +24,49 @@ body {
     position: fixed;
 }
 
-.icon-bar a {
+.icon-bar .tooltip a {
     display: block;
     text-align: center;
     padding: 16px;
     transition: all 0.3s ease;
     color: white;
-    font-size: 36px; /
+    font-size: 36px;
+    text-decoration: none;
+    font-family: 'Bambi', sans-serif;
+}
+.icon-bar .tooltip {
+    position: relative;
 }
 
-.icon-bar a:hover {
+
+.icon-bar .tooltip a:hover {
     background-color: #ddd;
+
 }
 
-.icon-bar .active {
+.icon-bar .tooltip .active {
     background-color: #FF5733;
+}
+
+
+.icon-bar .tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 0%;
+    left: 100%;
+    transition: opacity 10s;
+}
+
+.icon-bar .tooltip:hover .tooltiptext{
+    visibility: visible;
+    opacity: 1;
 }
 
 .calendar-info {
